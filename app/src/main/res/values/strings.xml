@@ -1,0 +1,312 @@
+<resources>
+    <string name="app_name">UTXO</string>
+    <string name="nav_crypto_prices_btc">Crypto Prices (BTC)</string>
+    <string name="nav_crypto_prices_bch">Crypto Prices (BCH)</string>
+    <string name="nav_crypto_prices_eth">Crypto Prices (ETH)</string>
+    <string name="nav_crypto_prices_ltc">Crypto Prices (LTC)</string>
+    <string name="nav_crypto_prices_xrp">Crypto Prices (XRP)</string>
+
+    <string name="nav_crypto_graph_btc">Crypto Graph (BTC)</string>
+    <string name="nav_crypto_graph_bch">Crypto Graph (BCH)</string>
+    <string name="nav_crypto_graph_eth">Crypto Graph (ETH)</string>
+    <string name="nav_crypto_graph_ltc">Crypto Graph (LTC)</string>
+    <string name="nav_crypto_graph_xrp">Crypto Graph (XRP)</string>
+
+    <string name="nav_crypto_candle_chart_btc">Crypto Candle Chart (BTC)</string>
+    <string name="nav_crypto_candle_chart_bch">Crypto Candle Chart (BCH)</string>
+    <string name="nav_crypto_candle_chart_eth">Crypto Candle Chart (ETH)</string>
+    <string name="nav_crypto_candle_chart_ltc">Crypto Candle Chart (LTC)</string>
+    <string name="nav_crypto_candle_chart_xrp">Crypto Candle Chart (XRP)</string>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="from">FROM</string>
+    <string name="to">TO</string>
+    <string name="get">GET</string>
+    <string name="min_amount_check">Min Amount Check</string>
+    <string name="exchange_amount">Exchange Amount</string>
+    <string name="response_info">RESPONSE INFO :</string>
+    <string name="min_amount_info">Min Amount :</string>
+    <string name="exchange_amount_info">EXCHANGE AMOUNT:</string>
+    <string name="user_pay_out_address">Enter User Payout Address</string>
+    <string name="create_transaction">Create Transaction</string>
+    <string name="get_status">Get Status</string>
+    <string name="transaction_id">Transaction Id</string>
+    <string name="no_info">no info</string>
+    <string name="get_status_info">STATUS :</string>
+    <string name="extras">Extras</string>
+    <string name="bitfinex_last_price">Bitcoin Price</string>
+    <string name="zerodotzerozero">0.00</string>
+    <string name="twentyfourhourslow">24 Hr\'s Low</string>
+    <string name="twentyfourhourshigh">24 Hr\'s High</string>
+    <string name="twentyfourhoursvolume">24 Hr\'s Volume</string>
+    <string name="zerovolume">0.00 Bitcoin</string>
+    <string name="refresh">REFRESH</string>
+    <string name="btc_price">Bitcoin Price</string>
+    <string name="pay_in_address">PAY IN ADDRESS</string>
+    <string name="block_chain_explorer">BTC Blockchain Explorer</string>
+    <string name="news">NEWS</string>
+    <string name="explore">EXPLORE</string>
+    <string name="explore_data">EXPLORE DATA</string>
+    <string name="response_data">RESPONSE DATA</string>
+    <string name="enter_address">ENTER ADDRESS</string>
+    <string name="enter_block">ENTER BLOCK</string>
+    <string name="enter_transaction">ENTER TRANSACTION</string>
+    <string name="scan">SCAN</string>
+    <string name="exchange">Exchange</string>
+    <string name="address">address</string>
+    <string name="hash160">hash160</string>
+    <string name="balance">balance</string>
+    <string name="received">received</string>
+    <string name="sent">sent</string>
+    <string name="transactions">transactions</string>
+    <string name="utxos">utxos</string>
+    <string name="unconfirmed_received">unconfirmed_received</string>
+    <string name="unconfirmed_sent">unconfirmed_sent</string>
+    <string name="unconfirmed_transactions">unconfirmed_transactions</string>
+    <string name="unconfirmed_utxos">unconfirmed_utxos</string>
+    <string name="total_transactions_in">total_transactions_in</string>
+    <string name="total_transactions_out">total_transactions_out</string>
+    <string name="hash">hash</string>
+    <string name="version">version</string>
+    <string name="height">height</string>
+    <string name="block_time">block_time</string>
+    <string name="arrival_time">arrival_time</string>
+    <string name="nonce">nonce</string>
+    <string name="difficulty">difficulty</string>
+    <string name="byte_size">byte_size</string>
+    <string name="confirmations">confirmations</string>
+    <string name="value">value</string>
+    <string name="miningpool_name">miningpool_name</string>
+    <string name="miningpool_url">miningpool_url</string>
+    <string name="miningpool_slug">miningpool_slug</string>
+    <string name="block_hash">block_hash</string>
+    <string name="first_seen_at">first_seen_at</string>
+    <string name="last_seen_at">last_seen_at</string>
+    <string name="block_height">block_height</string>
+    <string name="is_coinbase">is_coinbase</string>
+    <string name="estimated_value">estimated_value</string>
+    <string name="total_input_value">total_input_value</string>
+    <string name="total_output_value">total_output_value</string>
+    <string name="total_fee">total_fee</string>
+    <string name="estimated_change">estimated_change</string>
+    <string name="estimated_change_address">estimated_change_address</string>
+    <string name="high_priority">high_priority</string>
+    <string name="enough_fee">enough_fee</string>
+    <string name="input_list">input_list</string>
+    <string name="expand_input_list">EXPAND INPUT LIST</string>
+    <string name="index">index</string>
+    <string name="output_hash">output_hash</string>
+    <string name="output_index">output_index</string>
+    <string name="type">type</string>
+    <string name="multisig">multisig</string>
+    <string name="script_signature">script_signature</string>
+    <string name="expand_output_list">EXPAND OUTPUT LIST</string>
+    <string name="script">script</string>
+    <string name="script_hex">script_hex</string>
+    <string name="spent_hash">spent_hash</string>
+    <string name="spent_index">spent_index</string>
+    <string name="loading">Loading....</string>
+    <string name="_24_hr_s_high">24 Hr\'s High</string>
+    <string name="_24_hr_s_low">24 Hr\'s Low</string>
+    <string name="bitfinex">Bitfinex</string>
+    <string name="_11000">$ 11000</string>
+    <string name="_10000">$ 10000</string>
+    <string name="_9000">$ 9000</string>
+    <string name="sell">Ask</string>
+    <string name="buy">Bid</string>
+    <string name="copy_rights">Copyright \u00a9 2018 AndroDevLinux</string>
+    <string name="get_data">Get Data</string>
+    <string name="crypto_candle_chart">Crypto Candle Chart</string>
+    <string name="menu_licenses">Licenses</string>
+
+    <string-array name="spinner_explore_data">
+        <item>Address</item>
+        <item>Block</item>
+        <item>Transaction</item>
+    </string-array>
+
+    <string-array name="spinner_currency">
+        <item>Bitcoin</item>
+        <item>Ethereum</item>
+        <item>Ripple</item>
+        <item>Monero</item>
+    </string-array>
+
+    <string-array name="spinner_time_frame">
+        <item>1m</item>
+        <item>5m</item>
+        <item>15m</item>
+        <item>30m</item>
+        <item>1h</item>
+        <item>3h</item>
+        <item>6h</item>
+        <item>12h</item>
+        <item>1D</item>
+        <item>7D</item>
+        <item>14D</item>
+        <item>1M</item>
+    </string-array>
+
+    <string name="price_format">Price: &#36; %1$.2f</string>
+    <string name="unrounded_price_format">Price: &#36; %1$s</string>
+    <string name="unrounded_usd_chart_price_format">&#36; %1$s</string>
+    <string name="mkt_cap_format">MarketCap: &#36; %1$,.2f</string>
+    <string name="volume_format">Volume 24h: &#36; %1$,.2f</string>
+    <string name="negative_variable_pct_change_with_dollars_format">%1$s Change: %2$.2f%% &#40;&#45;&#36;%3$.2f&#41;</string>
+    <string name="positive_variable_pct_change_with_dollars_format">%1$s Change: &#43;%2$.2f%% &#40;&#43;&#36;%3$.2f&#41;</string>
+    <string name="negative_variable_pct_change_without_dollars_format">%1$s Change: %2$.2f%%</string>
+    <string name="positive_variable_pct_change_without_dollars_format">%1$s Change: &#43;%2$.2f%%</string>
+
+    <string name="negative_pct_change_format">%1$s: %2$.2f%%</string>
+    <string name="positive_pct_change_format">%1$s: &#43;%2$.2f%%</string>
+    <string name="not_available_pct_change_text_with_time">%1$s: N/A</string>
+
+    <string name="negative_pct_change_with_dollars_format">%1$.2f%% &#40;&#45;&#36;%2$.2f&#41;</string>
+    <string name="positive_pct_change_with_dollars_format">&#43;%1$.2f%% &#40;&#43;&#36;%2$.2f&#41;</string>
+
+    <string name="negative_pct_format">%1$.2f%%</string>
+    <string name="positive_pct_format">&#43;%1$.2f%%</string>
+
+    <string name="News">News</string>
+    <string name="Home">Home</string>
+    <string name="CoinImage">Coin Image</string>
+    <string name="AddCurrency">Add Currency</string>
+    <string name="Favorite">Favorite</string>
+    <string name="Refresh">Refresh</string>
+    <string name="fifteenMins">15m</string>
+    <string name="sixHours">6h</string>
+    <string name="oneDay">24h</string>
+    <string name="threeDay">3D</string>
+    <string name="Week">7D</string>
+    <string name="twoWeeks">14D</string>
+    <string name="Month">1M</string>
+    <string name="threeMonth">3M</string>
+    <string name="Year">1y</string>
+    <string name="All">All</string>
+    <string name="AllTime">All Time</string>
+    <string name="action_search">Search</string>
+    <string name="action_sort">Sort</string>
+    <string name="action_internet">Browser</string>
+    <string name="action_share">Share</string>
+    <string name="sort_by">Sort by\u2026</string>
+    <string name="noChartDataString">No Chart Data :(</string>
+    <string name="noMarketsString">No Markets Available :(</string>
+    <string name="notAvailableStringResource">N/A</string>
+    <string name="nameAndSymbol">%1$s (%2$s)</string>
+    <string name="volume24h">Volume24h: </string>
+
+    <string name="basic_currency_format">%1$s %2$s</string>
+
+    <string name="rounded_btc_format_no_space">\u0E3F%1$,.4f</string>
+    <string name="rounded_btc_format">\u0E3F %1$,.4f</string>
+    <string name="usd_format_no_space">&#36;%1$,.2f</string>
+
+    <string name="btc_format">\u0E3F %1$s</string>
+    <string name="eth_format">\u039e %1$s</string>
+    <string name="ltc_format">\u0141 %1$s</string>
+
+    <!--AIC, USDT, NZD, CAD, CLP, COP, HKD, MXN, TTD, XCD, ARS-->
+    <string name="usd_format">&#36; %1$,.2f</string>
+    <!--Australian Dollar-->
+    <string name="aud_format">\u0041\u0024 %1$,.2f</string>
+    <!--brazilian real-->
+    <string name="brl_format">\u0052\u0024 %1$,.2f</string>
+    <!--Bahamian Dollar-->
+    <string name="bsd_format">\u0042\u0024 %1$,.2f</string>
+    <!--swiss franc-->
+    <string name="chf_format">\u0043\u0048\u0046 %1$,.2f</string>
+    <!--Chinese Yuan Renminbi-->
+    <string name="cny_format">\u00a5 %1$,.2f</string>
+    <!--Czech Koruna-->
+    <string name="czk_format">\u004b\u010d %1$,.2f</string>
+    <!--Danish Krone-->
+    <string name="dkk_format">\u006b\u0072 %1$,.2f</string>
+    <!--Euro-->
+    <string name="euro_format">\u20AC %1$,.2f</string>
+    <!--Fiji Dollar-->
+    <string name="fjd_format">\u0046\u004a\u0024 %1$,.2f</string>
+    <!--british pound-->
+    <string name="gbp_format">\u00a3 %1$,.2f</string>
+    <!--Ghanaian New Cedi-->
+    <string name="ghs_format">\u0047\u0048\u20b5 %1$,.2f</string>
+    <!--Guatemalan Quetzal-->
+    <string name="gtq_format">\u0051 %1$,.2f</string>
+    <!--Honduran Lempira-->
+    <string name="hnl_format">\u004c %1$,.2f</string>
+    <!--Croatian Kuna-->
+    <string name="hrk_format">\u006b\u006e %1$,.2f</string>
+    <!--Hungarian Forint-->
+    <string name="huf_format">\u0046\u0074 %1$,.2f</string>
+    <!--Indonesian Rupiah-->
+    <string name="idr_format">\u0052\u0070 %1$,.2f</string>
+    <!--Israeli New Shekel-->
+    <string name="ils_format">\u20aa %1$,.2f</string>
+    <!--Indian Rupee-->
+    <string name="inr_format">\u20b9 %1$,.2f</string>
+    <!--Iceland Krona, NOK, SEK-->
+    <string name="isk_format">\u006b\u0072 %1$,.2f</string>
+    <!--Jamaican Dollar-->
+    <string name="jmd_format">\u004a\u0024 %1$,.2f</string>
+    <!--Japanese Yen-->
+    <string name="jpy_format">\u00A5  %1$,.2f</string>
+    <!--South-Korean Won-->
+    <string name="krw_format">\u20A9  %1$,.2f</string>
+    <!--Sri Lanka Rupee, PKR-->
+    <string name="lkr_format">\u20a8 %1$,.2f</string>
+    <!--Myanmar Kyat-->
+    <string name="mmk_format">\u004b %1$,.2f</string>
+    <!--Malaysian Ringgit-->
+    <string name="myr_format">\u0052\u004d %1$,.2f</string>
+    <!--Panamanian Balboa-->
+    <string name="pab_format">\u0042\u002f\u002e %1$,.2f</string>
+    <!--Peruvian Nuevo Sol-->
+    <string name="pen_format">\u0053\u002f\u002e %1$,.2f</string>
+    <!--Philippine Peso-->
+    <string name="php_format">\u20b1 %1$,.2f</string>
+    <!--Polish Zloty-->
+    <string name="pln_format">\u007a\u0142 %1$,.2f</string>
+    <!--Romanian New Lei-->
+    <string name="ron_format">\u006c\u0065\u0069 %1$,.2f</string>
+    <!--Serbian Dinar-->
+    <string name="rsd_format">\u0052\u0053\u0044 %1$,.2f</string>
+    <!--Russian Rouble-->
+    <string name="rub_format">\u0440\u0443\u0431 %1$,.2f</string>
+    <!--Singapore Dollar-->
+    <string name="sgd_format">\u0053\u0024 %1$,.2f</string>
+    <!--Thai Baht-->
+    <string name="thb_format">\u0e3f %1$,.2f</string>
+    <!--Turkish Lira-->
+    <string name="try_format">\u0054\u004c %1$,.2f</string>
+    <!--Taiwan Dollar-->
+    <string name="twd_format">\u004e\u0054\u0024 %1$,.2f</string>
+    <!--Venezuelan Bolivar Fuerte-->
+    <string name="vef_format">\u0042\u0073 %1$,.2f</string>
+    <!--vietnamese DONG-->
+    <string name="vnd_format">\u20AB %1$,.2f</string>
+    <!--CFA Franc BEAC-->
+    <string name="xaf_format">\u0046\u0043\u0046\u0041 %1$,.2f</string>
+    <!--CFP Franc-->
+    <string name="xpf_format">\u0046 %1$,.2f</string>
+    <!--South African Rand-->
+    <string name="zar_format">\u0052 %1$,.2f</string>
+    <!--Nigerian Naira-->
+    <string name="ngn_format">\u0052 %1$,.2f</string>
+    <string name="nav_crypto_graphs">Crypto Graphs</string>
+    <string name="price">Price:</string>
+    <string name="filter">Filter</string>
+    <string name="eth">ETH</string>
+    <string name="btc">BTC</string>
+    <string name="nav_crypto_prices">Crypto Prices</string>
+    <string name="nav_about">About</string>
+    <string name="xrp">XRP</string>
+    <string name="bch">BCH</string>
+    <string name="ltc">LTC</string>
+
+    <string-array name="chart_spinner_options">
+        <item>USD</item>
+        <item>BTC</item>
+    </string-array>
+</resources>
+
