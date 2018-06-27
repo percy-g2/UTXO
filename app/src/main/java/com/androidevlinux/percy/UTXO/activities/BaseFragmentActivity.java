@@ -33,6 +33,7 @@ public abstract class BaseFragmentActivity extends AppCompatActivity {
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
+                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out, android.R.animator.fade_in, android.R.animator.fade_out)
                 .replace(R.id.content_frame, fragment)
                 .commit();
     }
