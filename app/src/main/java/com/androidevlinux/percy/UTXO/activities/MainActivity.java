@@ -28,7 +28,10 @@ import com.androidevlinux.percy.UTXO.MyApp;
 import com.androidevlinux.percy.UTXO.R;
 import com.androidevlinux.percy.UTXO.fragments.BitfinexCandleChartFragment;
 import com.androidevlinux.percy.UTXO.fragments.CryptoPricesFragment;
+import com.androidevlinux.percy.UTXO.fragments.ExchangeAmountFragment;
+import com.androidevlinux.percy.UTXO.fragments.GetStatusFragment;
 import com.androidevlinux.percy.UTXO.fragments.GraphFragment;
+import com.androidevlinux.percy.UTXO.fragments.MinimumAmountFragment;
 import com.androidevlinux.percy.UTXO.utils.ConnectionReceiver;
 
 import java.util.Objects;
@@ -143,6 +146,15 @@ public class MainActivity extends BaseFragmentActivity implements ConnectionRece
                 break;
             case R.id.nav_about:
                 startActivity(new Intent(this, AboutTheDevActivity.class));
+                break;
+            case R.id.nav_get_min_amount:
+                loadFragment(MinimumAmountFragment.class, menuItem.getItemId(), getResources().getString(R.string.min_amount_check));
+                break;
+            case R.id.nav_exchange_amount:
+                loadFragment(ExchangeAmountFragment.class, menuItem.getItemId(), getResources().getString(R.string.exchange_amount));
+                break;
+            case R.id.nav_get_status:
+                loadFragment(GetStatusFragment.class, menuItem.getItemId(), getResources().getString(R.string.get_status));
                 break;
             default:
                 loadFragment(CryptoPricesFragment.class, menuItem.getItemId(), getResources().getString(R.string.nav_crypto_prices_btc));

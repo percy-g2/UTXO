@@ -315,6 +315,7 @@
     <string name="miota">MIOTA (IOTA)</string>
     <string name="xlm">XLM (Stellar)</string>
     <string name="eos">EOS (EOS)</string>
+    <string name="track">Track</string>
 
     <string-array name="chart_spinner_options">
         <item>USD</item>

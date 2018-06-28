@@ -1,21 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/group1" android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_crypto_prices"
-            android:icon="@drawable/nav_crypto_prices"
-            android:title="@string/nav_crypto_prices" />
-        <item
-            android:id="@+id/nav_crypto_graphs"
-            android:icon="@drawable/nav_crypto_graphs"
-            android:title="@string/nav_crypto_graphs" />
-        <item
-            android:id="@+id/nav_bitfinex_candle_chart"
-            android:icon="@drawable/candle_graph"
-            android:title="@string/crypto_candle_chart" />
-    </group>
+    <item android:title="@string/track">
+        <menu>
+            <group
+                android:id="@+id/group1"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_crypto_prices"
+                    android:icon="@drawable/nav_crypto_prices"
+                    android:title="@string/nav_crypto_prices" />
+                <item
+                    android:id="@+id/nav_crypto_graphs"
+                    android:icon="@drawable/nav_crypto_graphs"
+                    android:title="@string/nav_crypto_graphs" />
+                <item
+                    android:id="@+id/nav_bitfinex_candle_chart"
+                    android:icon="@drawable/candle_graph"
+                    android:title="@string/crypto_candle_chart" />
+            </group>
+        </menu>
+    </item>
 
-    <group android:id="@+id/group2" android:checkableBehavior="none">
+    <item android:title="@string/exchange">
+        <menu>
+            <group
+                android:id="@+id/group2"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_get_min_amount"
+                    android:icon="@mipmap/min_amount_icon"
+                    android:title="@string/min_amount_check" />
+                <item
+                    android:id="@+id/nav_exchange_amount"
+                    android:icon="@mipmap/exchange_amount_icon"
+                    android:title="@string/exchange_amount" />
+                <item
+                    android:id="@+id/nav_create_transaction"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="@string/create_transaction"
+                    android:visible="false" />
+                <item
+                    android:id="@+id/nav_get_status"
+                    android:icon="@mipmap/status_icon"
+                    android:title="@string/get_status" />
+            </group>
+        </menu>
+    </item>
+    <group
+        android:id="@+id/group3"
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/about"
