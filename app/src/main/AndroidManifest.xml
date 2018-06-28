@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
+        android:name=".MyApp"
         android:allowBackup="false"
         tools:replace="android:allowBackup"
         android:icon="@mipmap/ic_launcher"
@@ -34,6 +35,17 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths"/>
         </provider>
+
+        <receiver
+            android:name=".utils.ConnectionReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <!--A BroadcastReceiver registered with Context.registerReceiver() continues to receive these broadcasts while the app is running.
+                more https://developer.android.com/topic/performance/background-optimization
+                //TODO implement job scheduler -->
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

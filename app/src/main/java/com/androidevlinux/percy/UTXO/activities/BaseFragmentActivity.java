@@ -11,7 +11,7 @@ import android.support.v7.widget.Toolbar;
 import com.androidevlinux.percy.UTXO.R;
 
 
-public abstract class BaseFragmentActivity extends AppCompatActivity {
+public abstract class BaseFragmentActivity extends AppCompatActivity  {
     protected Toolbar mToolbar;
 
     @LayoutRes
@@ -37,4 +37,6 @@ public abstract class BaseFragmentActivity extends AppCompatActivity {
                 .replace(R.id.content_frame, fragment)
                 .commit();
     }
+
+
 }

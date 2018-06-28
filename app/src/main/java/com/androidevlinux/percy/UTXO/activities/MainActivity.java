@@ -1,7 +1,10 @@
 package com.androidevlinux.percy.UTXO.activities;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -11,18 +14,30 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.androidevlinux.percy.UTXO.MyApp;
 import com.androidevlinux.percy.UTXO.R;
 import com.androidevlinux.percy.UTXO.fragments.BitfinexCandleChartFragment;
 import com.androidevlinux.percy.UTXO.fragments.CryptoPricesFragment;
 import com.androidevlinux.percy.UTXO.fragments.GraphFragment;
+import com.androidevlinux.percy.UTXO.utils.ConnectionReceiver;
+
+import java.util.Objects;
 
 
-public class MainActivity extends BaseFragmentActivity {
+public class MainActivity extends BaseFragmentActivity implements ConnectionReceiver.ConnectionReceiverListener {
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavDrawer;
     private ActionBarDrawerToggle mDrawerToggle;
+    AlertDialog alert;
 
     @Override
     @LayoutRes
@@ -33,7 +48,6 @@ public class MainActivity extends BaseFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mNavDrawer = findViewById(R.id.nav_drawer);
         mDrawerToggle = setupDrawerToggle();
@@ -44,7 +58,6 @@ public class MainActivity extends BaseFragmentActivity {
         // Setup drawer view
         setupDrawerContent(mNavDrawer);
         mNavDrawer.setItemIconTintList(null);
-
         // Select CryptoPricesFragment on app start by default
         loadCryptoPricesFragment();
     }
@@ -52,6 +65,7 @@ public class MainActivity extends BaseFragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        unregisterReceiver(mConnectionReceiver);
         closeNavigationDrawer();
     }
 
@@ -93,7 +107,7 @@ public class MainActivity extends BaseFragmentActivity {
 
     private ActionBarDrawerToggle setupDrawerToggle() {
         return new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
-                R.string.drawer_open,  R.string.drawer_close);
+                R.string.drawer_open, R.string.drawer_close);
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -106,7 +120,7 @@ public class MainActivity extends BaseFragmentActivity {
 
     private void selectDrawerItem(MenuItem menuItem) {
         closeNavigationDrawer();
-        switch(menuItem.getItemId()) {
+        switch (menuItem.getItemId()) {
             case R.id.nav_crypto_prices:
                 loadFragment(CryptoPricesFragment.class, menuItem.getItemId(), getResources().getString(R.string.nav_crypto_prices_btc));
                 break;
@@ -156,6 +170,63 @@ public class MainActivity extends BaseFragmentActivity {
     private void loadCryptoPricesFragment() {
         loadFragment(CryptoPricesFragment.class, R.id.nav_crypto_prices,
                 getResources().getString(R.string.nav_crypto_prices_btc));
+    }
+    ConnectionReceiver mConnectionReceiver;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.mConnectionReceiver = new ConnectionReceiver();
+        registerReceiver(this.mConnectionReceiver,
+                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        MyApp.getInstance().setConnectionListener(this);
+    }
+
+    public void showToast(Activity context, String text) {
+        int Y = Objects.requireNonNull(getSupportActionBar()).getHeight();
+        LayoutInflater inflater = context.getLayoutInflater();
+        View layout = inflater.inflate(R.layout.popup, new LinearLayout(context), false);
+        TextView tv = layout.findViewById(R.id.popup);
+        tv.setText(text);
+        Toast toast = new Toast(context);
+        toast.setGravity(Gravity.TOP | Gravity.START | Gravity.FILL_HORIZONTAL, 0, Y);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mConnectionReceiver);
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        if (!isConnected) {
+            showAlert();
+        } else {
+           dismissAlertAndLoadDefaultFragment();
+        }
+    }
+
+    void showAlert() {
+        AlertDialog.Builder netNotAvailable = new AlertDialog.Builder(this);
+        netNotAvailable.setMessage("Could not find an Internet connection. Please check your settings and try again.");
+        netNotAvailable.setTitle("Attention");
+        netNotAvailable.setIcon(R.drawable.ic_error_black_24dp);
+        netNotAvailable.setCancelable(false);
+        alert = netNotAvailable.create();
+        if (!alert.isShowing()) {
+            alert.show();
+            showToast(this, "No Internet");
+        }
+    }
+
+    void dismissAlertAndLoadDefaultFragment() {
+        if (alert != null && alert.isShowing()) {
+            alert.dismiss();
+            loadCryptoPricesFragment();
+        }
     }
 }
 
