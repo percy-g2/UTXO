@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/btc_filter_option"
+        android:icon="@drawable/btc_price_icon"
+        android:title="@string/btc"/>
+    <item
+        android:id="@+id/bch_filter_option"
+        android:title="@string/bch"/>
+    <item
+        android:id="@+id/dash_filter_option"
+        android:title="@string/dash"/>
+    <item
+        android:id="@+id/eth_filter_option"
+        android:title="@string/eth"/>
+    <item
+        android:id="@+id/ltc_filter_option"
+        android:title="@string/ltc"/>
+    <item
+        android:id="@+id/xmr_filter_option"
+        android:title="@string/xmr"/>
+    <item
+        android:id="@+id/xrp_filter_option"
+        android:title="@string/xrp"/>
+</menu>

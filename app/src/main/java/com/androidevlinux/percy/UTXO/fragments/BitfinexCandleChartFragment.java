@@ -1,21 +1,15 @@
 package com.androidevlinux.percy.UTXO.fragments;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.FileProvider;
 import android.support.v7.widget.PopupMenu;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,7 +22,6 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.androidevlinux.percy.UTXO.BuildConfig;
 import com.androidevlinux.percy.UTXO.R;
 import com.androidevlinux.percy.UTXO.activities.MainActivity;
 import com.androidevlinux.percy.UTXO.data.models.bitfinex.BitfinexPubTickerResponseBean;
@@ -50,7 +43,6 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.gson.Gson;
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup;
 
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.MessageFormat;
@@ -83,24 +75,14 @@ import retrofit2.Response;
 
 public class BitfinexCandleChartFragment extends Fragment implements OnChartValueSelectedListener, PopupMenu.OnMenuItemClickListener {
 
-
-    //  @BindView(R.id.get_fab)
-    //  AppCompatImageView getFab;
     @BindView(R.id.candleChart)
     CandleStickChart candleChart;
     Unbinder unbinder;
-    //  @BindView(R.id.spinner_TimeFrame)
-    // AppCompatSpinner spinnerTimeFrame;
-    //@BindView(R.id.spinner_currency)
-    //AppCompatSpinner spinnerCurrency;
     ArrayList<CandleEntry> entries = new ArrayList<>();
     ArrayList<String> xValues = new ArrayList<>();
     ArrayList<Long> xFloatValues = new ArrayList<>();
     int currencyId = 0;
     Description description = new Description();
-    //@BindView(R.id.share)
-    // AppCompatImageView share;
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
     @BindView(R.id.current_price)
     TextView currentPrice;
     @BindView(R.id.dateTextView)
@@ -158,8 +140,9 @@ public class BitfinexCandleChartFragment extends Fragment implements OnChartValu
         buttonGroup.check(R.id.fifteenMinButton);
         getBitfinexData(currencyId, "15m");
         candleChart.setOnChartValueSelectedListener(this);
-        WindowManager mWinMgr = (WindowManager) mActivity.getSystemService(Context.WINDOW_SERVICE);
-        int displayWidth = Objects.requireNonNull(mWinMgr).getDefaultDisplay().getWidth();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        mActivity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int displayWidth = displayMetrics.widthPixels;
         candleChart.setOnChartGestureListener(new OnChartGestureListener() {
             @Override
             public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
@@ -426,6 +409,7 @@ public class BitfinexCandleChartFragment extends Fragment implements OnChartValu
             currency = "Ripple";
         }
         getBitfinexPubTicker(strSymbol, currency);
+        String finalCurrency = currency;
         apiManager.getBitfinexData(time, symbol, new Callback<ResponseBody>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
@@ -497,7 +481,7 @@ public class BitfinexCandleChartFragment extends Fragment implements OnChartValu
                     currentPrice.setTextColor(Color.BLACK);
 
                     candleChart.animateX(800);
-                    description.setText("1m");
+                    description.setText(finalCurrency);
                     description.setTextSize(15f);
                     description.setTextAlign(Paint.Align.RIGHT);
                     candleChart.setDescription(description);
@@ -529,66 +513,6 @@ public class BitfinexCandleChartFragment extends Fragment implements OnChartValu
                 chartProgressSpinner.setVisibility(View.GONE);
             }
         });
-    }
-
-   /* @Override
-    @OnClick({R.id.share, R.id.get_fab})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.share:
-                permissionCheck();
-                break;
-            case R.id.get_fab:
-                getBitfinexData(currencyId);
-                break;
-        }
-    }*/
-
-    private void permissionCheck() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (mActivity.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        REQUEST_EXTERNAL_STORAGE);
-            } else {
-                saveChartAndShare();
-            }
-        } else {
-            saveChartAndShare();
-        }
-    }
-
-    private void saveChartAndShare() {
-        candleChart.saveToGallery("chart", 100);
-
-        File file = new File(Environment.getExternalStorageDirectory() + "/DCIM/chart.jpg");
-        Intent target = new Intent();
-        target.setAction(Intent.ACTION_SEND);
-        Uri uri;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            uri = FileProvider.getUriForFile(mActivity,
-                    BuildConfig.APPLICATION_ID + ".provider",
-                    file);
-        } else {
-            uri = Uri.fromFile(file);
-        }
-        target.putExtra(Intent.EXTRA_STREAM, uri);
-        target.setType("image/jpeg");
-        Intent intent = Intent.createChooser(target, "Share File");
-        try {
-            startActivity(intent);
-        } catch (Exception e) {
-            Log.i(BitfinexCandleChartFragment.class.getName(), e.getMessage());
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_EXTERNAL_STORAGE
-                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            saveChartAndShare();
-        }
     }
 
     @Override

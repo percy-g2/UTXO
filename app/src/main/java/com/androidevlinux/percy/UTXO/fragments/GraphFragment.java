@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.PopupMenu;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -241,7 +242,7 @@ public class GraphFragment extends Fragment implements OnChartValueSelectedListe
         popup.setOnMenuItemClickListener(GraphFragment.this);
 
         MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.crypto_prices_filter_popup, popup.getMenu());
+        inflater.inflate(R.menu.cryptoo_graphs_filter_popup, popup.getMenu());
         popup.show();
     }
 
@@ -262,6 +263,12 @@ public class GraphFragment extends Fragment implements OnChartValueSelectedListe
                 refresh();
                 mActivity.setTitle(getString(R.string.nav_crypto_graph_bch));
                 return true;
+            case R.id.dash_filter_option:
+                cryptoID = "dash";
+                currencyId = "131";
+                refresh();
+                mActivity.setTitle(getString(R.string.nav_crypto_graph_dash));
+                return true;
             case R.id.eth_filter_option:
                 cryptoID = "ethereum";
                 currencyId = "1027";
@@ -273,6 +280,12 @@ public class GraphFragment extends Fragment implements OnChartValueSelectedListe
                 currencyId = "2";
                 refresh();
                 mActivity.setTitle(getString(R.string.nav_crypto_graph_ltc));
+                return true;
+            case R.id.xmr_filter_option:
+                cryptoID = "monero";
+                currencyId = "328";
+                refresh();
+                mActivity.setTitle(getString(R.string.nav_crypto_graph_xmr));
                 return true;
             case R.id.xrp_filter_option:
                 cryptoID = "ripple";
@@ -659,8 +672,9 @@ public class GraphFragment extends Fragment implements OnChartValueSelectedListe
         chartUSDPriceFormat = NumberFormat.getInstance();
         chartUSDPriceFormat.setMaximumFractionDigits(10);
         setUpChart();
-        WindowManager mWinMgr = (WindowManager) mActivity.getSystemService(Context.WINDOW_SERVICE);
-        displayWidth = Objects.requireNonNull(mWinMgr).getDefaultDisplay().getWidth();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        mActivity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        displayWidth = displayMetrics.widthPixels;
         cryptoID = "bitcoin";
         currencyId = "1";
         setDayChecked(Calendar.getInstance());

@@ -8,8 +8,10 @@
 
     <string name="nav_crypto_graph_btc">Crypto Graph (BTC)</string>
     <string name="nav_crypto_graph_bch">Crypto Graph (BCH)</string>
+    <string name="nav_crypto_graph_dash">Crypto Graph (DASH)</string>
     <string name="nav_crypto_graph_eth">Crypto Graph (ETH)</string>
     <string name="nav_crypto_graph_ltc">Crypto Graph (LTC)</string>
+    <string name="nav_crypto_graph_xmr">Crypto Graph (XMR)</string>
     <string name="nav_crypto_graph_xrp">Crypto Graph (XRP)</string>
 
     <string name="nav_crypto_candle_chart_btc">Crypto Candle Chart (BTC)</string>
@@ -303,6 +305,8 @@
     <string name="xrp">XRP</string>
     <string name="bch">BCH</string>
     <string name="ltc">LTC</string>
+    <string name="xmr">XMR</string>
+    <string name="dash">DASH</string>
 
     <string-array name="chart_spinner_options">
         <item>USD</item>
