@@ -9,9 +9,11 @@
     <string name="nav_crypto_graph_btc">Crypto Graph (BTC)</string>
     <string name="nav_crypto_graph_bch">Crypto Graph (BCH)</string>
     <string name="nav_crypto_graph_dash">Crypto Graph (DASH)</string>
+    <string name="nav_crypto_graph_eos">Crypto Graph (EOS)</string>
     <string name="nav_crypto_graph_eth">Crypto Graph (ETH)</string>
     <string name="nav_crypto_graph_ltc">Crypto Graph (LTC)</string>
     <string name="nav_crypto_graph_iota">Crypto Graph (MIOTA)</string>
+    <string name="nav_crypto_graph_xlm">Crypto Graph (XLM)</string>
     <string name="nav_crypto_graph_xmr">Crypto Graph (XMR)</string>
     <string name="nav_crypto_graph_xrp">Crypto Graph (XRP)</string>
     <string name="nav_crypto_graph_zec">Crypto Graph (ZEC)</string>
@@ -300,17 +302,19 @@
     <string name="nav_crypto_graphs">Crypto Graphs</string>
     <string name="price">Price:</string>
     <string name="filter">Filter</string>
-    <string name="eth">ETH</string>
-    <string name="btc">BTC</string>
+    <string name="eth">ETH (Ethereum)</string>
+    <string name="btc">BTC (Bitcoin)</string>
     <string name="nav_crypto_prices">Crypto Prices</string>
     <string name="nav_about">About</string>
-    <string name="xrp">XRP</string>
-    <string name="bch">BCH</string>
-    <string name="ltc">LTC</string>
-    <string name="xmr">XMR</string>
-    <string name="dash">DASH</string>
-    <string name="zec">ZEC</string>
-    <string name="miota">MIOTA</string>
+    <string name="xrp">XRP (Ripple)</string>
+    <string name="bch">BCH (Bitcoin Cash)</string>
+    <string name="ltc">LTC (Litecoin)</string>
+    <string name="xmr">XMR (Monero)</string>
+    <string name="dash">DASH (Dash)</string>
+    <string name="zec">ZEC (Zcash)</string>
+    <string name="miota">MIOTA (IOTA)</string>
+    <string name="xlm">XLM (Stellar)</string>
+    <string name="eos">EOS (EOS)</string>
 
     <string-array name="chart_spinner_options">
         <item>USD</item>

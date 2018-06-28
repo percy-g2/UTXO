@@ -40,7 +40,7 @@ public abstract class AbstractBaseApi<T> {
     final T getClient(Class<T> t) {
         if (retrofit == null) {
             // set your desired log level
-            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+            logging.setLevel(HttpLoggingInterceptor.Level.NONE);
 
             OkHttpClient clientOkHttp = new OkHttpClient.Builder()
                     .connectTimeout(connectTimeOut, TimeUnit.SECONDS)

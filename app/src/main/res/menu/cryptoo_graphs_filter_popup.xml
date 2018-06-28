@@ -11,6 +11,9 @@
         android:id="@+id/dash_filter_option"
         android:title="@string/dash"/>
     <item
+        android:id="@+id/eos_filter_option"
+        android:title="@string/eos" />
+    <item
         android:id="@+id/eth_filter_option"
         android:title="@string/eth"/>
     <item
@@ -20,8 +23,11 @@
         android:id="@+id/iota_filter_option"
         android:title="@string/miota"/>
     <item
+        android:id="@+id/xlm_filter_option"
+        android:title="@string/xlm" />
+    <item
         android:id="@+id/xmr_filter_option"
-        android:title="@string/xmr"/>
+        android:title="@string/xmr" />
     <item
         android:id="@+id/xrp_filter_option"
         android:title="@string/xrp"/>

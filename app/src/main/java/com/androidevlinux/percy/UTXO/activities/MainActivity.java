@@ -6,6 +6,7 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -31,6 +32,8 @@ import com.androidevlinux.percy.UTXO.fragments.GraphFragment;
 import com.androidevlinux.percy.UTXO.utils.ConnectionReceiver;
 
 import java.util.Objects;
+
+import es.dmoral.toasty.Toasty;
 
 
 public class MainActivity extends BaseFragmentActivity implements ConnectionReceiver.ConnectionReceiverListener {
@@ -91,6 +94,8 @@ public class MainActivity extends BaseFragmentActivity implements ConnectionRece
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    boolean doubleBackToExitPressedOnce = false;
+
     @Override
     public void onBackPressed() {
         if (!closeNavigationDrawer()) {
@@ -100,11 +105,17 @@ public class MainActivity extends BaseFragmentActivity implements ConnectionRece
                 loadCryptoPricesFragment();
             } else {
                 // If current fragment is CryptoPricesFragment then exit
-                super.onBackPressed();
+                if (doubleBackToExitPressedOnce) {
+                    finish();
+                } else {
+                    Toasty.info(this, "Press BACK again to exit!", Toast.LENGTH_SHORT, true).show();
+                }
+                this.doubleBackToExitPressedOnce = true;
+                new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
+                //super.onBackPressed();
             }
         }
     }
-
     private ActionBarDrawerToggle setupDrawerToggle() {
         return new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
                 R.string.drawer_open, R.string.drawer_close);
