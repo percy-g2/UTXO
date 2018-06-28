@@ -17,9 +17,15 @@
         android:id="@+id/ltc_filter_option"
         android:title="@string/ltc"/>
     <item
+        android:id="@+id/iota_filter_option"
+        android:title="@string/miota"/>
+    <item
         android:id="@+id/xmr_filter_option"
         android:title="@string/xmr"/>
     <item
         android:id="@+id/xrp_filter_option"
         android:title="@string/xrp"/>
+    <item
+        android:id="@+id/zec_filter_option"
+        android:title="@string/zec"/>
 </menu>

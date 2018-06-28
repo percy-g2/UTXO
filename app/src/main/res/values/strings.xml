@@ -11,8 +11,10 @@
     <string name="nav_crypto_graph_dash">Crypto Graph (DASH)</string>
     <string name="nav_crypto_graph_eth">Crypto Graph (ETH)</string>
     <string name="nav_crypto_graph_ltc">Crypto Graph (LTC)</string>
+    <string name="nav_crypto_graph_iota">Crypto Graph (MIOTA)</string>
     <string name="nav_crypto_graph_xmr">Crypto Graph (XMR)</string>
     <string name="nav_crypto_graph_xrp">Crypto Graph (XRP)</string>
+    <string name="nav_crypto_graph_zec">Crypto Graph (ZEC)</string>
 
     <string name="nav_crypto_candle_chart_btc">Crypto Candle Chart (BTC)</string>
     <string name="nav_crypto_candle_chart_bch">Crypto Candle Chart (BCH)</string>
@@ -307,6 +309,8 @@
     <string name="ltc">LTC</string>
     <string name="xmr">XMR</string>
     <string name="dash">DASH</string>
+    <string name="zec">ZEC</string>
+    <string name="miota">MIOTA</string>
 
     <string-array name="chart_spinner_options">
         <item>USD</item>

@@ -281,6 +281,12 @@ public class GraphFragment extends Fragment implements OnChartValueSelectedListe
                 refresh();
                 mActivity.setTitle(getString(R.string.nav_crypto_graph_ltc));
                 return true;
+            case R.id.iota_filter_option:
+                cryptoID = "iota";
+                currencyId = "1720";
+                refresh();
+                mActivity.setTitle(getString(R.string.nav_crypto_graph_iota));
+                return true;
             case R.id.xmr_filter_option:
                 cryptoID = "monero";
                 currencyId = "328";
@@ -292,6 +298,12 @@ public class GraphFragment extends Fragment implements OnChartValueSelectedListe
                 currencyId = "52";
                 refresh();
                 mActivity.setTitle(getString(R.string.nav_crypto_graph_xrp));
+                return true;
+            case R.id.zec_filter_option:
+                cryptoID = "zcash";
+                currencyId = "1437";
+                refresh();
+                mActivity.setTitle(getString(R.string.nav_crypto_graph_zec));
                 return true;
             default:
                 return false;
