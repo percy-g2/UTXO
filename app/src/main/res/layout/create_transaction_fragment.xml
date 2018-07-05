@@ -75,9 +75,8 @@
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtAmount"
@@ -100,9 +99,8 @@
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtUserPayOutAddress"
@@ -126,11 +124,13 @@
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_get_amount"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:background="@drawable/round_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:text="@string/get"
                 android:textColor="@android:color/white"

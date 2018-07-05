@@ -14,7 +14,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.PopupMenu;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -191,6 +190,7 @@ public class GraphFragment extends Fragment implements OnChartValueSelectedListe
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        mActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         disposables.dispose();
         unbinder.unbind();
     }
@@ -519,7 +519,6 @@ public class GraphFragment extends Fragment implements OnChartValueSelectedListe
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("onError", e.getMessage());
                         lineChart.setNoDataText(getString(R.string.noChartDataString));
                         mActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         chartProgressBar.setVisibility(View.GONE);

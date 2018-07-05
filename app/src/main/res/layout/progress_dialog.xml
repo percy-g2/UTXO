@@ -22,7 +22,6 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@id/progBar"
-        android:layout_toRightOf="@id/progBar"
-        android:padding="5dp"></TextView>
+        android:padding="5dp" />
 
 </RelativeLayout>
