@@ -2,6 +2,7 @@ package com.androidevlinux.percy.UTXO.activities;
 
 import android.os.Bundle;
 
+import com.androidevlinux.percy.UTXO.BuildConfig;
 import com.androidevlinux.percy.UTXO.R;
 import com.vansuita.materialabout.builder.AboutBuilder;
 import com.vansuita.materialabout.views.AboutView;
@@ -31,7 +32,7 @@ public class AboutTheDevActivity extends BaseFragmentActivity {
                 .addEmailLink("contact.prashantgahlot@gmail.com")
                 .addWebsiteLink("http://androdevlinux.in/")
                 .addFiveStarsAction()
-                .setAppTitle("Version : 1.0")
+                .setAppTitle("Version : " + BuildConfig.VERSION_NAME)
                 .addShareAction(R.string.app_name)
                 .setActionsColumnsCount(2)
                 .setWrapScrollView(true)

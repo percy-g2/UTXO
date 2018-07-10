@@ -826,7 +826,9 @@ public class CryptoPricesFragment extends Fragment implements SwipeRefreshLayout
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        disposables.dispose();
+        if (disposables != null) {
+            disposables.dispose();
+        }
         unbinder.unbind();
     }
 

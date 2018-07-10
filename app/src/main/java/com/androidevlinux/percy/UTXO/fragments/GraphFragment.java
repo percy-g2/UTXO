@@ -191,7 +191,9 @@ public class GraphFragment extends Fragment implements OnChartValueSelectedListe
     public void onDestroyView() {
         super.onDestroyView();
         mActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        disposables.dispose();
+        if (disposables != null) {
+            disposables.dispose();
+        }
         unbinder.unbind();
     }
 

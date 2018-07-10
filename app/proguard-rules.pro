@@ -36,6 +36,8 @@
     @retrofit2.http.* <methods>;
 }
 -dontwarn okio.**
+-dontwarn org.conscrypt.**
+-keep class com.github.mikephil.charting.animation.ChartAnimator { *; }
 # Preserve annotations, line numbers, and source file names
 -keepattributes *Annotation*,SourceFile,LineNumberTable
 # proguard configuration for iText
