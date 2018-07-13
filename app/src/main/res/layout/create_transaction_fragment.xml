@@ -2,7 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <LinearLayout
         android:id="@+id/container"
@@ -27,6 +28,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/from"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -41,7 +43,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="0dp"
@@ -50,6 +53,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/to"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -64,7 +68,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
         </LinearLayout>
 
         <LinearLayout
@@ -76,7 +81,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:textColorHint="@color/white">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtAmount"
@@ -87,6 +93,8 @@
                     android:gravity="center"
                     android:hint="@string/exchange_amount"
                     android:inputType="numberDecimal"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     android:textStyle="bold" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
@@ -100,7 +108,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:textColorHint="@color/white">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtUserPayOutAddress"
@@ -111,6 +120,9 @@
                     android:gravity="center"
                     android:hint="@string/user_pay_out_address"
                     android:inputType="text"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="@color/white"
+                    android:textColorHint="@color/white"
                     android:textStyle="bold" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
@@ -151,7 +163,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/response_info" />
+                android:text="@string/transaction_id"
+                android:textColor="@color/white" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txt_min_amount"
@@ -160,7 +173,9 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="INFO" />
+                android:text="INFO"
+                android:textColor="@color/white"
+                android:textIsSelectable="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -177,7 +192,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/pay_in_address" />
+                android:text="@string/pay_in_address"
+                android:textColor="@color/white" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txt_pay_in_address"
@@ -187,6 +203,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="null"
+                android:textColor="@color/white"
                 android:textIsSelectable="true" />
         </LinearLayout>
     </LinearLayout>

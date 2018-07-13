@@ -27,9 +27,10 @@ import android.widget.Toast;
 import com.androidevlinux.percy.UTXO.MyApp;
 import com.androidevlinux.percy.UTXO.R;
 import com.androidevlinux.percy.UTXO.fragments.BitfinexCandleChartFragment;
-import com.androidevlinux.percy.UTXO.fragments.CryptoPricesFragment;
 import com.androidevlinux.percy.UTXO.fragments.ExchangeAmountFragment;
+import com.androidevlinux.percy.UTXO.fragments.ExchangeCryptoPricesFragment;
 import com.androidevlinux.percy.UTXO.fragments.GetStatusFragment;
+import com.androidevlinux.percy.UTXO.fragments.GlobalCryptoPricesFragment;
 import com.androidevlinux.percy.UTXO.fragments.GraphFragment;
 import com.androidevlinux.percy.UTXO.fragments.MinimumAmountFragment;
 import com.androidevlinux.percy.UTXO.utils.ConnectionReceiver;
@@ -64,7 +65,7 @@ public class MainActivity extends BaseFragmentActivity implements ConnectionRece
         // Setup drawer view
         setupDrawerContent(mNavDrawer);
         mNavDrawer.setItemIconTintList(null);
-        // Select CryptoPricesFragment on app start by default
+        // Select ExchangeCryptoPricesFragment on app start by default
         loadCryptoPricesFragment();
     }
 
@@ -104,10 +105,10 @@ public class MainActivity extends BaseFragmentActivity implements ConnectionRece
         if (!closeNavigationDrawer()) {
             Fragment currentFragment = getSupportFragmentManager()
                     .findFragmentById(R.id.content_frame);
-            if (!(currentFragment instanceof CryptoPricesFragment)) {
+            if (!(currentFragment instanceof ExchangeCryptoPricesFragment)) {
                 loadCryptoPricesFragment();
             } else {
-                // If current fragment is CryptoPricesFragment then exit
+                // If current fragment is ExchangeCryptoPricesFragment then exit
                 if (doubleBackToExitPressedOnce) {
                     finish();
                 } else {
@@ -135,8 +136,11 @@ public class MainActivity extends BaseFragmentActivity implements ConnectionRece
     private void selectDrawerItem(MenuItem menuItem) {
         closeNavigationDrawer();
         switch (menuItem.getItemId()) {
-            case R.id.nav_crypto_prices:
-                loadFragment(CryptoPricesFragment.class, menuItem.getItemId(), getResources().getString(R.string.nav_crypto_prices_btc));
+            case R.id.nav_exchange_crypto_prices:
+                loadFragment(ExchangeCryptoPricesFragment.class, menuItem.getItemId(), getResources().getString(R.string.nav_crypto_prices_btc));
+                break;
+            case R.id.nav_global_crypto_prices:
+                loadFragment(GlobalCryptoPricesFragment.class, menuItem.getItemId(), getResources().getString(R.string.nav_global_crypto_prices));
                 break;
             case R.id.nav_crypto_graphs:
                 loadFragment(GraphFragment.class, menuItem.getItemId(), getResources().getString(R.string.nav_crypto_graph_btc));
@@ -157,7 +161,7 @@ public class MainActivity extends BaseFragmentActivity implements ConnectionRece
                 loadFragment(GetStatusFragment.class, menuItem.getItemId(), getResources().getString(R.string.get_status));
                 break;
             default:
-                loadFragment(CryptoPricesFragment.class, menuItem.getItemId(), getResources().getString(R.string.nav_crypto_prices_btc));
+                loadFragment(ExchangeCryptoPricesFragment.class, menuItem.getItemId(), getResources().getString(R.string.nav_crypto_prices_btc));
         }
     }
 
@@ -191,7 +195,7 @@ public class MainActivity extends BaseFragmentActivity implements ConnectionRece
     }
 
     private void loadCryptoPricesFragment() {
-        loadFragment(CryptoPricesFragment.class, R.id.nav_crypto_prices,
+        loadFragment(ExchangeCryptoPricesFragment.class, R.id.nav_exchange_crypto_prices,
                 getResources().getString(R.string.nav_crypto_prices_btc));
     }
     ConnectionReceiver mConnectionReceiver;

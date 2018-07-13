@@ -304,7 +304,8 @@
     <string name="filter">Filter</string>
     <string name="eth">ETH (Ethereum)</string>
     <string name="btc">BTC (Bitcoin)</string>
-    <string name="nav_crypto_prices">Crypto Prices</string>
+    <string name="nav_exchange_crypto_prices">Exchange Crypto Prices</string>
+    <string name="nav_global_crypto_prices">Global Crypto Prices</string>
     <string name="nav_about">About</string>
     <string name="xrp">XRP (Ripple)</string>
     <string name="bch">BCH (Bitcoin Cash)</string>

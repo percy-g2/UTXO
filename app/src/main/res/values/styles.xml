@@ -2,8 +2,8 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/md_cyan_500</item>
-        <item name="colorPrimaryDark">@color/md_cyan_700</item>
+        <item name="colorPrimary">@color/md_grey_800</item>
+        <item name="colorPrimaryDark">@color/md_grey_900</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="windowActionModeOverlay">true</item>
@@ -23,4 +23,7 @@
         <item name="android:gravity">left</item>
     </style>
 
+    <style name="NavigationView">
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
 </resources>

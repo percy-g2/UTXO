@@ -4,6 +4,7 @@
     android:id="@+id/graphFragmentNestedScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:fillViewport="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -21,6 +22,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:textSize="16sp"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +34,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:textSize="12sp"
+            android:textColor="@color/md_grey_500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/current_price" />
@@ -67,6 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/oneDay"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:tbgMarkerColor="@color/colorAccent" />
 
@@ -75,6 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Week"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:tbgMarkerColor="@color/colorAccent" />
 
@@ -83,6 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Month"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:tbgMarkerColor="@color/colorAccent" />
 
@@ -91,6 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/threeMonth"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:tbgMarkerColor="@color/colorAccent" />
 
@@ -99,6 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Year"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:tbgMarkerColor="@color/colorAccent" />
 
@@ -107,6 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/All"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:tbgMarkerColor="@color/colorAccent" />
 
@@ -136,13 +145,14 @@
                 android:id="@+id/nameTableRow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/lightGray">
+                android:background="@color/md_grey_800">
 
                 <TextView
                     android:id="@+id/tableNameTitleTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:paddingStart="8dp"
                     android:text="Name" />
 
@@ -151,6 +161,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:textColor="@color/white"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -165,6 +176,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:paddingStart="8dp"
                     android:text="Price (USD)" />
 
@@ -173,6 +185,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:textColor="@color/white"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -181,13 +194,14 @@
                 android:id="@+id/priceBTCTableRow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/lightGray">
+                android:background="@color/md_grey_800">
 
                 <TextView
                     android:id="@+id/tablePriceBTCTitleTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:paddingStart="8dp"
                     android:text="Price (BTC)" />
 
@@ -196,6 +210,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:textColor="@color/white"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
 
@@ -211,6 +226,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:paddingStart="8dp"
                     android:text="24h Volume" />
 
@@ -219,6 +235,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:textColor="@color/white"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -227,13 +244,14 @@
                 android:id="@+id/mktCapUSDTableRow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/lightGray">
+                android:background="@color/md_grey_800">
 
                 <TextView
                     android:id="@+id/tableMktCapTitleTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:paddingStart="8dp"
                     android:text="Market Cap" />
 
@@ -242,6 +260,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:textColor="@color/white"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -257,6 +276,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:textColor="@color/white"
                     android:text="Available Supply" />
 
                 <TextView
@@ -265,6 +285,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingEnd="8dp"
+                    android:textColor="@color/white"
                     android:textAlignment="textEnd" />
             </TableRow>
 
@@ -272,7 +293,7 @@
                 android:id="@+id/totalSupplyTableRow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/lightGray">
+                android:background="@color/md_grey_800">
 
                 <TextView
                     android:id="@+id/tableTotalSupplyTextView"
@@ -280,6 +301,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:textColor="@color/white"
                     android:text="Total Supply" />
 
                 <TextView
@@ -288,6 +310,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingEnd="8dp"
+                    android:textColor="@color/white"
                     android:textAlignment="textEnd" />
             </TableRow>
 
@@ -302,6 +325,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:textColor="@color/white"
                     android:text="Max Supply" />
 
                 <TextView
@@ -309,6 +333,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:textColor="@color/white"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -317,7 +342,7 @@
                 android:id="@+id/changeTitlesTableRow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/lightGray">
+                android:background="@color/md_grey_800">
 
                 <TextView
                     android:id="@+id/table1hrChangeTitleTextView"
@@ -325,6 +350,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:textColor="@color/white"
                     android:text="Change 1hr"
                     android:textAlignment="center" />
 
@@ -334,6 +360,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingStart="8dp"
+                    android:textColor="@color/white"
                     android:text="Change 24hr"
                     android:textAlignment="center" />
 
@@ -343,6 +370,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:paddingStart="8dp"
+                    android:textColor="@color/white"
                     android:text="Change 7d"
                     android:textAlignment="center" />
 
@@ -351,7 +379,7 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/lightGray">
+                android:background="@color/md_grey_800">
 
                 <TextView
                     android:id="@+id/table1hrChangeDataTextView"

@@ -1,13 +1,10 @@
 package com.androidevlinux.percy.UTXO.fragments;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
@@ -22,14 +19,13 @@ import android.view.WindowManager;
 
 import com.androidevlinux.percy.UTXO.R;
 import com.androidevlinux.percy.UTXO.activities.MainActivity;
-import com.androidevlinux.percy.UTXO.adapters.PriceAdapter;
+import com.androidevlinux.percy.UTXO.adapters.ExchangePriceAdapter;
 import com.androidevlinux.percy.UTXO.data.models.bitfinex.BitfinexPubTickerResponseBean;
 import com.androidevlinux.percy.UTXO.data.models.bitstamp.BitstampBean;
 import com.androidevlinux.percy.UTXO.data.models.gdax.GDAX;
 import com.androidevlinux.percy.UTXO.data.models.pocketbits.PocketBitsBean;
 import com.androidevlinux.percy.UTXO.data.models.price.PriceBean;
 import com.androidevlinux.percy.UTXO.data.models.zebpay.ZebPayBean;
-import com.androidevlinux.percy.UTXO.data.network.ApiManager;
 import com.androidevlinux.percy.UTXO.utils.Constants;
 import com.androidevlinux.percy.UTXO.utils.UniqueArrayList;
 
@@ -45,37 +41,23 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class CryptoPricesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, PopupMenu.OnMenuItemClickListener {
+public class ExchangeCryptoPricesFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, PopupMenu.OnMenuItemClickListener {
 
     Unbinder unbinder;
     @BindView(R.id.price_list_recycler_view)
     RecyclerView priceListRecyclerView;
     String strRuppeSymbol = "\u20B9", strDollarSymbol = "$";
     UniqueArrayList priceBeanArrayList;
-    PriceAdapter priceAdapter;
+    ExchangePriceAdapter priceAdapter;
     Observable<BitfinexPubTickerResponseBean> bitfinexPubTickerResponseBeanObservable;
     Observable<BitstampBean> bitstampObservable;
     Observable<ZebPayBean> zebPayBeanObservable;
     Observable<PocketBitsBean> pocketBitsBeanObservable;
     Observable<GDAX> gdaxObservable;
-    protected ApiManager apiManager;
-    protected Activity mActivity;
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout mSwipeRefreshLayout;
     protected String selectedCurrency = "BTC";
     CompositeDisposable disposables;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mActivity = (Activity) context;
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        this.mActivity = null;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -99,11 +81,10 @@ public class CryptoPricesFragment extends Fragment implements SwipeRefreshLayout
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        apiManager = ApiManager.getInstance();
         priceBeanArrayList = new UniqueArrayList();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         priceListRecyclerView.setLayoutManager(linearLayoutManager);
-        priceAdapter = new PriceAdapter(priceBeanArrayList, mActivity);
+        priceAdapter = new ExchangePriceAdapter(priceBeanArrayList, mActivity, mSwipeRefreshLayout);
         priceListRecyclerView.setAdapter(priceAdapter);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(android.R.color.holo_green_dark),
@@ -140,7 +121,7 @@ public class CryptoPricesFragment extends Fragment implements SwipeRefreshLayout
 
     public void showPopupMenu(View v) {
         PopupMenu popup = new PopupMenu(Objects.requireNonNull(getActivity()), v);
-        popup.setOnMenuItemClickListener(CryptoPricesFragment.this);
+        popup.setOnMenuItemClickListener(ExchangeCryptoPricesFragment.this);
 
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.crypto_prices_filter_popup, popup.getMenu());
@@ -880,9 +861,6 @@ public class CryptoPricesFragment extends Fragment implements SwipeRefreshLayout
         @Override
         protected void onPostExecute(String value) {
             priceAdapter.notifyDataSetChanged();
-            if (mSwipeRefreshLayout.isRefreshing()) {
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
         }
     }
 
@@ -913,10 +891,6 @@ public class CryptoPricesFragment extends Fragment implements SwipeRefreshLayout
         @Override
         protected void onPostExecute(String value) {
             priceAdapter.notifyDataSetChanged();
-            priceListRecyclerView.setAdapter(priceAdapter);
-            if (mSwipeRefreshLayout.isRefreshing()) {
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
         }
     }
 
@@ -946,10 +920,6 @@ public class CryptoPricesFragment extends Fragment implements SwipeRefreshLayout
         @Override
         protected void onPostExecute(String value) {
             priceAdapter.notifyDataSetChanged();
-            priceListRecyclerView.setAdapter(priceAdapter);
-            if (mSwipeRefreshLayout.isRefreshing()) {
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
         }
     }
 
@@ -979,10 +949,6 @@ public class CryptoPricesFragment extends Fragment implements SwipeRefreshLayout
         @Override
         protected void onPostExecute(String value) {
             priceAdapter.notifyDataSetChanged();
-            priceListRecyclerView.setAdapter(priceAdapter);
-            if (mSwipeRefreshLayout.isRefreshing()) {
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
         }
     }
 
@@ -1011,10 +977,6 @@ public class CryptoPricesFragment extends Fragment implements SwipeRefreshLayout
         @Override
         protected void onPostExecute(String value) {
             priceAdapter.notifyDataSetChanged();
-            priceListRecyclerView.setAdapter(priceAdapter);
-            if (mSwipeRefreshLayout.isRefreshing()) {
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
         }
     }
 

@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.customtabs.CustomTabsIntent;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidevlinux.percy.UTXO.R;
@@ -23,26 +24,28 @@ import java.text.MessageFormat;
  * Created by percy on 3/12/17.
  */
 
-public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.ViewHolder> {
+public class ExchangePriceAdapter extends RecyclerView.Adapter<ExchangePriceAdapter.ViewHolder> {
 
     private UniqueArrayList priceBeanArrayList;
     private Context context;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    public PriceAdapter(UniqueArrayList priceBeanArrayList, Context context) {
+    public ExchangePriceAdapter(UniqueArrayList priceBeanArrayList, Context context, SwipeRefreshLayout mSwipeRefreshLayout) {
         this.context = context;
+        this.mSwipeRefreshLayout = mSwipeRefreshLayout;
         this.priceBeanArrayList = priceBeanArrayList;
     }
 
     @NonNull
     @Override
-    public PriceAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ExchangePriceAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.price_fragment_adapter_row, parent, false);
-        return new PriceAdapter.ViewHolder(v);
+                .inflate(R.layout.exchange_price_fragment_adapter_row, parent, false);
+        return new ExchangePriceAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final PriceAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ExchangePriceAdapter.ViewHolder holder, int position) {
         PriceBean priceBean = priceBeanArrayList.get(position);
         holder.id.setText(String.valueOf(position + 1));
         holder.title.setText(priceBean.getTitle());
@@ -94,6 +97,16 @@ public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.ViewHolder> 
                 customTabsIntent.launchUrl(context, Uri.parse("https://www.gdax.com/"));
             }
         });
+
+        if (priceBeanArrayList.size() == 5 && !priceBean.getTitle().matches(".*XRP.*")) {
+            if (mSwipeRefreshLayout.isRefreshing()) {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        } else if (priceBeanArrayList.size() == 4 && priceBean.getTitle().matches(".*XRP.*")) {
+            if (mSwipeRefreshLayout.isRefreshing()) {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        }
     }
 
 
@@ -119,7 +132,7 @@ public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.ViewHolder> 
     class ViewHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
         private TextView id;
-        private ImageView exchangeImage;
+        private AppCompatImageView exchangeImage;
         private TextView title;
         private TextView price;
         private TextView price_low;

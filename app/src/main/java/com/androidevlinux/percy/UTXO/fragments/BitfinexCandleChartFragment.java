@@ -473,14 +473,14 @@ public class BitfinexCandleChartFragment extends Fragment implements OnChartValu
                         data_set.setHighlightLineWidth(2);
                         data_set.setHighlightEnabled(true);
                         data_set.setDrawHighlightIndicators(true);
-                        data_set.setHighLightColor(Color.BLACK);
+                        data_set.setHighLightColor(Color.YELLOW);
                         CandleData data = new CandleData(data_set);
                         candleChart.setData(data);
                     }
                     float currPrice = entries.get(entries.size() - 1).getY();
                     dateTextView.setText(getFormattedFullDate(xFloatValues.get(entries.size() - 1)));
                     currentPrice.setText(String.format(getString(R.string.unrounded_usd_chart_price_format), String.valueOf(currPrice)));
-                    currentPrice.setTextColor(Color.BLACK);
+                    currentPrice.setTextColor(Color.WHITE);
 
                     candleChart.animateX(800);
                     description.setText(finalCurrency);
@@ -488,15 +488,17 @@ public class BitfinexCandleChartFragment extends Fragment implements OnChartValu
                     description.setTextAlign(Paint.Align.RIGHT);
                     candleChart.setDescription(description);
                     //candleChart.setDragEnabled(false);
-                    candleChart.setScaleEnabled(false);
+                    candleChart.setScaleEnabled(true);
                     candleChart.setExtraRightOffset(30f);
-                    candleChart.setBackgroundColor(Color.WHITE);
+                    candleChart.setBackgroundColor(Color.BLACK);
                     candleChart.setDrawGridBackground(false);
                     candleChart.getAxisLeft().setDrawGridLines(false);
                     candleChart.getXAxis().setDrawGridLines(false);
+                    candleChart.getAxisLeft().setTextColor(getResources().getColor(R.color.white));
+                    candleChart.getXAxis().setTextColor(getResources().getColor(R.color.white));
                     candleChart.getAxisRight().setDrawGridLines(false);
                     candleChart.setDrawBorders(false);
-                    candleChart.setPinchZoom(false);
+                    candleChart.setPinchZoom(true);
                     Legend l = candleChart.getLegend();
                     l.setEnabled(false);
                     candleChart.setAutoScaleMinMaxEnabled(true);

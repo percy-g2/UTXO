@@ -4,6 +4,7 @@
     android:id="@+id/graphFragmentNestedScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:fillViewport="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -21,6 +22,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:textSize="16sp"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +34,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:textSize="12sp"
+            android:textColor="@color/md_grey_500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/current_price" />
@@ -45,6 +48,7 @@
             android:layout_marginStart="8dp"
             android:textSize="12sp"
             android:textStyle="bold"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
@@ -67,6 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fifteenMins"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:tbgMarkerColor="@color/colorAccent" />
 
@@ -76,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/sixHours"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:tbgMarkerColor="@color/colorAccent" />
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
@@ -84,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/oneDay"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:tbgMarkerColor="@color/colorAccent" />
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
@@ -92,6 +99,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/Week"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:tbgMarkerColor="@color/colorAccent" />
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
@@ -100,6 +108,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/twoWeeks"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:tbgMarkerColor="@color/colorAccent" />
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
@@ -108,6 +117,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/Month"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:tbgMarkerColor="@color/colorAccent" />
 
         </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
@@ -136,7 +146,7 @@
                 android:id="@+id/nameTableRow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/lightGray">
+                android:background="@color/md_grey_800">
 
                 <TextView
                     android:id="@+id/tableNameTitleTextView"
@@ -144,6 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:textColor="@color/white"
                     android:text="Name" />
 
                 <TextView
@@ -152,6 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingEnd="8dp"
+                    android:textColor="@color/white"
                     android:textAlignment="textEnd" />
             </TableRow>
 
@@ -165,6 +177,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:paddingStart="8dp"
                     android:text="Price (USD)" />
 
@@ -174,6 +187,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingEnd="8dp"
+                    android:textColor="@color/white"
                     android:textAlignment="textEnd" />
             </TableRow>
 
@@ -181,13 +195,14 @@
                 android:id="@+id/priceBTCTableRow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/lightGray">
+                android:background="@color/md_grey_800">
 
                 <TextView
                     android:id="@+id/tablePriceBTCTitleTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:paddingStart="8dp"
                     android:text="Price (BTC)" />
 
@@ -197,6 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingEnd="8dp"
+                    android:textColor="@color/white"
                     android:textAlignment="textEnd" />
 
             </TableRow>
@@ -211,6 +227,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:paddingStart="8dp"
                     android:text="24h Volume" />
 
@@ -219,6 +236,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:textColor="@color/white"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -227,7 +245,7 @@
                 android:id="@+id/mktCapUSDTableRow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/lightGray">
+                android:background="@color/md_grey_800">
 
                 <TextView
                     android:id="@+id/tableMktCapTitleTextView"
@@ -235,6 +253,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:textColor="@color/white"
                     android:text="@string/_24_hr_s_high" />
 
                 <TextView
@@ -242,6 +261,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:textColor="@color/white"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -256,6 +276,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:textColor="@color/white"
                     android:text="@string/_24_hr_s_low" />
 
                 <TextView
@@ -263,6 +284,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:textColor="@color/white"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -271,7 +293,7 @@
                 android:id="@+id/changeTitlesTableRow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/lightGray">
+                android:background="@color/md_grey_800">
 
 
                 <TextView
@@ -280,6 +302,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingStart="8dp"
+                    android:textColor="@color/white"
                     android:text="@string/buy"
                     android:textAlignment="center" />
 
@@ -289,6 +312,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:paddingStart="8dp"
+                    android:textColor="@color/white"
                     android:text="@string/sell"
                     android:textAlignment="center" />
 
@@ -297,7 +321,7 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/lightGray">
+                android:background="@color/md_grey_800">
 
                 <TextView
                     android:id="@+id/tableBidDataTextView"
@@ -305,6 +329,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingEnd="8dp"
+                    android:textColor="@color/white"
                     android:textAlignment="center"
                     android:textStyle="bold" />
 
@@ -314,6 +339,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:paddingEnd="8dp"
+                    android:textColor="@color/white"
                     android:textAlignment="center"
                     android:textStyle="bold" />
             </TableRow>

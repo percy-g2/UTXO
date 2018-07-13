@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="arrayOfCurrencyIds">
+        <item>1</item>
+        <item>1831</item>
+        <item>131</item>
+        <item>1765</item>
+        <item>1027</item>
+        <item>2</item>
+        <item>1720</item>
+        <item>512</item>
+        <item>328</item>
+        <item>52</item>
+        <item>1437</item>
+    </string-array>
+</resources>

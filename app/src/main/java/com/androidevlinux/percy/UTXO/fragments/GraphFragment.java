@@ -489,11 +489,13 @@ public class GraphFragment extends Fragment implements OnChartValueSelectedListe
                             return;
                         }
                         XAxis xAxis = lineChart.getXAxis();
+                        xAxis.setTextColor(getResources().getColor(R.color.white));
+                        lineChart.getAxisLeft().setTextColor(getResources().getColor(R.color.white));
                         xAxis.setValueFormatter(XAxisFormatter);
                         float currPrice = closePrices.get(closePrices.size() - 1).getY();
                         chartDateTextView.setText(getFormattedFullDate(closePrices.get(closePrices.size() - 1).getX()));
                         currPriceText.setText(String.format(getString(R.string.unrounded_usd_chart_price_format), String.valueOf(currPrice)));
-                        currPriceText.setTextColor(Color.BLACK);
+                        currPriceText.setTextColor(Color.WHITE);
                         float firstPrice = closePrices.get(0).getY();
                         for (Entry e : closePrices) {
                             if (firstPrice != 0) {
@@ -513,6 +515,7 @@ public class GraphFragment extends Fragment implements OnChartValueSelectedListe
                         percentChangeText.setTextColor(percentageColor);
                         LineDataSet dataSet = setUpLineDataSet(closePrices);
                         LineData lineData = new LineData(dataSet);
+
                         lineChart.setData(lineData);
                         lineChart.animateX(800);
                         mActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);

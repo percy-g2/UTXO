@@ -81,7 +81,7 @@ public class ExchangeAmountFragment extends BaseFragment implements View.OnClick
             Init();
         } else {
             ArrayAdapter<String> karant_adapter = new ArrayAdapter<>(mActivity,
-                    android.R.layout.simple_spinner_item, Constants.currenciesStringList);
+                    R.layout.spinner_item, Constants.currenciesStringList);
             karant_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerFrom.setAdapter(karant_adapter);
             spinnerTo.setAdapter(karant_adapter);
@@ -163,7 +163,7 @@ public class ExchangeAmountFragment extends BaseFragment implements View.OnClick
                     currenciesStringList = Objects.requireNonNull(response.body()).getResult();
                     Constants.currenciesStringList = currenciesStringList;
                     ArrayAdapter<String> karant_adapter = new ArrayAdapter<>(mActivity,
-                            android.R.layout.simple_spinner_item, currenciesStringList);
+                            R.layout.spinner_item, currenciesStringList);
                     karant_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerFrom.setAdapter(karant_adapter);
                     spinnerTo.setAdapter(karant_adapter);
