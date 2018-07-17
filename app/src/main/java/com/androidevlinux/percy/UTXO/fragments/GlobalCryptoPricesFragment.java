@@ -66,7 +66,7 @@ public class GlobalCryptoPricesFragment extends BaseFragment implements SwipeRef
         coinMarketCapCoinArrayList = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         priceListRecyclerView.setLayoutManager(linearLayoutManager);
-        globalPriceAdapter = new GlobalPriceAdapter(coinMarketCapCoinArrayList, mActivity, priceListRecyclerView);
+        globalPriceAdapter = new GlobalPriceAdapter(coinMarketCapCoinArrayList, mActivity, priceListRecyclerView, mSwipeRefreshLayout);
         priceListRecyclerView.setAdapter(globalPriceAdapter);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(android.R.color.holo_green_dark),
@@ -150,9 +150,7 @@ public class GlobalCryptoPricesFragment extends BaseFragment implements SwipeRef
 
         @Override
         protected void onPostExecute(String value) {
-            if (mSwipeRefreshLayout.isRefreshing()) {
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
+            globalPriceAdapter.notifyDataSetChanged();
         }
     }
 }

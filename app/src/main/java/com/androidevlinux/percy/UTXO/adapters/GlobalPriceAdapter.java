@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.transition.ChangeBounds;
 import android.support.transition.TransitionManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -27,11 +28,13 @@ public class GlobalPriceAdapter extends RecyclerView.Adapter<GlobalPriceAdapter.
     private Context context;
     private RecyclerView recyclerView;
     private int mExpandedPosition = -1;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    public GlobalPriceAdapter(ArrayList<CoinMarketCapCoin> coinMarketCapCoinArrayList, Context context, RecyclerView recyclerView) {
+    public GlobalPriceAdapter(ArrayList<CoinMarketCapCoin> coinMarketCapCoinArrayList, Context context, RecyclerView recyclerView, SwipeRefreshLayout mSwipeRefreshLayout) {
         this.context = context;
         this.recyclerView = recyclerView;
         this.coinMarketCapCoinArrayList = coinMarketCapCoinArrayList;
+        this.mSwipeRefreshLayout = mSwipeRefreshLayout;
     }
 
     @NonNull
@@ -93,6 +96,11 @@ public class GlobalPriceAdapter extends RecyclerView.Adapter<GlobalPriceAdapter.
             TransitionManager.beginDelayedTransition(recyclerView, transition);
             holder.itemView.setActivated(shouldExpand);
         });
+        if (coinMarketCapCoinArrayList.size() == 11) {
+            if (mSwipeRefreshLayout.isRefreshing()) {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        }
     }
 
 

@@ -7,10 +7,11 @@ import com.androidevlinux.percy.UTXO.data.models.blocktrail.TransactionBean;
 import com.androidevlinux.percy.UTXO.data.models.changelly.GetCurrenciesResponseBean;
 import com.androidevlinux.percy.UTXO.data.models.changelly.GetMinAmountReponseBean;
 import com.androidevlinux.percy.UTXO.data.models.changelly.MainBodyBean;
-import com.androidevlinux.percy.UTXO.data.models.gdax.GDAX;
-import com.androidevlinux.percy.UTXO.data.models.pocketbits.PocketBitsBean;
 import com.androidevlinux.percy.UTXO.data.models.coinmarketcap.CoinMarketCapChartData;
 import com.androidevlinux.percy.UTXO.data.models.coinmarketcap.CoinMarketCapCoin;
+import com.androidevlinux.percy.UTXO.data.models.gdax.GDAX;
+import com.androidevlinux.percy.UTXO.data.models.newsapi.NewsBean;
+import com.androidevlinux.percy.UTXO.data.models.pocketbits.PocketBitsBean;
 import com.androidevlinux.percy.UTXO.data.models.zebpay.ZebPayBean;
 import com.androidevlinux.percy.UTXO.data.network.apis.BitfinexApiImpl;
 import com.androidevlinux.percy.UTXO.data.network.apis.BitstampApiImpl;
@@ -18,6 +19,7 @@ import com.androidevlinux.percy.UTXO.data.network.apis.BlocktrailApiImpl;
 import com.androidevlinux.percy.UTXO.data.network.apis.ChangellyApiImpl;
 import com.androidevlinux.percy.UTXO.data.network.apis.CoinMarketCapApiImpl;
 import com.androidevlinux.percy.UTXO.data.network.apis.GdaxApiImpl;
+import com.androidevlinux.percy.UTXO.data.network.apis.NewsApiImpl;
 import com.androidevlinux.percy.UTXO.data.network.apis.PocketbitsApiImpl;
 import com.androidevlinux.percy.UTXO.data.network.apis.ZebpayApiImpl;
 import com.google.gson.JsonObject;
@@ -37,6 +39,7 @@ public class ApiManager {
     private PocketbitsApiImpl pocketbitsApiImpl;
     private GdaxApiImpl gdaxApiImpl;
     private CoinMarketCapApiImpl coinMarketCapApiImpl;
+    private NewsApiImpl newsApiImpl;
 
     private ApiManager() {
         bitfinexApiImpl = BitfinexApiImpl.getInstance();
@@ -47,6 +50,7 @@ public class ApiManager {
         pocketbitsApiImpl = PocketbitsApiImpl.getInstance();
         gdaxApiImpl = GdaxApiImpl.getInstance();
         coinMarketCapApiImpl = CoinMarketCapApiImpl.getInstance();
+        newsApiImpl = NewsApiImpl.getInstance();
     }
 
     public static ApiManager getInstance() {
@@ -109,5 +113,9 @@ public class ApiManager {
 
     public Observable<PocketBitsBean> getPocketbitsTicker() {
         return pocketbitsApiImpl.getPocketbitsTicker();
+    }
+
+    public Observable<NewsBean> getNewsData(String apiKey) {
+        return newsApiImpl.getNewsData(apiKey);
     }
 }

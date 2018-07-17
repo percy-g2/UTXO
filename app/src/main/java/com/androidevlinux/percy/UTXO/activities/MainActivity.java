@@ -33,6 +33,7 @@ import com.androidevlinux.percy.UTXO.fragments.GetStatusFragment;
 import com.androidevlinux.percy.UTXO.fragments.GlobalCryptoPricesFragment;
 import com.androidevlinux.percy.UTXO.fragments.GraphFragment;
 import com.androidevlinux.percy.UTXO.fragments.MinimumAmountFragment;
+import com.androidevlinux.percy.UTXO.fragments.NewsFragment;
 import com.androidevlinux.percy.UTXO.utils.ConnectionReceiver;
 
 import java.util.Objects;
@@ -159,6 +160,9 @@ public class MainActivity extends BaseFragmentActivity implements ConnectionRece
                 break;
             case R.id.nav_get_status:
                 loadFragment(GetStatusFragment.class, menuItem.getItemId(), getResources().getString(R.string.get_status));
+                break;
+            case R.id.nav_news:
+                loadFragment(NewsFragment.class, menuItem.getItemId(), getResources().getString(R.string.nav_news));
                 break;
             default:
                 loadFragment(ExchangeCryptoPricesFragment.class, menuItem.getItemId(), getResources().getString(R.string.nav_crypto_prices_btc));

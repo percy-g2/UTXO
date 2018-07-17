@@ -63,7 +63,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.github.GrenderG:Toasty:1.2.8'
     implementation 'com.jaredrummler:android-device-names:1.1.6'
     implementation 'com.github.jrvansuita:MaterialAbout:0.2.3'
@@ -84,9 +84,13 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.9.2'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.google.firebase:firebase-crash:16.0.1'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+
+apply plugin: 'com.google.gms.google-services'

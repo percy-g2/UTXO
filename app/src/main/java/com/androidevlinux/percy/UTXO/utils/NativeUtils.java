@@ -20,4 +20,8 @@ public class NativeUtils {
     public static native String getPocketbitsBaseUrl();
     public static native String getCoinMarketCapBaseUrl();
     public static native String getGdaxBaseUrl();
+
+    public static native String getNewsApiBaseUrl();
+
+    public static native String getNewsApiKey();
 }

@@ -50,13 +50,23 @@
             </group>
         </menu>
     </item>
-    <group
-        android:id="@+id/group3"
-        android:checkableBehavior="none">
-        <item
-            android:id="@+id/nav_about"
-            android:icon="@drawable/about"
-            android:title="@string/nav_about" />
-    </group>
+    <item android:title="@string/extras">
+        <menu>
+            <group
+                android:id="@+id/group3"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_news"
+                    android:checkable="true"
+                    android:icon="@drawable/news"
+                    android:title="@string/nav_news" />
+                <item
+                    android:id="@+id/nav_about"
+                    android:checkable="false"
+                    android:icon="@drawable/about"
+                    android:title="@string/nav_about" />
+            </group>
+        </menu>
+    </item>
 
 </menu>
