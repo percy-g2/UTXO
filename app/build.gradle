@@ -10,8 +10,8 @@ android {
         applicationId "com.androidevlinux.percy.UTXO"
         minSdkVersion 17
         targetSdkVersion 28
-        versionCode 20
-        versionName "1.4"
+        versionCode 21
+        versionName "1.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         packagingOptions.pickFirst('META-INF/rxjava.properties')
 

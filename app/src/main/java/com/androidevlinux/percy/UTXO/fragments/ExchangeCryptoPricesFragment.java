@@ -200,7 +200,7 @@ public class ExchangeCryptoPricesFragment extends BaseFragment implements SwipeR
                     @Override
                     public void onNext(GDAX value) {
                         PriceBean priceBean = new PriceBean();
-                        priceBean.setTitle("GDAX (ETH)");
+                        priceBean.setTitle("Coinbase Pro (ETH)");
                         priceBean.setPrice(strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", Double.parseDouble(value.getPrice())));
                         priceBean.setLow_price(strDollarSymbol + value.getBid());
                         priceBean.setHigh_price(strDollarSymbol + value.getAsk());
@@ -229,7 +229,7 @@ public class ExchangeCryptoPricesFragment extends BaseFragment implements SwipeR
                     @Override
                     public void onNext(GDAX value) {
                         PriceBean priceBean = new PriceBean();
-                        priceBean.setTitle("GDAX (LTC)");
+                        priceBean.setTitle("Coinbase Pro (LTC)");
                         priceBean.setPrice(strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", Double.parseDouble(value.getPrice())));
                         priceBean.setLow_price(strDollarSymbol + value.getBid());
                         priceBean.setHigh_price(strDollarSymbol + value.getAsk());
@@ -259,7 +259,7 @@ public class ExchangeCryptoPricesFragment extends BaseFragment implements SwipeR
                     @Override
                     public void onNext(GDAX value) {
                         PriceBean priceBean = new PriceBean();
-                        priceBean.setTitle("GDAX (BCH)");
+                        priceBean.setTitle("Coinbase Pro (BCH)");
                         priceBean.setPrice(strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", Double.parseDouble(value.getPrice())));
                         priceBean.setLow_price(strDollarSymbol + value.getBid());
                         priceBean.setHigh_price(strDollarSymbol + value.getAsk());
@@ -287,7 +287,7 @@ public class ExchangeCryptoPricesFragment extends BaseFragment implements SwipeR
                     @Override
                     public void onNext(GDAX value) {
                         PriceBean priceBean = new PriceBean();
-                        priceBean.setTitle("GDAX (BTC)");
+                        priceBean.setTitle("Coinbase Pro (BTC)");
                         priceBean.setPrice(strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", Double.parseDouble(value.getPrice())));
                         priceBean.setLow_price(strDollarSymbol + value.getBid());
                         priceBean.setHigh_price(strDollarSymbol + value.getAsk());

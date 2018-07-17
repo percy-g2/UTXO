@@ -52,7 +52,7 @@ public class ExchangePriceAdapter extends RecyclerView.Adapter<ExchangePriceAdap
         holder.price.setText(MessageFormat.format("{0}{1}", context.getResources().getString(R.string.price), priceBean.getPrice()));
         if (priceBean.getTitle().matches(".*Zebpay.*")
                 || priceBean.getTitle().matches(".*Pocketbits.*")
-                || priceBean.getTitle().matches(".*GDAX.*")) {
+                || priceBean.getTitle().matches(".*Coinbase.*")) {
             holder.price_low.setText(MessageFormat.format("{0} {1}", context.getResources().getString(R.string.sell), priceBean.getLow_price()));
             holder.price_high.setText(MessageFormat.format("{0} {1}", context.getResources().getString(R.string.buy), priceBean.getHigh_price()));
         } else {
@@ -67,7 +67,7 @@ public class ExchangePriceAdapter extends RecyclerView.Adapter<ExchangePriceAdap
             holder.exchangeImage.setBackground(context.getResources().getDrawable(R.mipmap.ic_bitfinex));
         } else if (priceBean.getTitle().matches(".*Bitstamp.*")) {
             holder.exchangeImage.setBackground(context.getResources().getDrawable(R.mipmap.ic_bitstamp));
-        } else if (priceBean.getTitle().matches(".*GDAX.*")) {
+        } else if (priceBean.getTitle().matches(".*Coinbase.*")) {
             holder.exchangeImage.setBackground(context.getResources().getDrawable(R.mipmap.ic_gdax));
         }
 
@@ -91,10 +91,10 @@ public class ExchangePriceAdapter extends RecyclerView.Adapter<ExchangePriceAdap
                 CustomTabsIntent customTabsIntent = builder.build();
                 customTabsIntent.launchUrl(context, Uri.parse("https://www.bitstamp.net/"));
                 startNewActivity("net.bitstamp.bitstamp");
-            } else if (priceBean.getTitle().matches(".*GDAX.*")) {
+            } else if (priceBean.getTitle().matches(".*Coinbase.*")) {
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 CustomTabsIntent customTabsIntent = builder.build();
-                customTabsIntent.launchUrl(context, Uri.parse("https://www.gdax.com/"));
+                customTabsIntent.launchUrl(context, Uri.parse("https://pro.coinbase.com/"));
             }
         });
 
