@@ -26,6 +26,9 @@
         android:id="@+id/xlm_filter_option"
         android:title="@string/xlm" />
     <item
+        android:id="@+id/trx_filter_option"
+        android:title="@string/trx" />
+    <item
         android:id="@+id/xmr_filter_option"
         android:title="@string/xmr" />
     <item

@@ -96,7 +96,7 @@ public class GlobalPriceAdapter extends RecyclerView.Adapter<GlobalPriceAdapter.
             TransitionManager.beginDelayedTransition(recyclerView, transition);
             holder.itemView.setActivated(shouldExpand);
         });
-        if (coinMarketCapCoinArrayList.size() == 11) {
+        if (coinMarketCapCoinArrayList.size() == 12) {
             if (mSwipeRefreshLayout.isRefreshing()) {
                 mSwipeRefreshLayout.setRefreshing(false);
             }

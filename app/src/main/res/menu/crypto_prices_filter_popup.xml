@@ -14,6 +14,9 @@
         android:id="@+id/ltc_filter_option"
         android:title="@string/ltc"/>
     <item
+        android:id="@+id/trx_filter_option"
+        android:title="@string/trx" />
+    <item
         android:id="@+id/xrp_filter_option"
         android:title="@string/xrp"/>
 </menu>

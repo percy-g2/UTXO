@@ -301,6 +301,12 @@ public class GraphFragment extends Fragment implements OnChartValueSelectedListe
                 refresh();
                 mActivity.setTitle(getString(R.string.nav_crypto_graph_xlm));
                 return true;
+            case R.id.trx_filter_option:
+                cryptoID = "tron";
+                currencyId = "1958";
+                refresh();
+                mActivity.setTitle(getString(R.string.nav_crypto_graph_trx));
+                return true;
             case R.id.xmr_filter_option:
                 cryptoID = "monero";
                 currencyId = "328";

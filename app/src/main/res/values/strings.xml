@@ -4,6 +4,7 @@
     <string name="nav_crypto_prices_bch">Crypto Prices (BCH)</string>
     <string name="nav_crypto_prices_eth">Crypto Prices (ETH)</string>
     <string name="nav_crypto_prices_ltc">Crypto Prices (LTC)</string>
+    <string name="nav_crypto_prices_trx">Crypto Prices (TRX)</string>
     <string name="nav_crypto_prices_xrp">Crypto Prices (XRP)</string>
 
     <string name="nav_crypto_graph_btc">Crypto Graph (BTC)</string>
@@ -14,6 +15,7 @@
     <string name="nav_crypto_graph_ltc">Crypto Graph (LTC)</string>
     <string name="nav_crypto_graph_iota">Crypto Graph (MIOTA)</string>
     <string name="nav_crypto_graph_xlm">Crypto Graph (XLM)</string>
+    <string name="nav_crypto_graph_trx">Crypto Graph (TRX)</string>
     <string name="nav_crypto_graph_xmr">Crypto Graph (XMR)</string>
     <string name="nav_crypto_graph_xrp">Crypto Graph (XRP)</string>
     <string name="nav_crypto_graph_zec">Crypto Graph (ZEC)</string>
@@ -318,6 +320,7 @@
     <string name="eos">EOS (EOS)</string>
     <string name="track">Track</string>
     <string name="nav_news">News</string>
+    <string name="trx">TRX (TRON)</string>
 
     <string-array name="chart_spinner_options">
         <item>USD</item>

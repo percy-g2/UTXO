@@ -106,6 +106,10 @@ public class ExchangePriceAdapter extends RecyclerView.Adapter<ExchangePriceAdap
             if (mSwipeRefreshLayout.isRefreshing()) {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
+        } else if (priceBeanArrayList.size() == 3 && priceBean.getTitle().matches(".*TRX.*")) {
+            if (mSwipeRefreshLayout.isRefreshing()) {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
         }
     }
 

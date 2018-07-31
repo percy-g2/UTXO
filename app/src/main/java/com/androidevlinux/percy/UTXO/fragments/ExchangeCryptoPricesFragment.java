@@ -161,6 +161,13 @@ public class ExchangeCryptoPricesFragment extends BaseFragment implements SwipeR
                 new refreshLtcTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 mActivity.setTitle(getString(R.string.nav_crypto_prices_ltc));
                 return true;
+            case R.id.trx_filter_option:
+                disposables.dispose();
+                selectedCurrency = "TRX";
+                Constants.currentCurrency = selectedCurrency;
+                new refreshTrxTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                mActivity.setTitle(getString(R.string.nav_crypto_prices_trx));
+                return true;
             case R.id.xrp_filter_option:
                 disposables.dispose();
                 selectedCurrency = "XRP";
@@ -361,6 +368,38 @@ public class ExchangeCryptoPricesFragment extends BaseFragment implements SwipeR
                     public void onComplete() {
                         PriceBean priceBean = new PriceBean();
                         priceBean.setTitle("Bitfinex (ETH)");
+                        priceBean.setPrice(strDollarSymbol + Constants.btc_price);
+                        priceBean.setLow_price(strDollarSymbol + Constants.btc_price_low);
+                        priceBean.setHigh_price(strDollarSymbol + Constants.btc_price_high);
+                        priceBeanArrayList.add(priceBean);
+                        priceAdapter.notifyDataSetChanged();
+                    }
+                }));
+    }
+
+    private void getBitfinexPubTRXTicker() {
+        bitfinexPubTickerResponseBeanObservable = apiManager.getBitfinexTicker("trxusd");
+        disposables = new CompositeDisposable();
+        disposables.add(bitfinexPubTickerResponseBeanObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<BitfinexPubTickerResponseBean>() {
+
+                    @Override
+                    public void onNext(BitfinexPubTickerResponseBean value) {
+                        Constants.btc_price = value.getLastPrice();
+                        Constants.btc_price_low = value.getLow();
+                        Constants.btc_price_high = value.getHigh();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        PriceBean priceBean = new PriceBean();
+                        priceBean.setTitle("Bitfinex (TRX)");
                         priceBean.setPrice(strDollarSymbol + Constants.btc_price);
                         priceBean.setLow_price(strDollarSymbol + Constants.btc_price_low);
                         priceBean.setHigh_price(strDollarSymbol + Constants.btc_price_high);
@@ -688,6 +727,35 @@ public class ExchangeCryptoPricesFragment extends BaseFragment implements SwipeR
                 }));
     }
 
+    private void getPocketbitsTRXTicker() {
+        pocketBitsBeanObservable = apiManager.getPocketbitsTicker();
+        disposables = new CompositeDisposable();
+        disposables.add(pocketBitsBeanObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<PocketBitsBean>() {
+
+                    @Override
+                    public void onNext(PocketBitsBean value) {
+                        PriceBean priceBean = new PriceBean();
+                        priceBean.setTitle("Pocketbits (TRX)");
+                        priceBean.setPrice(strRuppeSymbol + String.valueOf(value.getAltcoins().get(17).getAltBuyPrice()));
+                        priceBean.setLow_price(strRuppeSymbol + String.valueOf(value.getAltcoins().get(17).getAltSellPrice()));
+                        priceBean.setHigh_price(strRuppeSymbol + String.valueOf(value.getAltcoins().get(17).getAltBuyPrice()));
+                        priceBeanArrayList.add(priceBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        priceAdapter.notifyDataSetChanged();
+                    }
+                }));
+    }
+
     private void getPocketbitsLtcTicker() {
         pocketBitsBeanObservable = apiManager.getPocketbitsTicker();
         disposables = new CompositeDisposable();
@@ -829,6 +897,9 @@ public class ExchangeCryptoPricesFragment extends BaseFragment implements SwipeR
             case "LTC":
                 new refreshLtcTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 break;
+            case "TRX":
+                new refreshTrxTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                break;
             case "XRP":
                 new refreshXrpTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 break;
@@ -894,33 +965,62 @@ public class ExchangeCryptoPricesFragment extends BaseFragment implements SwipeR
         }
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private class refreshEthTask extends AsyncTask<String, String, String> {
+    private void getZebpayLtcTicker() {
+        zebPayBeanObservable = apiManager.getZebpayTicker("LTC");
+        disposables = new CompositeDisposable();
+        disposables.add(zebPayBeanObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<ZebPayBean>() {
 
+                    @Override
+                    public void onNext(ZebPayBean value) {
+                        PriceBean priceBean = new PriceBean();
+                        priceBean.setTitle("Zebpay (LTC)");
+                        priceBean.setPrice(strRuppeSymbol + String.valueOf(value.getBuy()));
+                        priceBean.setLow_price(strRuppeSymbol + String.valueOf(value.getSell()));
+                        priceBean.setHigh_price(strRuppeSymbol + String.valueOf(value.getBuy()));
+                        priceBeanArrayList.add(priceBean);
+                    }
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            if (!mSwipeRefreshLayout.isRefreshing()) {
-                mSwipeRefreshLayout.setRefreshing(true);
-            }
-            priceBeanArrayList.clear();
-        }
+                    @Override
+                    public void onError(Throwable e) {
 
-        @Override
-        protected String doInBackground(String... value) {
-            getZebpayEthTicker();
-            getPocketbitsEthTicker();
-            getBitfinexPubEthTicker();
-            getBitStampEthTicker();
-            getGdaxEthTicker();
-            return null;
-        }
+                    }
 
-        @Override
-        protected void onPostExecute(String value) {
-            priceAdapter.notifyDataSetChanged();
-        }
+                    @Override
+                    public void onComplete() {
+                        priceAdapter.notifyDataSetChanged();
+                    }
+                }));
+    }
+
+    private void getZebpayTRXTicker() {
+        zebPayBeanObservable = apiManager.getZebpayTicker("TRX");
+        disposables = new CompositeDisposable();
+        disposables.add(zebPayBeanObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<ZebPayBean>() {
+
+                    @Override
+                    public void onNext(ZebPayBean value) {
+                        PriceBean priceBean = new PriceBean();
+                        priceBean.setTitle("Zebpay (TRX)");
+                        priceBean.setPrice(strRuppeSymbol + String.valueOf(value.getBuy()));
+                        priceBean.setLow_price(strRuppeSymbol + String.valueOf(value.getSell()));
+                        priceBean.setHigh_price(strRuppeSymbol + String.valueOf(value.getBuy()));
+                        priceBeanArrayList.add(priceBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        priceAdapter.notifyDataSetChanged();
+                    }
+                }));
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -1067,33 +1167,59 @@ public class ExchangeCryptoPricesFragment extends BaseFragment implements SwipeR
                 }));
     }
 
+    @SuppressLint("StaticFieldLeak")
+    private class refreshEthTask extends AsyncTask<String, String, String> {
 
-    private void getZebpayLtcTicker() {
-        zebPayBeanObservable = apiManager.getZebpayTicker("LTC");
-        disposables = new CompositeDisposable();
-        disposables.add(zebPayBeanObservable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<ZebPayBean>() {
 
-                    @Override
-                    public void onNext(ZebPayBean value) {
-                        PriceBean priceBean = new PriceBean();
-                        priceBean.setTitle("Zebpay (LTC)");
-                        priceBean.setPrice(strRuppeSymbol + String.valueOf(value.getBuy()));
-                        priceBean.setLow_price(strRuppeSymbol + String.valueOf(value.getSell()));
-                        priceBean.setHigh_price(strRuppeSymbol + String.valueOf(value.getBuy()));
-                        priceBeanArrayList.add(priceBean);
-                    }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if (!mSwipeRefreshLayout.isRefreshing()) {
+                mSwipeRefreshLayout.setRefreshing(true);
+            }
+            priceBeanArrayList.clear();
+        }
 
-                    @Override
-                    public void onError(Throwable e) {
+        @Override
+        protected String doInBackground(String... value) {
+            getZebpayEthTicker();
+            getPocketbitsEthTicker();
+            getBitfinexPubEthTicker();
+            getBitStampEthTicker();
+            getGdaxEthTicker();
+            return null;
+        }
 
-                    }
+        @Override
+        protected void onPostExecute(String value) {
+            priceAdapter.notifyDataSetChanged();
+        }
+    }
 
-                    @Override
-                    public void onComplete() {
-                        priceAdapter.notifyDataSetChanged();
-                    }
-                }));
+    @SuppressLint("StaticFieldLeak")
+    private class refreshTrxTask extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if (!mSwipeRefreshLayout.isRefreshing()) {
+                mSwipeRefreshLayout.setRefreshing(true);
+            }
+            priceBeanArrayList.clear();
+        }
+
+        @Override
+        protected String doInBackground(String... value) {
+            getZebpayTRXTicker();
+            getPocketbitsTRXTicker();
+            getBitfinexPubTRXTicker();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String value) {
+            priceAdapter.notifyDataSetChanged();
+        }
     }
 }
