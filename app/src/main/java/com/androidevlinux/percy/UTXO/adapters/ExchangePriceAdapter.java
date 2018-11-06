@@ -59,9 +59,7 @@ public class ExchangePriceAdapter extends RecyclerView.Adapter<ExchangePriceAdap
             holder.price_low.setText(MessageFormat.format("{0} {1}", context.getResources().getString(R.string._24_hr_s_low), priceBean.getLow_price()));
             holder.price_high.setText(MessageFormat.format("{0} {1}", context.getResources().getString(R.string._24_hr_s_high), priceBean.getHigh_price()));
         }
-        if (priceBean.getTitle().matches(".*Zebpay.*")) {
-            holder.exchangeImage.setBackground(context.getResources().getDrawable(R.mipmap.ic_zebpay));
-        } else if (priceBean.getTitle().matches(".*Pocketbits.*")) {
+        if (priceBean.getTitle().matches(".*Pocketbits.*")) {
             holder.exchangeImage.setBackground(context.getResources().getDrawable(R.mipmap.ic_pocketbits));
         } else if (priceBean.getTitle().matches(".*Bitfinex.*")) {
             holder.exchangeImage.setBackground(context.getResources().getDrawable(R.mipmap.ic_bitfinex));
@@ -72,12 +70,7 @@ public class ExchangePriceAdapter extends RecyclerView.Adapter<ExchangePriceAdap
         }
 
         holder.cardView.setOnClickListener(view -> {
-            if (priceBean.getTitle().matches(".*Zebpay.*")) {
-                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                CustomTabsIntent customTabsIntent = builder.build();
-                customTabsIntent.launchUrl(context, Uri.parse("https://www.zebpay.com/"));
-                startNewActivity("zebpay.Application");
-            } else if (priceBean.getTitle().matches(".*Pocketbits.*")) {
+            if (priceBean.getTitle().matches(".*Pocketbits.*")) {
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 CustomTabsIntent customTabsIntent = builder.build();
                 customTabsIntent.launchUrl(context, Uri.parse("https://www.pocketbits.in/"));
@@ -98,15 +91,15 @@ public class ExchangePriceAdapter extends RecyclerView.Adapter<ExchangePriceAdap
             }
         });
 
-        if (priceBeanArrayList.size() == 5 && !priceBean.getTitle().matches(".*XRP.*")) {
+        if (priceBeanArrayList.size() == 4 && !priceBean.getTitle().matches(".*XRP.*")) {
             if (mSwipeRefreshLayout.isRefreshing()) {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
-        } else if (priceBeanArrayList.size() == 4 && priceBean.getTitle().matches(".*XRP.*")) {
+        } else if (priceBeanArrayList.size() == 3 && priceBean.getTitle().matches(".*XRP.*")) {
             if (mSwipeRefreshLayout.isRefreshing()) {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
-        } else if (priceBeanArrayList.size() == 3 && priceBean.getTitle().matches(".*TRX.*")) {
+        } else if (priceBeanArrayList.size() == 2 && priceBean.getTitle().matches(".*TRX.*")) {
             if (mSwipeRefreshLayout.isRefreshing()) {
                 mSwipeRefreshLayout.setRefreshing(false);
             }

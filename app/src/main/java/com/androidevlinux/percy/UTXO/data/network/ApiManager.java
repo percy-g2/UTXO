@@ -12,7 +12,6 @@ import com.androidevlinux.percy.UTXO.data.models.coinmarketcap.CoinMarketCapCoin
 import com.androidevlinux.percy.UTXO.data.models.gdax.GDAX;
 import com.androidevlinux.percy.UTXO.data.models.newsapi.NewsBean;
 import com.androidevlinux.percy.UTXO.data.models.pocketbits.PocketBitsBean;
-import com.androidevlinux.percy.UTXO.data.models.zebpay.ZebPayBean;
 import com.androidevlinux.percy.UTXO.data.network.apis.BitfinexApiImpl;
 import com.androidevlinux.percy.UTXO.data.network.apis.BitstampApiImpl;
 import com.androidevlinux.percy.UTXO.data.network.apis.BlocktrailApiImpl;
@@ -21,7 +20,6 @@ import com.androidevlinux.percy.UTXO.data.network.apis.CoinMarketCapApiImpl;
 import com.androidevlinux.percy.UTXO.data.network.apis.GdaxApiImpl;
 import com.androidevlinux.percy.UTXO.data.network.apis.NewsApiImpl;
 import com.androidevlinux.percy.UTXO.data.network.apis.PocketbitsApiImpl;
-import com.androidevlinux.percy.UTXO.data.network.apis.ZebpayApiImpl;
 import com.google.gson.JsonObject;
 
 import io.reactivex.Observable;
@@ -35,7 +33,6 @@ public class ApiManager {
     private BitstampApiImpl bitstampApiImpl;
     private BlocktrailApiImpl blocktrailApiImpl;
     private ChangellyApiImpl changellyApiImpl;
-    private ZebpayApiImpl zebpayApiImpl;
     private PocketbitsApiImpl pocketbitsApiImpl;
     private GdaxApiImpl gdaxApiImpl;
     private CoinMarketCapApiImpl coinMarketCapApiImpl;
@@ -46,7 +43,6 @@ public class ApiManager {
         bitstampApiImpl = BitstampApiImpl.getInstance();
         blocktrailApiImpl = BlocktrailApiImpl.getInstance();
         changellyApiImpl = ChangellyApiImpl.getInstance();
-        zebpayApiImpl = ZebpayApiImpl.getInstance();
         pocketbitsApiImpl = PocketbitsApiImpl.getInstance();
         gdaxApiImpl = GdaxApiImpl.getInstance();
         coinMarketCapApiImpl = CoinMarketCapApiImpl.getInstance();
@@ -105,10 +101,6 @@ public class ApiManager {
 
     public void createTransaction(String sign, MainBodyBean body, Callback<com.androidevlinux.percy.UTXO.data.models.changelly.TransactionBean> callback) {
         changellyApiImpl.createTransaction(sign, body, callback);
-    }
-
-    public Observable<ZebPayBean> getZebpayTicker(String symbol) {
-        return zebpayApiImpl.getZebpayTicker(symbol);
     }
 
     public Observable<PocketBitsBean> getPocketbitsTicker() {
