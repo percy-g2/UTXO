@@ -321,6 +321,7 @@
     <string name="track">Track</string>
     <string name="nav_news">News</string>
     <string name="trx">TRX (TRON)</string>
+    <string name="info">INFO</string>
 
     <string-array name="chart_spinner_options">
         <item>USD</item>

@@ -36,7 +36,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/spinner_from"
+                android:id="@+id/spinnerFromTransactionFragment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -61,7 +61,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/spinner_to"
+                android:id="@+id/spinnerToTransactionFragment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -72,139 +72,139 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
         </LinearLayout>
 
-        <LinearLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:textColorHint="@color/white">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@color/white">
-
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edtAmount"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:hint="@string/exchange_amount"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:textStyle="bold" />
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@color/white">
-
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edtUserPayOutAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:hint="@string/user_pay_out_address"
-                    android:inputType="text"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="@color/white"
-                    android:textColorHint="@color/white"
-                    android:textStyle="bold" />
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_get_amount"
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edtAmountTransactionFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:background="@drawable/round_button"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/get"
-                android:textColor="@android:color/white"
+                android:hint="@string/exchange_amount"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textStyle="bold" />
-        </LinearLayout>
+        </android.support.design.widget.TextInputLayout>
 
-        <LinearLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:textColorHint="@color/white">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edtUserPayOutAddressTransactionFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="@string/user_pay_out_address"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/white"
+                android:textColorHint="@color/white"
+                android:textStyle="bold" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/btnGetTransactionFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_button"
+            android:gravity="center"
+            android:text="@string/create_transaction"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="2dp"
+            android:layout_weight="1">
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/txt_info"
+                android:id="@+id/txtTransactionIdTransactionFragment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/transaction_id"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.5" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/txt_min_amount"
+                android:id="@+id/txtServerResponseTransactionIdTransactionFragment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="INFO"
-                android:textColor="@color/white"
-                android:textIsSelectable="true" />
-        </LinearLayout>
+                android:text="@string/info"
+                android:textColor="@android:color/white"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintLeft_toRightOf="@id/txtTransactionIdTransactionFragment"
+                app:layout_constraintTop_toBottomOf="@id/txtTransactionIdTransactionFragment"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <LinearLayout
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_weight="1">
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/txt_pay_in"
+                android:id="@+id/txtPayInAddressTransactionFragment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/pay_in_address"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.5" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/txt_pay_in_address"
+                android:id="@+id/txtServerResponsePayInAddressTransactionFragment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="null"
-                android:textColor="@color/white"
-                android:textIsSelectable="true" />
-        </LinearLayout>
+                android:text="@string/info"
+                android:textColor="@android:color/white"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintLeft_toRightOf="@id/txtPayInAddressTransactionFragment"
+                app:layout_constraintTop_toBottomOf="@id/txtPayInAddressTransactionFragment"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.5" />
+
+        </android.support.constraint.ConstraintLayout>
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -2,8 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/black"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <LinearLayout
         android:id="@+id/container"
@@ -13,87 +13,83 @@
         android:orientation="vertical"
         android:weightSum="9">
 
-        <LinearLayout
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:textColorHint="@color/white">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="0dp"
-                android:textColorHint="@color/white"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edtTransactionId"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:gravity="center"
-                    android:hint="@string/transaction_id"
-                    android:inputType="text"
-                    android:textStyle="bold" />
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_get_amount"
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edtTransactionIdStatusFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:background="@drawable/round_button"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:text="@string/get_status"
-                android:textColor="@android:color/white"
+                android:hint="@string/transaction_id"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textStyle="bold" />
-        </LinearLayout>
+        </android.support.design.widget.TextInputLayout>
 
-        <LinearLayout
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/btnGetStatusFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_button"
+            android:gravity="center"
+            android:text="@string/get_status"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_weight="1">
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/txt_info"
+                android:id="@+id/txtInfoStatusFragment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:text="@string/response_info"
                 android:textColor="@color/white"
-                android:text="@string/response_info" />
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.5" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/txt_min_amount"
+                android:id="@+id/txtServerResponseStatusFragment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/no_info"
-                android:textColor="@android:color/holo_red_dark" />
-        </LinearLayout>
+                android:textColor="@android:color/holo_red_dark"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintLeft_toRightOf="@id/txtInfoStatusFragment"
+                app:layout_constraintTop_toBottomOf="@id/txtInfoStatusFragment"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.5" />
+
+        </android.support.constraint.ConstraintLayout>
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/create_transaction"
+            android:id="@+id/createTransactionStatusFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

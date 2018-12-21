@@ -73,58 +73,60 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
 
-        <LinearLayout
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/btnGetMinAmountFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_button"
+            android:gravity="center"
+            android:text="@string/get_status"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_get_amount"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:background="@drawable/round_button"
-                android:gravity="center"
-                android:text="@string/get"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_weight="1">
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/txt_info"
+                android:id="@+id/txtInfoMinAmountFragment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:textColor="@color/white"
                 android:gravity="center"
-                android:text="@string/response_info" />
+                android:text="@string/response_info"
+                android:textColor="@color/white"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.5" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/txt_min_amount"
+                android:id="@+id/txtServerResponseMinAmountFragment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:textColor="@color/white"
                 android:gravity="center"
-                android:text="0.00" />
-        </LinearLayout>
+                android:text="@string/no_info"
+                android:textColor="@android:color/holo_red_dark"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintLeft_toRightOf="@id/txtInfoMinAmountFragment"
+                app:layout_constraintTop_toBottomOf="@id/txtInfoMinAmountFragment"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.5" />
+
+        </android.support.constraint.ConstraintLayout>
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/create_transaction"
+            android:id="@+id/createTransactionMinAmountFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
