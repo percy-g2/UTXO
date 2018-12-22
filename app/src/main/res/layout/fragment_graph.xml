@@ -154,7 +154,8 @@
                     android:layout_weight="1"
                     android:textColor="@color/white"
                     android:paddingStart="8dp"
-                    android:text="Name" />
+                    android:paddingEnd="8dp"
+                    android:text="@string/name" />
 
                 <TextView
                     android:id="@+id/tableNameDataTextView"
@@ -162,6 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textColor="@color/white"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -178,7 +180,8 @@
                     android:layout_weight="1"
                     android:textColor="@color/white"
                     android:paddingStart="8dp"
-                    android:text="Price (USD)" />
+                    android:paddingEnd="8dp"
+                    android:text="@string/price_usd" />
 
                 <TextView
                     android:id="@+id/tablePriceUSDDataTextView"
@@ -186,6 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textColor="@color/white"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -203,7 +207,8 @@
                     android:layout_weight="1"
                     android:textColor="@color/white"
                     android:paddingStart="8dp"
-                    android:text="Price (BTC)" />
+                    android:paddingEnd="8dp"
+                    android:text="@string/price_btc" />
 
                 <TextView
                     android:id="@+id/tablePriceBTCDataTextView"
@@ -211,6 +216,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textColor="@color/white"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
 
@@ -228,7 +234,8 @@
                     android:layout_weight="1"
                     android:textColor="@color/white"
                     android:paddingStart="8dp"
-                    android:text="24h Volume" />
+                    android:paddingEnd="8dp"
+                    android:text="@string/twentyfourhoursvolume" />
 
                 <TextView
                     android:id="@+id/tableVolUSDDataTextView"
@@ -236,6 +243,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textColor="@color/white"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -253,7 +261,8 @@
                     android:layout_weight="1"
                     android:textColor="@color/white"
                     android:paddingStart="8dp"
-                    android:text="Market Cap" />
+                    android:paddingEnd="8dp"
+                    android:text="@string/market_cap" />
 
                 <TextView
                     android:id="@+id/tableMktCapDataTextView"
@@ -261,6 +270,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textColor="@color/white"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -276,8 +286,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textColor="@color/white"
-                    android:text="Available Supply" />
+                    android:text="@string/available_supply" />
 
                 <TextView
                     android:id="@+id/tableAvailableSupplyDataTextView"
@@ -285,6 +296,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingEnd="8dp"
+                    android:paddingStart="8dp"
                     android:textColor="@color/white"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -301,14 +313,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textColor="@color/white"
-                    android:text="Total Supply" />
+                    android:text="@string/total_supply" />
 
                 <TextView
                     android:id="@+id/tableTotalSupplyDataTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textColor="@color/white"
                     android:textAlignment="textEnd" />
@@ -325,8 +339,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textColor="@color/white"
-                    android:text="Max Supply" />
+                    android:text="@string/max_supply" />
 
                 <TextView
                     android:id="@+id/tableMaxSupplyDataTextView"
@@ -334,6 +349,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textColor="@color/white"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -350,8 +366,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textColor="@color/white"
-                    android:text="Change 1hr"
+                    android:text="@string/change_1hr"
                     android:textAlignment="center" />
 
                 <TextView
@@ -360,8 +377,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textColor="@color/white"
-                    android:text="Change 24hr"
+                    android:text="@string/change_24hr"
                     android:textAlignment="center" />
 
                 <TextView
@@ -370,8 +388,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textColor="@color/white"
-                    android:text="Change 7d"
+                    android:text="@string/change_7d"
                     android:textAlignment="center" />
 
             </TableRow>
@@ -386,6 +405,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textAlignment="center"
                     android:textStyle="bold" />
@@ -395,6 +415,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textAlignment="center"
                     android:textStyle="bold" />
@@ -404,6 +425,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textAlignment="center"
                     android:textStyle="bold" />

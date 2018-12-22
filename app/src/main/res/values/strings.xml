@@ -322,6 +322,16 @@
     <string name="nav_news">News</string>
     <string name="trx">TRX (TRON)</string>
     <string name="info">INFO</string>
+    <string name="price_btc">Price (BTC)</string>
+    <string name="price_usd">Price (USD)</string>
+    <string name="name">Name</string>
+    <string name="market_cap">Market Cap</string>
+    <string name="available_supply">Available Supply</string>
+    <string name="total_supply">Total Supply</string>
+    <string name="max_supply">Max Supply</string>
+    <string name="change_1hr">Change 1hr</string>
+    <string name="change_24hr">Change 24hr</string>
+    <string name="change_7d">Change 7d</string>
 
     <string-array name="chart_spinner_options">
         <item>USD</item>

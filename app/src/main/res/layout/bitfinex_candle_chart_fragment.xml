@@ -154,14 +154,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textColor="@color/white"
-                    android:text="Name" />
+                    android:text="@string/name" />
 
                 <TextView
                     android:id="@+id/tableNameDataTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textColor="@color/white"
                     android:textAlignment="textEnd" />
@@ -178,8 +180,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColor="@color/white"
+                    android:paddingEnd="8dp"
                     android:paddingStart="8dp"
-                    android:text="Price (USD)" />
+                    android:text="@string/price_usd" />
 
                 <TextView
                     android:id="@+id/tablePriceUSDDataTextView"
@@ -187,6 +190,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingEnd="8dp"
+                    android:paddingStart="8dp"
                     android:textColor="@color/white"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -203,14 +207,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColor="@color/white"
+                    android:paddingEnd="8dp"
                     android:paddingStart="8dp"
-                    android:text="Price (BTC)" />
+                    android:text="@string/price_btc" />
 
                 <TextView
                     android:id="@+id/tablePriceBTCDataTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textColor="@color/white"
                     android:textAlignment="textEnd" />
@@ -229,7 +235,8 @@
                     android:layout_weight="1"
                     android:textColor="@color/white"
                     android:paddingStart="8dp"
-                    android:text="24h Volume" />
+                    android:paddingEnd="8dp"
+                    android:text="@string/twentyfourhoursvolume" />
 
                 <TextView
                     android:id="@+id/tableVolUSDDataTextView"
@@ -237,6 +244,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textColor="@color/white"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -253,6 +261,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textColor="@color/white"
                     android:text="@string/_24_hr_s_high" />
 
@@ -262,6 +271,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textColor="@color/white"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -276,6 +286,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textColor="@color/white"
                     android:text="@string/_24_hr_s_low" />
 
@@ -285,6 +296,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textColor="@color/white"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textAlignment="textEnd" />
             </TableRow>
@@ -302,6 +314,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textColor="@color/white"
                     android:text="@string/buy"
                     android:textAlignment="center" />
@@ -312,6 +325,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textColor="@color/white"
                     android:text="@string/sell"
                     android:textAlignment="center" />
@@ -328,6 +342,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textColor="@color/white"
                     android:textAlignment="center"
@@ -338,6 +353,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textColor="@color/white"
                     android:textAlignment="center"
