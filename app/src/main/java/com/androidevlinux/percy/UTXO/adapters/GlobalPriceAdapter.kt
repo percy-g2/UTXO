@@ -5,20 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
-import androidx.transition.ChangeBounds
-import androidx.transition.TransitionManager
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.data.models.coinmarketcap.CoinMarketCapCoin
 import com.squareup.picasso.Picasso
 import java.text.MessageFormat
 import java.util.*
 
-class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinMarketCapCoin>, private val context: Context, private val recyclerView: androidx.recyclerview.widget.RecyclerView, private val mSwipeRefreshLayout: androidx.swiperefreshlayout.widget.SwipeRefreshLayout) : androidx.recyclerview.widget.RecyclerView.Adapter<GlobalPriceAdapter.ViewHolder>() {
-    private var mExpandedPosition = -1
+
+class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinMarketCapCoin>, private val context: Context, private val mSwipeRefreshLayout: androidx.swiperefreshlayout.widget.SwipeRefreshLayout) : androidx.recyclerview.widget.RecyclerView.Adapter<GlobalPriceAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GlobalPriceAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context)
@@ -56,28 +54,33 @@ class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinM
 
         Picasso.get().load("https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/" + coinMarketCapCoin.data!!.id.toString() + ".png").into(holder.snapshotImage)
         Picasso.get().load("https://s2.coinmarketcap.com/static/img/coins/64x64/" + coinMarketCapCoin.data!!.id.toString() + ".png").into(holder.exchangeImage)
+
+        // EOS is having dark black border icon which is not visible
+        // in black background so add a white background color
+        if (coinMarketCapCoin.data!!.id == 1765) {
+            holder.exchangeImage.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+        }
+
         val isExpanded = coinMarketCapCoin.isExpanded
         holder.expandedView.visibility = if (isExpanded) View.VISIBLE else View.GONE
-        holder.itemView.setOnClickListener {
-            val shouldExpand = holder.expandedView.visibility == View.GONE
-            mExpandedPosition = if (isExpanded) -1 else holder.adapterPosition
-            val transition = ChangeBounds()
-            transition.duration = 125
-
-            if (shouldExpand) {
-                holder.expandedView.visibility = View.VISIBLE
-                holder.imageViewToggle.setImageResource(R.drawable.ic_expand_less)
-                coinMarketCapCoin.isExpanded = true
-            } else {
-                holder.expandedView.visibility = View.GONE
-                holder.imageViewToggle.setImageResource(R.drawable.ic_expand_more)
-                coinMarketCapCoin.isExpanded = false
-            }
-
-            TransitionManager.beginDelayedTransition(recyclerView, transition)
-            holder.itemView.isActivated = shouldExpand
+        if (isExpanded) {
+            holder.imageViewToggle.setImageResource(R.drawable.ic_expand_less)
+        } else {
+            holder.imageViewToggle.setImageResource(R.drawable.ic_expand_more)
         }
-        if (coinMarketCapCoinArrayList.size == 12) {
+        holder.itemView.setOnClickListener {
+            val isViewExpanded = coinMarketCapCoin.isExpanded
+            if (isViewExpanded) {
+                holder.expandedView.visibility = View.GONE
+                coinMarketCapCoin.isExpanded = false
+                holder.imageViewToggle.setImageResource(R.drawable.ic_expand_more)
+            } else {
+                holder.expandedView.visibility = View.VISIBLE
+                coinMarketCapCoin.isExpanded = true
+                holder.imageViewToggle.setImageResource(R.drawable.ic_expand_less)
+            }
+        }
+        if (coinMarketCapCoinArrayList.size == 13) {
             if (mSwipeRefreshLayout.isRefreshing) {
                 mSwipeRefreshLayout.isRefreshing = false
             }
@@ -103,7 +106,8 @@ class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinM
         val txt24hrPercentChange: TextView = view.findViewById(R.id.txt_24hr_percent_change)
         val txt7dPercentChange: TextView = view.findViewById(R.id.txt_7d_percent_change)
         val snapshotImage: AppCompatImageView = view.findViewById(R.id.snapshotImage)
-        val expandedView: LinearLayout = view.findViewById(R.id.expandView)
+        val expandedView: RelativeLayout = view.findViewById(R.id.expandView)
+        val mainLayout: RelativeLayout = view.findViewById(R.id.mainLayout)
         val imageViewToggle: ImageView = view.findViewById(R.id.imageView_toggle)
 
     }

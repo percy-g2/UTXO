@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.utils.UniqueArrayList
 import java.text.MessageFormat
@@ -40,13 +41,13 @@ class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, priv
             holder.priceHigh.text = MessageFormat.format("{0} {1}", context.resources.getString(R.string._24_hr_s_high), priceBean.high_price)
         }
         when {
-            priceBean.title.matches(".*Pocketbits.*".toRegex()) -> holder.exchangeImage.background = context.resources.getDrawable(R.mipmap.ic_pocketbits)
-            priceBean.title.matches(".*Bitfinex.*".toRegex()) -> holder.exchangeImage.background = context.resources.getDrawable(R.mipmap.ic_bitfinex)
-            priceBean.title.matches(".*Bitstamp.*".toRegex()) -> holder.exchangeImage.background = context.resources.getDrawable(R.mipmap.ic_bitstamp)
-            priceBean.title.matches(".*Coinbase.*".toRegex()) -> holder.exchangeImage.background = context.resources.getDrawable(R.mipmap.ic_gdax)
+            priceBean.title.matches(".*Pocketbits.*".toRegex()) -> holder.exchangeImage.background = ContextCompat.getDrawable(context, R.mipmap.ic_pocketbits)
+            priceBean.title.matches(".*Bitfinex.*".toRegex()) -> holder.exchangeImage.background = ContextCompat.getDrawable(context, R.mipmap.ic_bitfinex)
+            priceBean.title.matches(".*Bitstamp.*".toRegex()) -> holder.exchangeImage.background = ContextCompat.getDrawable(context, R.mipmap.ic_bitstamp)
+            priceBean.title.matches(".*Coinbase.*".toRegex()) -> holder.exchangeImage.background = ContextCompat.getDrawable(context, R.mipmap.ic_gdax)
         }
 
-        holder.cardView.setOnClickListener { view ->
+        holder.cardView.setOnClickListener {
             when {
                 priceBean.title.matches(".*Pocketbits.*".toRegex()) -> {
                     val builder = CustomTabsIntent.Builder()
@@ -81,7 +82,9 @@ class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, priv
             if (mSwipeRefreshLayout.isRefreshing) {
                 mSwipeRefreshLayout.isRefreshing = false
             }
-        } else if (priceBeanArrayList.size == 2 && priceBean.title.matches(".*TRX.*".toRegex())) {
+        } else if (priceBeanArrayList.size == 2 && priceBean.title.matches(".*TRX.*".toRegex())
+                || priceBean.title.matches(".*BCH.*".toRegex()) || priceBean.title.matches(".*ABC.*".toRegex())
+                || priceBean.title.matches(".*SV.*".toRegex())) {
             if (mSwipeRefreshLayout.isRefreshing) {
                 mSwipeRefreshLayout.isRefreshing = false
             }

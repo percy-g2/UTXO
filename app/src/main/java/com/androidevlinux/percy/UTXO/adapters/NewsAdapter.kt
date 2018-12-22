@@ -37,11 +37,7 @@ class NewsAdapter(private val articleArrayList: ArrayList<Article>, private val 
         holder.txtAuthor.text = article.author
         holder.txtDate.text = article.publishedAt
 
-        if (articleArrayList.size == 20) {
-            if (mSwipeRefreshLayout.isRefreshing) {
-                mSwipeRefreshLayout.isRefreshing = false
-            }
-        }
+
     }
 
     override fun getItemCount(): Int {

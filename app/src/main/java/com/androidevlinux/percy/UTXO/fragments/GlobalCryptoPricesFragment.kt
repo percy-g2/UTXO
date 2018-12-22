@@ -42,7 +42,7 @@ class GlobalCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout.w
         coinMarketCapCoinArrayList = ArrayList()
         val linearLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         price_list_recycler_view!!.layoutManager = linearLayoutManager
-        globalPriceAdapter = GlobalPriceAdapter(coinMarketCapCoinArrayList!!, mActivity!!, price_list_recycler_view!!, swipe_container!!)
+        globalPriceAdapter = GlobalPriceAdapter(coinMarketCapCoinArrayList!!, mActivity!!, swipe_container!!)
         price_list_recycler_view!!.adapter = globalPriceAdapter
         swipe_container!!.setOnRefreshListener(this)
         swipe_container!!.setColorSchemeColors(ContextCompat.getColor(mActivity!!, android.R.color.holo_green_dark),

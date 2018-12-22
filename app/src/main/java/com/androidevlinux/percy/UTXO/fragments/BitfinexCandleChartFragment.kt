@@ -164,10 +164,10 @@ class BitfinexCandleChartFragment : BaseFragment(), OnChartValueSelectedListener
                 mActivity!!.title = getString(R.string.nav_crypto_candle_chart_btc)
                 return true
             }
-            R.id.bch_filter_option -> {
+            R.id.bab_filter_option -> {
                 currencyId = 1
                 refresh()
-                mActivity!!.title = getString(R.string.nav_crypto_candle_chart_bch)
+                mActivity!!.title = getString(R.string.nav_crypto_candle_chart_bab)
                 return true
             }
             R.id.eth_filter_option -> {
@@ -186,6 +186,12 @@ class BitfinexCandleChartFragment : BaseFragment(), OnChartValueSelectedListener
                 currencyId = 4
                 refresh()
                 mActivity!!.title = getString(R.string.nav_crypto_candle_chart_xrp)
+                return true
+            }
+            R.id.bsv_filter_option -> {
+                currencyId = 5
+                refresh()
+                mActivity!!.title = getString(R.string.nav_crypto_candle_chart_bsv)
                 return true
             }
             else -> return false
@@ -279,9 +285,9 @@ class BitfinexCandleChartFragment : BaseFragment(), OnChartValueSelectedListener
                 currency = "Bitcoin"
             }
             1 -> {
-                symbol = "tBCHUSD"
-                strSymbol = "bchusd"
-                currency = "Bitcoin Cash"
+                symbol = "tBABUSD"
+                strSymbol = "babusd"
+                currency = "Bitcoin Cash ABC(BAB)"
             }
             2 -> {
                 symbol = "tETHUSD"
@@ -297,6 +303,11 @@ class BitfinexCandleChartFragment : BaseFragment(), OnChartValueSelectedListener
                 symbol = "tXRPUSD"
                 strSymbol = "xrpusd"
                 currency = "Ripple"
+            }
+            5 -> {
+                symbol = "tBSVUSD"
+                strSymbol = "bsvusd"
+                currency = "Bitcoin Cash SV(BSV)"
             }
         }
         getBitfinexPubTicker(strSymbol, currency)

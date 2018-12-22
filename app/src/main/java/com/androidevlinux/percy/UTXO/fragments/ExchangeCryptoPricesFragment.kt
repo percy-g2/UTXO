@@ -89,7 +89,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
         popup.setOnMenuItemClickListener(this@ExchangeCryptoPricesFragment)
 
         val inflater = popup.menuInflater
-        inflater.inflate(R.menu.crypto_prices_filter_popup, popup.menu)
+        inflater.inflate(R.menu.crypto_exchange_prices_filter_popup, popup.menu)
         popup.show()
     }
 
@@ -103,6 +103,22 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                 Constants.currentCurrency = selectedCurrency
                 refreshBtcTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
                 mActivity!!.title = getString(R.string.nav_crypto_prices_btc)
+                return true
+            }
+            R.id.bab_filter_option -> {
+                disposables!!.dispose()
+                selectedCurrency = "BCH ABC"
+                Constants.currentCurrency = selectedCurrency
+                refreshBabTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+                mActivity!!.title = getString(R.string.nav_crypto_prices_bab)
+                return true
+            }
+            R.id.bsv_filter_option -> {
+                disposables!!.dispose()
+                selectedCurrency = "BCH SV"
+                Constants.currentCurrency = selectedCurrency
+                refreshBsvTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+                mActivity!!.title = getString(R.string.nav_crypto_prices_bsv)
                 return true
             }
             R.id.bch_filter_option -> {
@@ -166,7 +182,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -192,7 +208,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -219,7 +235,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -245,7 +261,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -268,7 +284,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -297,7 +313,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -326,7 +342,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -355,7 +371,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -370,8 +386,8 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                 }))
     }
 
-    private fun getBitfinexPubBchTicker() {
-        bitfinexPubTickerResponseBeanObservable = apiManager!!.getBitfinexTicker("bchusd")
+    private fun getBitfinexPubBabTicker() {
+        bitfinexPubTickerResponseBeanObservable = apiManager!!.getBitfinexTicker("babusd")
         disposables = CompositeDisposable()
         disposables!!.add(bitfinexPubTickerResponseBeanObservable!!.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -384,12 +400,41 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
                         val priceBean = PriceBean()
-                        priceBean.title = "Bitfinex (BCH)"
+                        priceBean.title = "Bitfinex (BCH ABC)"
+                        priceBean.price = strDollarSymbol + Constants.btc_price
+                        priceBean.low_price = strDollarSymbol + Constants.btc_price_low
+                        priceBean.high_price = strDollarSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBitfinexPubBsvTicker() {
+        bitfinexPubTickerResponseBeanObservable = apiManager!!.getBitfinexTicker("bsvusd")
+        disposables = CompositeDisposable()
+        disposables!!.add(bitfinexPubTickerResponseBeanObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BitfinexPubTickerResponseBean>() {
+
+                    override fun onNext(value: BitfinexPubTickerResponseBean) {
+                        Constants.btc_price = value.lastPrice!!
+                        Constants.btc_price_low = value.low!!
+                        Constants.btc_price_high = value.high!!
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "Bitfinex (BCH SV)"
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + Constants.btc_price_low
                         priceBean.high_price = strDollarSymbol + Constants.btc_price_high
@@ -413,7 +458,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -442,7 +487,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -471,7 +516,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -500,7 +545,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -530,7 +575,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -559,7 +604,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -591,7 +636,59 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
 
+                    override fun onComplete() {
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getPocketbitsBabTicker() {
+        pocketBitsBeanObservable = apiManager!!.pocketbitsTicker
+        disposables = CompositeDisposable()
+        disposables!!.add(pocketBitsBeanObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<PocketBitsBean>() {
+
+                    override fun onNext(value: PocketBitsBean) {
+                        val priceBean = PriceBean()
+                        priceBean.title = "Pocketbits (BCH ABC)"
+                        priceBean.price = strRuppeSymbol + value.altcoins!![46].altBuyPrice.toString()
+                        priceBean.low_price = strRuppeSymbol + value.altcoins!![46].altSellPrice.toString()
+                        priceBean.high_price = strRuppeSymbol + value.altcoins!![46].altBuyPrice.toString()
+                        priceBeanArrayList!!.add(priceBean)
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getPocketbitsBsvTicker() {
+        pocketBitsBeanObservable = apiManager!!.pocketbitsTicker
+        disposables = CompositeDisposable()
+        disposables!!.add(pocketBitsBeanObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<PocketBitsBean>() {
+
+                    override fun onNext(value: PocketBitsBean) {
+                        val priceBean = PriceBean()
+                        priceBean.title = "Pocketbits (BCH SV)"
+                        priceBean.price = strRuppeSymbol + value.altcoins!![47].altBuyPrice.toString()
+                        priceBean.low_price = strRuppeSymbol + value.altcoins!![47].altSellPrice.toString()
+                        priceBean.high_price = strRuppeSymbol + value.altcoins!![47].altBuyPrice.toString()
+                        priceBeanArrayList!!.add(priceBean)
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -617,7 +714,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -643,7 +740,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -669,33 +766,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
-                    }
-
-                    override fun onComplete() {
-                        priceAdapter!!.notifyDataSetChanged()
-                    }
-                }))
-    }
-
-    private fun getPocketbitsBchTicker() {
-        pocketBitsBeanObservable = apiManager!!.pocketbitsTicker
-        disposables = CompositeDisposable()
-        disposables!!.add(pocketBitsBeanObservable!!.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<PocketBitsBean>() {
-
-                    override fun onNext(value: PocketBitsBean) {
-                        val priceBean = PriceBean()
-                        priceBean.title = "Pocketbits (BCH)"
-                        priceBean.price = strRuppeSymbol + value.altcoins!![8].altBuyPrice.toString()
-                        priceBean.low_price = strRuppeSymbol + value.altcoins!![8].altSellPrice.toString()
-                        priceBean.high_price = strRuppeSymbol + value.altcoins!![8].altBuyPrice.toString()
-                        priceBeanArrayList!!.add(priceBean)
-                    }
-
-                    override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -721,7 +792,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
@@ -742,6 +813,8 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
         when (selectedCurrency) {
             "BTC" -> refreshBtcTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
             "BCH" -> refreshBchTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+            "BCH ABC" -> refreshBabTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+            "BCH SV" -> refreshBsvTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
             "ETH" -> refreshEthTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
             "LTC" -> refreshLtcTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
             "TRX" -> refreshTrxTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
@@ -774,6 +847,51 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
+    private inner class refreshBabTask : AsyncTask<String?, String?, String?>() {
+
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+            if (!swipe_container!!.isRefreshing) {
+                swipe_container!!.isRefreshing = true
+            }
+            priceBeanArrayList!!.clear()
+        }
+
+        override fun doInBackground(vararg value: String?): String? {
+            getPocketbitsBabTicker()
+            getBitfinexPubBabTicker()
+            return null
+        }
+
+        override fun onPostExecute(value: String?) {
+            priceAdapter!!.notifyDataSetChanged()
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private inner class refreshBsvTask : AsyncTask<String?, String?, String?>() {
+
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+            if (!swipe_container!!.isRefreshing) {
+                swipe_container!!.isRefreshing = true
+            }
+            priceBeanArrayList!!.clear()
+        }
+
+        override fun doInBackground(vararg value: String?): String? {
+            getPocketbitsBsvTicker()
+            getBitfinexPubBsvTicker()
+            return null
+        }
+
+        override fun onPostExecute(value: String?) {
+            priceAdapter!!.notifyDataSetChanged()
+        }
+    }
 
     @SuppressLint("StaticFieldLeak")
     private inner class refreshBchTask : AsyncTask<String?, String?, String?>() {
@@ -788,8 +906,6 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
         }
 
         override fun doInBackground(vararg value: String?): String? {
-            getPocketbitsBchTicker()
-            getBitfinexPubBchTicker()
             getBitStampBchTicker()
             getGdaxBchTicker()
             return null

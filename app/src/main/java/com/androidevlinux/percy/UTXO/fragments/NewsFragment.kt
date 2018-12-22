@@ -1,7 +1,5 @@
 package com.androidevlinux.percy.UTXO.fragments
 
-import android.annotation.SuppressLint
-import android.os.AsyncTask
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,7 +43,7 @@ class NewsFragment : BaseFragment(), androidx.swiperefreshlayout.widget.SwipeRef
                 ContextCompat.getColor(mActivity!!, android.R.color.holo_red_dark),
                 ContextCompat.getColor(mActivity!!, android.R.color.holo_blue_dark),
                 ContextCompat.getColor(mActivity!!, android.R.color.holo_orange_dark))
-        RefreshTask().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR)
+        getNews()
     }
 
     override fun onResume() {
@@ -54,6 +52,10 @@ class NewsFragment : BaseFragment(), androidx.swiperefreshlayout.widget.SwipeRef
     }
 
     private fun getNews() {
+        if (!swipe_container!!.isRefreshing) {
+            swipe_container!!.isRefreshing = true
+        }
+        articleArrayList!!.clear()
         newsBeanObservable = apiManager!!.getNewsData(NativeUtils.newsApiKey)
         disposables = CompositeDisposable()
         disposables!!.add(newsBeanObservable!!.subscribeOn(Schedulers.io())
@@ -61,16 +63,31 @@ class NewsFragment : BaseFragment(), androidx.swiperefreshlayout.widget.SwipeRef
                 .subscribeWith(object : DisposableObserver<NewsBean>() {
 
                     override fun onNext(value: NewsBean) {
-                        articleArrayList = value.articles as ArrayList<Article>?
+                        //check for duplicate articles from list
+                        for (article in value.articles!!) {
+                            var exists = false
+                            for (existingArticle in articleArrayList!!) {
+                                if (article.title!! == existingArticle.title) {
+                                    exists = true
+                                }
+                            }
+                            if (!exists) {
+                                articleArrayList!!.add(article)
+                                newsAdapter!!.notifyDataSetChanged()
+                            }
+                        }
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                     override fun onComplete() {
-                        newsAdapter = NewsAdapter(articleArrayList!!, mActivity!!, swipe_container!!)
-                        news_recycler_view!!.adapter = newsAdapter
+                        if (swipe_container.isRefreshing) {
+                            swipe_container.isRefreshing = false
+
+                        }
+                        newsAdapter!!.notifyDataSetChanged()
                     }
                 }))
     }
@@ -84,27 +101,6 @@ class NewsFragment : BaseFragment(), androidx.swiperefreshlayout.widget.SwipeRef
 
     override fun onRefresh() {
         disposables!!.dispose()
-        RefreshTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private inner class RefreshTask : AsyncTask<Void?, Void?, Void?>() {
-        override fun onPreExecute() {
-            super.onPreExecute()
-            if (!swipe_container!!.isRefreshing) {
-                swipe_container!!.isRefreshing = true
-            }
-            articleArrayList!!.clear()
-        }
-
-        override fun doInBackground(vararg params: Void?): Void? {
-            getNews()
-            return null
-        }
-
-        override fun onPostExecute(result: Void?) {
-            super.onPostExecute(result)
-            newsAdapter!!.notifyDataSetChanged()
-        }
+        getNews()
     }
 }
