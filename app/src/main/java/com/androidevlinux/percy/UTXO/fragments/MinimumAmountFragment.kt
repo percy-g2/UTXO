@@ -39,11 +39,11 @@ class MinimumAmountFragment : BaseFragment(), View.OnClickListener {
         createTransactionMinAmountFragment.setOnClickListener(this)
         btnGetMinAmountFragment.setOnClickListener(this)
         currenciesStringList = ArrayList()
-        if (Constants.currenciesStringList == null || Constants.currenciesStringList.size == 0) {
+        if (Constants.currenciesStringList == null || Constants.currenciesStringList!!.isEmpty()) {
             init()
         } else {
             val currencyListAdapter = ArrayAdapter(mActivity!!,
-                    R.layout.spinner_item, Constants.currenciesStringList)
+                    R.layout.spinner_item, Constants.currenciesStringList!!)
             currencyListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner_from!!.adapter = currencyListAdapter
             spinner_to!!.adapter = currencyListAdapter
@@ -77,8 +77,8 @@ class MinimumAmountFragment : BaseFragment(), View.OnClickListener {
         apiManager!!.getMinAmount(sign!!, mainBodyBean, object : Callback<GetMinAmountReponseBean> {
             override fun onResponse(call: Call<GetMinAmountReponseBean>, response: Response<GetMinAmountReponseBean>) {
                 if (response.body() != null) {
-                    if (response.errorBody() != null) {
-                        Toasty.error(mActivity!!, response.body()!!.error.toString(), Toast.LENGTH_SHORT, true).show()
+                    if (response.body()!!.error != null) {
+                        Toasty.error(mActivity!!, response.body()!!.error!!.message.toString(), Toast.LENGTH_SHORT, true).show()
                     } else {
                         Toasty.success(mActivity!!, response.body()!!.result!!, Toast.LENGTH_SHORT, true).show()
                         txtServerResponseMinAmountFragment!!.text = response.body()!!.result
@@ -144,7 +144,7 @@ class MinimumAmountFragment : BaseFragment(), View.OnClickListener {
     @OnClick(R.id.btnGetMinAmountFragment, R.id.createTransactionMinAmountFragment)
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.btnGetMinAmountFragment -> if (Utils.isConnectingToInternet(mActivity)) {
+            R.id.btnGetMinAmountFragment -> if (Utils.isConnectingToInternet(mActivity!!)) {
                 if (spinner_from!!.selectedItem != null && spinner_to!!.selectedItem != null) {
                     minAmount(spinner_from!!.selectedItem.toString(), spinner_to!!.selectedItem.toString())
                 } else {

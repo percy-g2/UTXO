@@ -43,11 +43,11 @@ class ExchangeAmountFragment : BaseFragment(), View.OnClickListener {
         btnGetExchangeFragment.setOnClickListener(this)
         createTransactionExchangeFragment.setOnClickListener(this)
         currenciesStringList = ArrayList()
-        if (Constants.currenciesStringList == null || Constants.currenciesStringList.size == 0) {
+        if (Constants.currenciesStringList == null || Constants.currenciesStringList!!.isEmpty()) {
             init()
         } else {
             val currenciesStringListAdapter = ArrayAdapter(mActivity!!,
-                    R.layout.spinner_item, Constants.currenciesStringList)
+                    R.layout.spinner_item, Constants.currenciesStringList!!)
             currenciesStringListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerFromExchangeFragment!!.adapter = currenciesStringListAdapter
             spinnerToExchangeFragment!!.adapter = currenciesStringListAdapter
@@ -83,7 +83,7 @@ class ExchangeAmountFragment : BaseFragment(), View.OnClickListener {
             override fun onResponse(call: Call<GetMinAmountReponseBean>, response: Response<GetMinAmountReponseBean>) {
                 if (response.body() != null) {
                     if (response.body()!!.error != null) {
-                        Toasty.error(mActivity!!, response.body()!!.error!!.message!!, Toast.LENGTH_SHORT, true).show()
+                        Toasty.error(mActivity!!, response.body()!!.error!!.message.toString(), Toast.LENGTH_SHORT, true).show()
                     } else {
                         Toasty.success(mActivity!!, response.body()!!.result!!, Toast.LENGTH_SHORT, true).show()
                         txtServerResponseStatusFragment!!.text = response.body()!!.result
@@ -147,7 +147,7 @@ class ExchangeAmountFragment : BaseFragment(), View.OnClickListener {
     @OnClick(R.id.btnGetExchangeFragment, R.id.createTransactionExchangeFragment)
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.btnGetExchangeFragment -> if (Utils.isConnectingToInternet(mActivity)) {
+            R.id.btnGetExchangeFragment -> if (Utils.isConnectingToInternet(mActivity!!)) {
                 if (spinnerFromExchangeFragment!!.selectedItem != null && spinnerToExchangeFragment!!.selectedItem != null && !edtAmountExchangeFragment!!.text!!.toString().isEmpty()) {
                     minAmount(spinnerFromExchangeFragment!!.selectedItem.toString(), spinnerToExchangeFragment!!.selectedItem.toString(), edtAmountExchangeFragment!!.text!!.toString())
                 } else {

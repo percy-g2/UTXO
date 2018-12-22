@@ -3,13 +3,11 @@ package com.androidevlinux.percy.UTXO.fragments
 import android.annotation.SuppressLint
 import android.os.AsyncTask
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.adapters.NewsAdapter
 import com.androidevlinux.percy.UTXO.data.models.newsapi.Article
@@ -23,7 +21,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_news.*
 import java.util.*
 
-class NewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
+class NewsFragment : BaseFragment(), androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener {
     private var disposables: CompositeDisposable? = null
     private var newsBeanObservable: Observable<NewsBean>? = null
     private var articleArrayList: ArrayList<Article>? = null
@@ -38,7 +36,7 @@ class NewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         articleArrayList = ArrayList()
-        val linearLayoutManager = LinearLayoutManager(activity)
+        val linearLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         news_recycler_view!!.layoutManager = linearLayoutManager
         newsAdapter = NewsAdapter(articleArrayList!!, mActivity!!, swipe_container!!)
         news_recycler_view!!.adapter = newsAdapter
@@ -56,7 +54,7 @@ class NewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun getNews() {
-        newsBeanObservable = apiManager!!.getNewsData(NativeUtils.getNewsApiKey())
+        newsBeanObservable = apiManager!!.getNewsData(NativeUtils.newsApiKey)
         disposables = CompositeDisposable()
         disposables!!.add(newsBeanObservable!!.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

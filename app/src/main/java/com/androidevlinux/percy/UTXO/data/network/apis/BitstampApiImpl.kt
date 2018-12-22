@@ -13,7 +13,7 @@ class BitstampApiImpl private constructor() : AbstractBaseApi<BitstampAPI>() {
     private val bitstampAPI: BitstampAPI
 
     init {
-        setBaseUrl(NativeUtils.getbitStampBaseUrl())
+        setBaseUrl(NativeUtils.bitStampBaseUrl)
         bitstampAPI = getClient(BitstampAPI::class.java)
 
     }

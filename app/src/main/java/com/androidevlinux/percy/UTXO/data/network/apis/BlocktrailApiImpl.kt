@@ -15,20 +15,20 @@ class BlocktrailApiImpl private constructor() : AbstractBaseApi<BlocktrailAPI>()
     private val blocktrailAPI: BlocktrailAPI
 
     init {
-        setBaseUrl(NativeUtils.getBlocktrailBaseUrl())
+        setBaseUrl(NativeUtils.blocktrailBaseUrl)
         blocktrailAPI = getClient(BlocktrailAPI::class.java)
     }
 
     fun getBlockTrailAddressData(query: String, data: String, callback: Callback<AddressBean>) {
-        blocktrailAPI.getBlockTrailAddressData(query, data, NativeUtils.getBlocktrailApiKey()).enqueue(callback)
+        blocktrailAPI.getBlockTrailAddressData(query, data, NativeUtils.blocktrailApiKey).enqueue(callback)
     }
 
     fun getBlockTrailBlockData(query: String, data: String, callback: Callback<JsonObject>) {
-        blocktrailAPI.getBlockTrailBlockData(query, data, NativeUtils.getBlocktrailApiKey()).enqueue(callback)
+        blocktrailAPI.getBlockTrailBlockData(query, data, NativeUtils.blocktrailApiKey).enqueue(callback)
     }
 
     fun getBlockTrailTransactionData(query: String, data: String, callback: Callback<TransactionBean>) {
-        blocktrailAPI.getBlockTrailTransactionData(query, data, NativeUtils.getBlocktrailApiKey()).enqueue(callback)
+        blocktrailAPI.getBlockTrailTransactionData(query, data, NativeUtils.blocktrailApiKey).enqueue(callback)
     }
 
     companion object {

@@ -3,15 +3,12 @@ package com.androidevlinux.percy.UTXO.adapters
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.support.customtabs.CustomTabsIntent
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.AppCompatImageView
-import android.support.v7.widget.CardView
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.browser.customtabs.CustomTabsIntent
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.utils.UniqueArrayList
 import java.text.MessageFormat
@@ -20,7 +17,7 @@ import java.text.MessageFormat
  * Created by percy on 3/12/17.
  */
 
-class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, private val context: Context, private val mSwipeRefreshLayout: SwipeRefreshLayout) : RecyclerView.Adapter<ExchangePriceAdapter.ViewHolder>() {
+class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, private val context: Context, private val mSwipeRefreshLayout: androidx.swiperefreshlayout.widget.SwipeRefreshLayout) : androidx.recyclerview.widget.RecyclerView.Adapter<ExchangePriceAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExchangePriceAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context)
@@ -110,8 +107,8 @@ class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, priv
     /**
      * View holder class
      */
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val cardView: CardView = view.findViewById(R.id.cardView)
+    inner class ViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
+        val cardView: androidx.cardview.widget.CardView = view.findViewById(R.id.cardView)
         val id: TextView = view.findViewById(R.id.id)
         val exchangeImage: AppCompatImageView = view.findViewById(R.id.exchangeImage)
         val title: TextView = view.findViewById(R.id.txt_title)

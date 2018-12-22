@@ -1,10 +1,9 @@
 package com.androidevlinux.percy.UTXO.activities
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.androidevlinux.percy.UTXO.R
 
 
@@ -25,7 +24,7 @@ abstract class BaseFragmentActivity : AppCompatActivity() {
         setSupportActionBar(mToolbar)
     }
 
-    protected fun insertFragment(fragment: Fragment) {
+    protected fun insertFragment(fragment: androidx.fragment.app.Fragment) {
         // Insert the fragment by replacing any existing fragment
         val fragmentManager = supportFragmentManager
         fragmentManager.beginTransaction()

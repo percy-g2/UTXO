@@ -3,11 +3,9 @@ package com.androidevlinux.percy.UTXO.fragments
 import android.annotation.SuppressLint
 import android.os.AsyncTask
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.PopupMenu
 import android.view.*
+import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.activities.MainActivity
 import com.androidevlinux.percy.UTXO.adapters.ExchangePriceAdapter
@@ -26,7 +24,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_crypto_prices.*
 import java.util.*
 
-class ExchangeCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, PopupMenu.OnMenuItemClickListener {
+class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener, PopupMenu.OnMenuItemClickListener {
 
     private var strRuppeSymbol = "\u20B9"
     private var strDollarSymbol = "$"
@@ -52,7 +50,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefres
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         priceBeanArrayList = UniqueArrayList()
-        val linearLayoutManager = LinearLayoutManager(activity!!)
+        val linearLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity!!)
         price_list_recycler_view!!.layoutManager = linearLayoutManager
         priceAdapter = ExchangePriceAdapter(priceBeanArrayList!!, mActivity!!, swipe_container!!)
         price_list_recycler_view!!.adapter = priceAdapter
@@ -70,13 +68,13 @@ class ExchangeCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefres
         mActivity!!.window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater!!.inflate(R.menu.fragment_crypto_prices, menu)
+        inflater.inflate(R.menu.fragment_crypto_prices, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item!!.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
             R.id.filter_crypto_prices_menu_item -> {
                 val menuItemView = activity!!.findViewById<View>(R.id.filter_crypto_prices_menu_item)
                 showPopupMenu(menuItemView)
@@ -161,7 +159,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefres
                     override fun onNext(value: GDAX) {
                         val priceBean = PriceBean()
                         priceBean.title = "Coinbase Pro (ETH)"
-                        priceBean.price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(value.price))
+                        priceBean.price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(value.price!!))
                         priceBean.low_price = strDollarSymbol + value.bid!!
                         priceBean.high_price = strDollarSymbol + value.ask!!
                         priceBeanArrayList!!.add(priceBean)
@@ -187,7 +185,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefres
                     override fun onNext(value: GDAX) {
                         val priceBean = PriceBean()
                         priceBean.title = "Coinbase Pro (LTC)"
-                        priceBean.price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(value.price))
+                        priceBean.price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(value.price!!))
                         priceBean.low_price = strDollarSymbol + value.bid!!
                         priceBean.high_price = strDollarSymbol + value.ask!!
                         priceBeanArrayList!!.add(priceBean)
@@ -214,7 +212,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefres
                     override fun onNext(value: GDAX) {
                         val priceBean = PriceBean()
                         priceBean.title = "Coinbase Pro (BCH)"
-                        priceBean.price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(value.price))
+                        priceBean.price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(value.price!!))
                         priceBean.low_price = strDollarSymbol + value.bid!!
                         priceBean.high_price = strDollarSymbol + value.ask!!
                         priceBeanArrayList!!.add(priceBean)
@@ -240,7 +238,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefres
                     override fun onNext(value: GDAX) {
                         val priceBean = PriceBean()
                         priceBean.title = "Coinbase Pro (BTC)"
-                        priceBean.price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(value.price))
+                        priceBean.price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(value.price!!))
                         priceBean.low_price = strDollarSymbol + value.bid!!
                         priceBean.high_price = strDollarSymbol + value.ask!!
                         priceBeanArrayList!!.add(priceBean)
@@ -264,9 +262,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefres
                 .subscribeWith(object : DisposableObserver<BitfinexPubTickerResponseBean>() {
 
                     override fun onNext(value: BitfinexPubTickerResponseBean) {
-                        Constants.btc_price = value.lastPrice
-                        Constants.btc_price_low = value.low
-                        Constants.btc_price_high = value.high
+                        Constants.btc_price = value.lastPrice!!
+                        Constants.btc_price_low = value.low!!
+                        Constants.btc_price_high = value.high!!
                     }
 
                     override fun onError(e: Throwable) {
@@ -293,9 +291,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefres
                 .subscribeWith(object : DisposableObserver<BitfinexPubTickerResponseBean>() {
 
                     override fun onNext(value: BitfinexPubTickerResponseBean) {
-                        Constants.btc_price = value.lastPrice
-                        Constants.btc_price_low = value.low
-                        Constants.btc_price_high = value.high
+                        Constants.btc_price = value.lastPrice!!
+                        Constants.btc_price_low = value.low!!
+                        Constants.btc_price_high = value.high!!
                     }
 
                     override fun onError(e: Throwable) {
@@ -322,9 +320,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefres
                 .subscribeWith(object : DisposableObserver<BitfinexPubTickerResponseBean>() {
 
                     override fun onNext(value: BitfinexPubTickerResponseBean) {
-                        Constants.btc_price = value.lastPrice
-                        Constants.btc_price_low = value.low
-                        Constants.btc_price_high = value.high
+                        Constants.btc_price = value.lastPrice!!
+                        Constants.btc_price_low = value.low!!
+                        Constants.btc_price_high = value.high!!
                     }
 
                     override fun onError(e: Throwable) {
@@ -351,9 +349,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefres
                 .subscribeWith(object : DisposableObserver<BitfinexPubTickerResponseBean>() {
 
                     override fun onNext(value: BitfinexPubTickerResponseBean) {
-                        Constants.btc_price = value.lastPrice
-                        Constants.btc_price_low = value.low
-                        Constants.btc_price_high = value.high
+                        Constants.btc_price = value.lastPrice!!
+                        Constants.btc_price_low = value.low!!
+                        Constants.btc_price_high = value.high!!
                     }
 
                     override fun onError(e: Throwable) {
@@ -380,9 +378,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefres
                 .subscribeWith(object : DisposableObserver<BitfinexPubTickerResponseBean>() {
 
                     override fun onNext(value: BitfinexPubTickerResponseBean) {
-                        Constants.btc_price = value.lastPrice
-                        Constants.btc_price_low = value.low
-                        Constants.btc_price_high = value.high
+                        Constants.btc_price = value.lastPrice!!
+                        Constants.btc_price_low = value.low!!
+                        Constants.btc_price_high = value.high!!
                     }
 
                     override fun onError(e: Throwable) {
@@ -409,9 +407,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefres
                 .subscribeWith(object : DisposableObserver<BitfinexPubTickerResponseBean>() {
 
                     override fun onNext(value: BitfinexPubTickerResponseBean) {
-                        Constants.btc_price = value.lastPrice
-                        Constants.btc_price_low = value.low
-                        Constants.btc_price_high = value.high
+                        Constants.btc_price = value.lastPrice!!
+                        Constants.btc_price_low = value.low!!
+                        Constants.btc_price_high = value.high!!
                     }
 
                     override fun onError(e: Throwable) {

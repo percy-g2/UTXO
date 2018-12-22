@@ -1,26 +1,23 @@
 package com.androidevlinux.percy.UTXO.adapters
 
 import android.content.Context
-import android.support.transition.ChangeBounds
-import android.support.transition.TransitionManager
-import android.support.v4.content.ContextCompat
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.AppCompatImageView
-import android.support.v7.widget.CardView
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.ContextCompat
+import androidx.transition.ChangeBounds
+import androidx.transition.TransitionManager
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.data.models.coinmarketcap.CoinMarketCapCoin
 import com.squareup.picasso.Picasso
 import java.text.MessageFormat
 import java.util.*
 
-class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinMarketCapCoin>, private val context: Context, private val recyclerView: RecyclerView, private val mSwipeRefreshLayout: SwipeRefreshLayout) : RecyclerView.Adapter<GlobalPriceAdapter.ViewHolder>() {
+class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinMarketCapCoin>, private val context: Context, private val recyclerView: androidx.recyclerview.widget.RecyclerView, private val mSwipeRefreshLayout: androidx.swiperefreshlayout.widget.SwipeRefreshLayout) : androidx.recyclerview.widget.RecyclerView.Adapter<GlobalPriceAdapter.ViewHolder>() {
     private var mExpandedPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GlobalPriceAdapter.ViewHolder {
@@ -95,8 +92,8 @@ class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinM
     /**
      * View holder class
      */
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val cardView: CardView = view.findViewById(R.id.cardView)
+    inner class ViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
+        val cardView: androidx.cardview.widget.CardView = view.findViewById(R.id.cardView)
         val id: TextView = view.findViewById(R.id.id)
         val exchangeImage: AppCompatImageView = view.findViewById(R.id.exchangeImage)
         val title: TextView = view.findViewById(R.id.txt_title)

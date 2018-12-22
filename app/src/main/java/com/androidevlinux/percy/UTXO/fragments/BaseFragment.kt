@@ -3,15 +3,13 @@ package com.androidevlinux.percy.UTXO.fragments
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-
 import com.androidevlinux.percy.UTXO.data.network.ApiManager
 
-open class BaseFragment : Fragment() {
+open class BaseFragment : androidx.fragment.app.Fragment() {
     protected var apiManager: ApiManager? = null
     protected var mActivity: Activity? = null
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         mActivity = context as Activity?
     }
@@ -20,11 +18,6 @@ open class BaseFragment : Fragment() {
         super.onDetach()
         this.mActivity = null
     }
-
-    override fun onStop() {
-        super.onStop()
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

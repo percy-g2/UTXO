@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-    <android.support.v4.widget.DrawerLayout
+    <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <android.support.design.widget.NavigationView
+        <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_drawer"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -33,6 +33,6 @@
             app:itemIconTint="@color/md_blue_grey_500"
             app:itemTextColor="@color/md_grey_100"
             app:menu="@menu/drawer_view"/>
-    </android.support.v4.widget.DrawerLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </RelativeLayout>

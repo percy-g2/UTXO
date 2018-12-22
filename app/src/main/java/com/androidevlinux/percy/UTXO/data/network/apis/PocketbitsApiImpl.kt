@@ -15,7 +15,7 @@ class PocketbitsApiImpl private constructor() : AbstractBaseApi<PocketbitsAPI>()
         get() = pocketbitsAPI.pocketbitsTicker
 
     init {
-        setBaseUrl(NativeUtils.getPocketbitsBaseUrl())
+        setBaseUrl(NativeUtils.pocketbitsBaseUrl)
         pocketbitsAPI = getClient(PocketbitsAPI::class.java)
 
     }

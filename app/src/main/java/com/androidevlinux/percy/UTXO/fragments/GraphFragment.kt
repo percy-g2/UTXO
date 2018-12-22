@@ -4,16 +4,13 @@ package com.androidevlinux.percy.UTXO.fragments
  * Created by Ryan on 8/11/2017.
  */
 
-import android.app.Activity
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.res.ResourcesCompat
-import android.support.v7.widget.PopupMenu
 import android.util.DisplayMetrics
 import android.view.*
+import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.activities.MainActivity
 import com.androidevlinux.percy.UTXO.data.models.coinmarketcap.CoinMarketCapChartData
@@ -45,7 +42,7 @@ import java.util.*
 /**
  * A placeholder fragment containing a simple view.
  */
-class GraphFragment : Fragment(), OnChartValueSelectedListener, PopupMenu.OnMenuItemClickListener {
+class GraphFragment : BaseFragment(), OnChartValueSelectedListener, PopupMenu.OnMenuItemClickListener {
     private var chartFillColor: Int = 0
     private var chartBorderColor: Int = 0
     private var cryptoID: String? = null
@@ -59,8 +56,6 @@ class GraphFragment : Fragment(), OnChartValueSelectedListener, PopupMenu.OnMenu
     private var displayWidth: Int = 0
     private var chartUSDPriceFormat = NumberFormat.getInstance()
     private var fullDateFormat = SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss z", Locale.ENGLISH)
-    private var mActivity: Activity? = null
-    private var apiManager: ApiManager? = null
     private var coinMarketCapFooterDataObservable: Observable<CoinMarketCapCoin>? = null
     private var coinMarketCapDataObservable: Observable<CoinMarketCapChartData>? = null
     private var disposables: CompositeDisposable? = null
@@ -71,16 +66,6 @@ class GraphFragment : Fragment(), OnChartValueSelectedListener, PopupMenu.OnMenu
         if (disposables != null) {
             disposables!!.dispose()
         }
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        mActivity = context as Activity?
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        this.mActivity = null
     }
 
     fun setColors(percentChange: Float) {
@@ -95,13 +80,13 @@ class GraphFragment : Fragment(), OnChartValueSelectedListener, PopupMenu.OnMenu
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater!!.inflate(R.menu.fragment_crypto_prices, menu)
+        inflater.inflate(R.menu.fragment_crypto_prices, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item!!.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
             R.id.filter_crypto_prices_menu_item -> {
                 val menuItemView = activity!!.findViewById<View>(R.id.filter_crypto_prices_menu_item)
                 showPopupMenu(menuItemView)

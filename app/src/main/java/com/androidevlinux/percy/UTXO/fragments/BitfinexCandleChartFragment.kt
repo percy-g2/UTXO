@@ -3,10 +3,10 @@ package com.androidevlinux.percy.UTXO.fragments
 import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.PopupMenu
 import android.util.DisplayMetrics
 import android.view.*
+import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.activities.MainActivity
 import com.androidevlinux.percy.UTXO.data.models.bitfinex.BitfinexPubTickerResponseBean
@@ -124,13 +124,13 @@ class BitfinexCandleChartFragment : BaseFragment(), OnChartValueSelectedListener
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater!!.inflate(R.menu.fragment_crypto_prices, menu)
+        inflater.inflate(R.menu.fragment_crypto_prices, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item!!.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
             R.id.filter_crypto_prices_menu_item -> {
                 val menuItemView = activity!!.findViewById<View>(R.id.filter_crypto_prices_menu_item)
                 showPopupMenu(menuItemView)

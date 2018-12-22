@@ -17,7 +17,7 @@ class ChangellyApiImpl private constructor() : AbstractBaseApi<ChangellyAPI>() {
     private val changellyAPI: ChangellyAPI
 
     init {
-        setBaseUrl(NativeUtils.getChangellyBaseUrl())
+        setBaseUrl(NativeUtils.changellyBaseUrl)
         changellyAPI = getClient(ChangellyAPI::class.java)
     }
 

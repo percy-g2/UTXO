@@ -7,28 +7,26 @@ import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Handler
-import android.support.annotation.IdRes
-import android.support.annotation.LayoutRes
-import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
-import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AlertDialog
 import android.view.Gravity
 import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.GravityCompat
 import com.androidevlinux.percy.UTXO.MyApp
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.fragments.*
 import com.androidevlinux.percy.UTXO.utils.ConnectionReceiver
+import com.google.android.material.navigation.NavigationView
 import es.dmoral.toasty.Toasty
 
 
 class MainActivity : BaseFragmentActivity(), ConnectionReceiver.ConnectionReceiverListener {
-    private var mDrawerLayout: DrawerLayout? = null
+    private var mDrawerLayout: androidx.drawerlayout.widget.DrawerLayout? = null
     private var mNavDrawer: NavigationView? = null
     private var mDrawerToggle: ActionBarDrawerToggle? = null
     private var alert: AlertDialog? = null
@@ -144,9 +142,9 @@ class MainActivity : BaseFragmentActivity(), ConnectionReceiver.ConnectionReceiv
 
     private fun loadFragment(fragmentClass: Class<*>, @IdRes navDrawerCheckedItemId: Int,
                              toolbarTitle: CharSequence) {
-        var fragment: Fragment? = null
+        var fragment: androidx.fragment.app.Fragment? = null
         try {
-            fragment = fragmentClass.newInstance() as Fragment
+            fragment = fragmentClass.newInstance() as androidx.fragment.app.Fragment
         } catch (e: Exception) {
             e.printStackTrace()
         }

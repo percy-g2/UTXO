@@ -9,7 +9,7 @@ class NewsApiImpl private constructor() : AbstractBaseApi<NewsAPI>() {
     private val newsAPI: NewsAPI
 
     init {
-        setBaseUrl(NativeUtils.getNewsApiBaseUrl())
+        setBaseUrl(NativeUtils.newsApiBaseUrl)
         newsAPI = getClient(NewsAPI::class.java)
 
     }

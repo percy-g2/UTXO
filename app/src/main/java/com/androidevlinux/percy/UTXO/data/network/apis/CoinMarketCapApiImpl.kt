@@ -10,7 +10,7 @@ class CoinMarketCapApiImpl private constructor() : AbstractBaseApi<CoinMarketCap
     private val coinMarketCapAPI: CoinMarketCapAPI
 
     init {
-        setBaseUrl(NativeUtils.getCoinMarketCapBaseUrl())
+        setBaseUrl(NativeUtils.coinMarketCapBaseUrl)
         coinMarketCapAPI = getClient(CoinMarketCapAPI::class.java)
     }
 

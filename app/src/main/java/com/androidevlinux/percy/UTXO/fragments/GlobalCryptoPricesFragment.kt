@@ -3,13 +3,11 @@ package com.androidevlinux.percy.UTXO.fragments
 import android.annotation.SuppressLint
 import android.os.AsyncTask
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.adapters.GlobalPriceAdapter
 import com.androidevlinux.percy.UTXO.data.models.coinmarketcap.CoinMarketCapCoin
@@ -22,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_crypto_prices.*
 import java.util.ArrayList
 import kotlin.Comparator
 
-class GlobalCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
+class GlobalCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener {
 
     private var coinMarketCapCoinObservable: Observable<CoinMarketCapCoin>? = null
     private var disposables: CompositeDisposable? = null
@@ -42,7 +40,7 @@ class GlobalCryptoPricesFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshL
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         coinMarketCapCoinArrayList = ArrayList()
-        val linearLayoutManager = LinearLayoutManager(activity)
+        val linearLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         price_list_recycler_view!!.layoutManager = linearLayoutManager
         globalPriceAdapter = GlobalPriceAdapter(coinMarketCapCoinArrayList!!, mActivity!!, price_list_recycler_view!!, swipe_container!!)
         price_list_recycler_view!!.adapter = globalPriceAdapter

@@ -2,21 +2,19 @@ package com.androidevlinux.percy.UTXO.adapters
 
 import android.content.Context
 import android.net.Uri
-import android.support.customtabs.CustomTabsIntent
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.browser.customtabs.CustomTabsIntent
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.data.models.newsapi.Article
 import com.makeramen.roundedimageview.RoundedImageView
 import com.squareup.picasso.Picasso
 import java.util.*
 
-class NewsAdapter(private val articleArrayList: ArrayList<Article>, private val context: Context, private val mSwipeRefreshLayout: SwipeRefreshLayout) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+class NewsAdapter(private val articleArrayList: ArrayList<Article>, private val context: Context, private val mSwipeRefreshLayout: androidx.swiperefreshlayout.widget.SwipeRefreshLayout) : androidx.recyclerview.widget.RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context)
@@ -53,7 +51,7 @@ class NewsAdapter(private val articleArrayList: ArrayList<Article>, private val 
     /**
      * View holder class
      */
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         val innerFrame: FrameLayout = view.findViewById(R.id.inner_frame)
         val articleImage: RoundedImageView = view.findViewById(R.id.discover_icon)
         val title: TextView = view.findViewById(R.id.txt_title)

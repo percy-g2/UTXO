@@ -67,7 +67,7 @@ class GetStatusFragment : BaseFragment(), View.OnClickListener {
             override fun onResponse(call: Call<GetMinAmountReponseBean>, response: Response<GetMinAmountReponseBean>) {
                 if (response.body() != null) {
                     if (response.body()!!.error != null) {
-                        Toasty.error(mActivity!!, response.body()!!.error!!.message!!, Toast.LENGTH_SHORT, true).show()
+                        Toasty.error(mActivity!!, response.body()!!.error!!.message.toString(), Toast.LENGTH_SHORT, true).show()
                     } else {
                         Toasty.success(mActivity!!, response.body()!!.result!!, Toast.LENGTH_SHORT, true).show()
                         txtServerResponseStatusFragment!!.text = response.body()!!.result
@@ -88,7 +88,7 @@ class GetStatusFragment : BaseFragment(), View.OnClickListener {
     @OnClick(R.id.btnGetStatusFragment, R.id.createTransactionStatusFragment)
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.btnGetStatusFragment -> if (Utils.isConnectingToInternet(mActivity)) {
+            R.id.btnGetStatusFragment -> if (Utils.isConnectingToInternet(mActivity!!)) {
                 if (!edtTransactionIdStatusFragment!!.text!!.toString().isEmpty()) {
                     minAmount(edtTransactionIdStatusFragment!!.text!!.toString())
                 } else {

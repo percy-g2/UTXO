@@ -15,7 +15,7 @@ class BitfinexApiImpl private constructor() : AbstractBaseApi<BitfinexAPI>() {
     private val bitfinexAPI: BitfinexAPI
 
     init {
-        setBaseUrl(NativeUtils.getBitfinexBaseUrl())
+        setBaseUrl(NativeUtils.bitfinexBaseUrl)
         bitfinexAPI = getClient(BitfinexAPI::class.java)
 
     }

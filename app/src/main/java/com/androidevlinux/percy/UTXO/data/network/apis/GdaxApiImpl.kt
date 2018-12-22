@@ -9,7 +9,7 @@ class GdaxApiImpl private constructor() : AbstractBaseApi<GdaxAPI>() {
     private val gdaxAPI: GdaxAPI
 
     init {
-        setBaseUrl(NativeUtils.getGdaxBaseUrl())
+        setBaseUrl(NativeUtils.gdaxBaseUrl)
         gdaxAPI = getClient(GdaxAPI::class.java)
 
     }

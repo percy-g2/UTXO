@@ -40,7 +40,7 @@ class CreateTransactionFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         currenciesStringList = ArrayList()
         btnGetTransactionFragment.setOnClickListener {
-            if (Utils.isConnectingToInternet(mActivity)) {
+            if (Utils.isConnectingToInternet(mActivity!!)) {
                 if (spinnerFromTransactionFragment!!.selectedItem != null && spinnerToTransactionFragment!!.selectedItem != null && !edtAmountTransactionFragment!!.text!!.toString().isEmpty() && !edtUserPayOutAddressTransactionFragment!!.text!!.toString().isEmpty()) {
                     createTransaction(spinnerFromTransactionFragment!!.selectedItem.toString(), spinnerToTransactionFragment!!.selectedItem.toString(), edtAmountTransactionFragment!!.text!!.toString(), edtUserPayOutAddressTransactionFragment!!.text!!.toString())
                 } else {
@@ -51,11 +51,11 @@ class CreateTransactionFragment : BaseFragment() {
             }
         }
 
-        if (Constants.currenciesStringList == null || Constants.currenciesStringList.size == 0) {
+        if (Constants.currenciesStringList == null || Constants.currenciesStringList!!.isEmpty()) {
             init()
         } else {
             val currenciesStringListAdapter = ArrayAdapter(mActivity!!,
-                    R.layout.spinner_item, Constants.currenciesStringList)
+                    R.layout.spinner_item, Constants.currenciesStringList!!)
             currenciesStringListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerFromTransactionFragment!!.adapter = currenciesStringListAdapter
             spinnerToTransactionFragment!!.adapter = currenciesStringListAdapter
@@ -93,7 +93,7 @@ class CreateTransactionFragment : BaseFragment() {
             override fun onResponse(call: Call<TransactionBean>, response: Response<TransactionBean>) {
                 if (response.body() != null) {
                     if (response.body()!!.error != null) {
-                        Toasty.error(mActivity!!, response.body()!!.error!!.message!!, Toast.LENGTH_SHORT, true).show()
+                        Toasty.error(mActivity!!, response.body()!!.error!!.message.toString(), Toast.LENGTH_SHORT, true).show()
                     } else {
                         txtServerResponseTransactionIdTransactionFragment!!.text = response.body()!!.result!!.id
                         txtServerResponsePayInAddressTransactionFragment!!.text = response.body()!!.result!!.payinAddress
@@ -109,7 +109,8 @@ class CreateTransactionFragment : BaseFragment() {
         })
     }
 
-    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo) {
+    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo?) {
+        super.onCreateContextMenu(menu, v, menuInfo)
         val clipboard = mActivity!!.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Pay In Address", txtServerResponsePayInAddressTransactionFragment!!.text.toString())
         clipboard.primaryClip = clip
