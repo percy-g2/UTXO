@@ -1,11 +1,13 @@
 package com.androidevlinux.percy.UTXO.fragments
 
-import android.app.ProgressDialog
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context.CLIPBOARD_SERVICE
 import android.os.Bundle
-import android.view.*
+import android.view.ContextMenu
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.androidevlinux.percy.UTXO.R
@@ -14,6 +16,7 @@ import com.androidevlinux.percy.UTXO.data.models.changelly.MainBodyBean
 import com.androidevlinux.percy.UTXO.data.models.changelly.ParamsBean
 import com.androidevlinux.percy.UTXO.data.models.changelly.TransactionBean
 import com.androidevlinux.percy.UTXO.utils.Constants
+import com.androidevlinux.percy.UTXO.utils.NativeUtils
 import com.androidevlinux.percy.UTXO.utils.Utils
 import com.google.gson.Gson
 import es.dmoral.toasty.Toasty
@@ -76,19 +79,12 @@ class CreateTransactionFragment : BaseFragment() {
         mainBodyBean.params = params
         var sign: String? = null
         try {
-            sign = Utils.hmacDigest(Gson().toJson(mainBodyBean), Constants.secret_key)
+            sign = Utils.hmacDigest(Gson().toJson(mainBodyBean), NativeUtils.changellySecretKey)
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
-        val progressDialog = ProgressDialog(mActivity)
-        progressDialog.setTitle("Downloading")
-        progressDialog.setMessage("Please wait")
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        progressDialog.isIndeterminate = true
-        progressDialog.setCanceledOnTouchOutside(false)
-        progressDialog.window!!.setGravity(Gravity.CENTER)
-        progressDialog.show()
+        progressBarTransactionFragment.visibility = View.VISIBLE
         apiManager!!.createTransaction(sign!!, mainBodyBean, object : Callback<TransactionBean> {
             override fun onResponse(call: Call<TransactionBean>, response: Response<TransactionBean>) {
                 if (response.body() != null) {
@@ -100,11 +96,11 @@ class CreateTransactionFragment : BaseFragment() {
                     }
                     // Log.i("Transaction", response.body().toString());
                 }
-                progressDialog.dismiss()
+                progressBarTransactionFragment.visibility = View.GONE
             }
 
             override fun onFailure(call: Call<TransactionBean>, t: Throwable) {
-                progressDialog.dismiss()
+                progressBarTransactionFragment.visibility = View.GONE
             }
         })
     }
@@ -125,19 +121,12 @@ class CreateTransactionFragment : BaseFragment() {
         mainBodyBean.params = params
         var sign: String? = null
         try {
-            sign = Utils.hmacDigest(Gson().toJson(mainBodyBean), Constants.secret_key)
+            sign = Utils.hmacDigest(Gson().toJson(mainBodyBean), NativeUtils.changellySecretKey)
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
-        val progressDialog = ProgressDialog(mActivity)
-        progressDialog.setTitle("Downloading")
-        progressDialog.setMessage("Please wait")
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        progressDialog.isIndeterminate = true
-        progressDialog.setCanceledOnTouchOutside(false)
-        progressDialog.window!!.setGravity(Gravity.CENTER)
-        progressDialog.show()
+        progressBarTransactionFragment.visibility = View.VISIBLE
         apiManager!!.getCurrencies(sign!!, mainBodyBean, object : Callback<GetCurrenciesResponseBean> {
             override fun onResponse(call: Call<GetCurrenciesResponseBean>, response: Response<GetCurrenciesResponseBean>) {
                 if (response.body() != null) {
@@ -149,14 +138,14 @@ class CreateTransactionFragment : BaseFragment() {
                     spinnerFromTransactionFragment!!.adapter = currenciesStringListAdapter
                     spinnerToTransactionFragment!!.adapter = currenciesStringListAdapter
                 }
-                progressDialog.dismiss()
+                progressBarTransactionFragment.visibility = View.GONE
                 if (response.code() == 401) {
                     Toasty.error(mActivity!!, "Unauthorized! Please Check Your Keys", Toast.LENGTH_SHORT, true).show()
                 }
             }
 
             override fun onFailure(call: Call<GetCurrenciesResponseBean>, t: Throwable) {
-                progressDialog.dismiss()
+                progressBarTransactionFragment.visibility = View.GONE
             }
         })
     }

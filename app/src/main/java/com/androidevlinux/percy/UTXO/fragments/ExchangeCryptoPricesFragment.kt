@@ -26,6 +26,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_crypto_prices.*
 import java.util.*
 
+
 class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener, PopupMenu.OnMenuItemClickListener {
 
     private var strRuppeSymbol = "\u20B9"
@@ -183,7 +184,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(value.price!!))
                         priceBean.low_price = strDollarSymbol + value.bid!!
                         priceBean.high_price = strDollarSymbol + value.ask!!
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -209,7 +212,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(value.price!!))
                         priceBean.low_price = strDollarSymbol + value.bid!!
                         priceBean.high_price = strDollarSymbol + value.ask!!
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -236,7 +241,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(value.price!!))
                         priceBean.low_price = strDollarSymbol + value.bid!!
                         priceBean.high_price = strDollarSymbol + value.ask!!
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -262,7 +269,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(value.price!!))
                         priceBean.low_price = strDollarSymbol + value.bid!!
                         priceBean.high_price = strDollarSymbol + value.ask!!
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -298,7 +307,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + Constants.btc_price_low
                         priceBean.high_price = strDollarSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -327,7 +338,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + Constants.btc_price_low
                         priceBean.high_price = strDollarSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -356,7 +369,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -385,7 +400,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -414,7 +431,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -443,7 +462,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -472,10 +493,21 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
+    }
+
+    private fun isHavingDuplicateTitle(title: String): Boolean {
+        for (data in priceBeanArrayList!!) {
+            if (data.title == title) {
+                return true
+            }
+        }
+        return false
     }
 
     private fun getOkexPubLtcTicker() {
@@ -501,7 +533,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -530,7 +564,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -559,7 +595,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -588,7 +626,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -617,7 +657,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -646,7 +688,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -675,7 +719,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -704,7 +750,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -733,7 +781,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -762,7 +812,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + Constants.btc_price_low
                         priceBean.high_price = strDollarSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -791,7 +843,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + Constants.btc_price_low
                         priceBean.high_price = strDollarSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -820,7 +874,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + Constants.btc_price_low
                         priceBean.high_price = strDollarSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -849,7 +905,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + Constants.btc_price_low
                         priceBean.high_price = strDollarSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -878,7 +936,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + Constants.btc_price_low
                         priceBean.high_price = strDollarSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -907,7 +967,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(Constants.btc_price_low))
                         priceBean.high_price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(Constants.btc_price_high))
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -936,7 +998,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + Constants.btc_price_low
                         priceBean.high_price = strDollarSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -965,7 +1029,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + Constants.btc_price_low
                         priceBean.high_price = strDollarSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -995,7 +1061,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + Constants.btc_price_low
                         priceBean.high_price = strDollarSymbol + Constants.btc_price_high
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -1024,7 +1092,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(Constants.btc_price_low))
                         priceBean.high_price = strDollarSymbol + String.format(Locale.ENGLISH, "%.2f", java.lang.Double.parseDouble(Constants.btc_price_high))
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                         priceAdapter!!.notifyDataSetChanged()
                     }
                 }))
@@ -1043,7 +1113,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strRuppeSymbol + value.altcoins!![0].altBuyPrice.toString()
                         priceBean.low_price = strRuppeSymbol + value.altcoins!![0].altSellPrice.toString()
                         priceBean.high_price = strRuppeSymbol + value.altcoins!![0].altBuyPrice.toString()
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -1069,7 +1141,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strRuppeSymbol + value.altcoins!![46].altBuyPrice.toString()
                         priceBean.low_price = strRuppeSymbol + value.altcoins!![46].altSellPrice.toString()
                         priceBean.high_price = strRuppeSymbol + value.altcoins!![46].altBuyPrice.toString()
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -1095,7 +1169,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strRuppeSymbol + value.altcoins!![47].altBuyPrice.toString()
                         priceBean.low_price = strRuppeSymbol + value.altcoins!![47].altSellPrice.toString()
                         priceBean.high_price = strRuppeSymbol + value.altcoins!![47].altBuyPrice.toString()
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -1121,7 +1197,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strRuppeSymbol + value.altcoins!![17].altBuyPrice.toString()
                         priceBean.low_price = strRuppeSymbol + value.altcoins!![17].altSellPrice.toString()
                         priceBean.high_price = strRuppeSymbol + value.altcoins!![17].altBuyPrice.toString()
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -1147,7 +1225,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strRuppeSymbol + value.altcoins!![4].altBuyPrice.toString()
                         priceBean.low_price = strRuppeSymbol + value.altcoins!![4].altSellPrice.toString()
                         priceBean.high_price = strRuppeSymbol + value.altcoins!![4].altBuyPrice.toString()
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -1173,7 +1253,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strRuppeSymbol + value.altcoins!![3].altBuyPrice.toString()
                         priceBean.low_price = strRuppeSymbol + value.altcoins!![3].altSellPrice.toString()
                         priceBean.high_price = strRuppeSymbol + value.altcoins!![3].altBuyPrice.toString()
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -1199,7 +1281,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strRuppeSymbol + value.altcoins!![6].altBuyPrice.toString()
                         priceBean.low_price = strRuppeSymbol + value.altcoins!![6].altSellPrice.toString()
                         priceBean.high_price = strRuppeSymbol + value.altcoins!![6].altBuyPrice.toString()
-                        priceBeanArrayList!!.add(priceBean)
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
                     }
 
                     override fun onError(e: Throwable) {

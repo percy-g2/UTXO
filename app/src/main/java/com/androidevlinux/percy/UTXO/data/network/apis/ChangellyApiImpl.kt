@@ -4,9 +4,7 @@ import com.androidevlinux.percy.UTXO.data.models.changelly.GetCurrenciesResponse
 import com.androidevlinux.percy.UTXO.data.models.changelly.GetMinAmountReponseBean
 import com.androidevlinux.percy.UTXO.data.models.changelly.MainBodyBean
 import com.androidevlinux.percy.UTXO.data.models.changelly.TransactionBean
-import com.androidevlinux.percy.UTXO.utils.Constants
 import com.androidevlinux.percy.UTXO.utils.NativeUtils
-
 import retrofit2.Callback
 
 /**
@@ -22,15 +20,15 @@ class ChangellyApiImpl private constructor() : AbstractBaseApi<ChangellyAPI>() {
     }
 
     fun getCurrencies(sign: String, body: MainBodyBean, callback: Callback<GetCurrenciesResponseBean>) {
-        changellyAPI.getCurrencies(contentType, Constants.api_key, sign, body).enqueue(callback)
+        changellyAPI.getCurrencies(contentType, NativeUtils.changellyApiKey, sign, body).enqueue(callback)
     }
 
     fun getMinAmount(sign: String, body: MainBodyBean, callback: Callback<GetMinAmountReponseBean>) {
-        changellyAPI.getMinAmount(contentType, Constants.api_key, sign, body).enqueue(callback)
+        changellyAPI.getMinAmount(contentType, NativeUtils.changellyApiKey, sign, body).enqueue(callback)
     }
 
     fun createTransaction(sign: String, body: MainBodyBean, callback: Callback<TransactionBean>) {
-        changellyAPI.createTransaction(contentType, Constants.api_key, sign, body).enqueue(callback)
+        changellyAPI.createTransaction(contentType, NativeUtils.changellyApiKey, sign, body).enqueue(callback)
     }
 
     companion object {

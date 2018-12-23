@@ -171,13 +171,13 @@ class MainActivity : BaseFragmentActivity(), ConnectionReceiver.ConnectionReceiv
     }
 
     private fun showToast(context: Activity, text: String) {
-        val Y = supportActionBar!!.height
+        val y = supportActionBar!!.height
         val inflater = context.layoutInflater
         val layout = inflater.inflate(R.layout.popup, LinearLayout(context), false)
         val tv = layout.findViewById<TextView>(R.id.popup)
         tv.text = text
         val toast = Toast(context)
-        toast.setGravity(Gravity.TOP or Gravity.START or Gravity.FILL_HORIZONTAL, 0, Y)
+        toast.setGravity(Gravity.TOP or Gravity.START or Gravity.FILL_HORIZONTAL, 0, y)
         toast.duration = Toast.LENGTH_LONG
         toast.view = layout
         toast.show()

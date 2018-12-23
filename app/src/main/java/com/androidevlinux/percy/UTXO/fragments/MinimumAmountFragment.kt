@@ -1,9 +1,7 @@
 package com.androidevlinux.percy.UTXO.fragments
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +15,7 @@ import com.androidevlinux.percy.UTXO.data.models.changelly.GetMinAmountReponseBe
 import com.androidevlinux.percy.UTXO.data.models.changelly.MainBodyBean
 import com.androidevlinux.percy.UTXO.data.models.changelly.ParamsBean
 import com.androidevlinux.percy.UTXO.utils.Constants
+import com.androidevlinux.percy.UTXO.utils.NativeUtils
 import com.androidevlinux.percy.UTXO.utils.Utils
 import com.google.gson.Gson
 import es.dmoral.toasty.Toasty
@@ -61,19 +60,12 @@ class MinimumAmountFragment : BaseFragment(), View.OnClickListener {
         mainBodyBean.params = params
         var sign: String? = null
         try {
-            sign = Utils.hmacDigest(Gson().toJson(mainBodyBean), Constants.secret_key)
+            sign = Utils.hmacDigest(Gson().toJson(mainBodyBean), NativeUtils.changellySecretKey)
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
-        val progressDialog = ProgressDialog(mActivity)
-        progressDialog.setTitle("Downloading")
-        progressDialog.setMessage("Please wait")
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        progressDialog.isIndeterminate = true
-        progressDialog.setCanceledOnTouchOutside(false)
-        progressDialog.window!!.setGravity(Gravity.CENTER)
-        progressDialog.show()
+        progressBarMinAmountFragment.visibility = View.VISIBLE
         apiManager!!.getMinAmount(sign!!, mainBodyBean, object : Callback<GetMinAmountReponseBean> {
             override fun onResponse(call: Call<GetMinAmountReponseBean>, response: Response<GetMinAmountReponseBean>) {
                 if (response.body() != null) {
@@ -84,11 +76,11 @@ class MinimumAmountFragment : BaseFragment(), View.OnClickListener {
                         txtServerResponseMinAmountFragment!!.text = response.body()!!.result
                     }
                 }
-                progressDialog.dismiss()
+                progressBarMinAmountFragment.visibility = View.GONE
             }
 
             override fun onFailure(call: Call<GetMinAmountReponseBean>, t: Throwable) {
-                progressDialog.dismiss()
+                progressBarMinAmountFragment.visibility = View.GONE
             }
         })
     }
@@ -102,19 +94,12 @@ class MinimumAmountFragment : BaseFragment(), View.OnClickListener {
         mainBodyBean.params = params
         var sign: String? = null
         try {
-            sign = Utils.hmacDigest(Gson().toJson(mainBodyBean), Constants.secret_key)
+            sign = Utils.hmacDigest(Gson().toJson(mainBodyBean), NativeUtils.changellySecretKey)
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
-        val progressDialog = ProgressDialog(mActivity)
-        progressDialog.setTitle("Fetching data")
-        progressDialog.setMessage("Please wait")
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        progressDialog.isIndeterminate = true
-        progressDialog.setCanceledOnTouchOutside(false)
-        progressDialog.window!!.setGravity(Gravity.CENTER)
-        progressDialog.show()
+        progressBarMinAmountFragment.visibility = View.VISIBLE
         apiManager!!.getCurrencies(sign!!, mainBodyBean, object : Callback<GetCurrenciesResponseBean> {
             override fun onResponse(call: Call<GetCurrenciesResponseBean>, response: Response<GetCurrenciesResponseBean>) {
                 if (response.body() != null) {
@@ -132,11 +117,11 @@ class MinimumAmountFragment : BaseFragment(), View.OnClickListener {
                 if (response.code() == 401) {
                     Toasty.error(mActivity!!, "Unauthorized! Please Check Your Keys", Toast.LENGTH_SHORT, true).show()
                 }
-                progressDialog.dismiss()
+                progressBarMinAmountFragment.visibility = View.GONE
             }
 
             override fun onFailure(call: Call<GetCurrenciesResponseBean>, t: Throwable) {
-                progressDialog.dismiss()
+                progressBarMinAmountFragment.visibility = View.GONE
             }
         })
     }

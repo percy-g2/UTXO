@@ -13,6 +13,13 @@
         android:orientation="vertical"
         android:weightSum="9">
 
+        <ProgressBar
+            android:id="@+id/progressBarStatusFragment"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -79,6 +86,8 @@
                 android:gravity="center"
                 android:text="@string/no_info"
                 android:textColor="@android:color/holo_red_dark"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintHeight_default="percent"
                 app:layout_constraintHeight_percent="0.5"
                 app:layout_constraintLeft_toRightOf="@id/txtInfoStatusFragment"

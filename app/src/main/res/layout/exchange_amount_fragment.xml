@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/black"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <LinearLayout
         android:id="@+id/container"
@@ -13,40 +13,54 @@
         android:orientation="vertical"
         android:weightSum="9">
 
-        <LinearLayout
+        <ProgressBar
+            android:id="@+id/progressBarExchangeFragment"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="4">
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtFrom"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/from"
-                android:textStyle="bold"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textStyle="bold"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.25"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.25" />
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinnerFromExchangeFragment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="@color/white"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.25"
+                app:layout_constraintLeft_toRightOf="@id/txtFrom"
+                app:layout_constraintTop_toBottomOf="@id/txtFrom"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.25"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtTo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -55,22 +69,28 @@
                 android:text="@string/to"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.25"
+                app:layout_constraintLeft_toRightOf="@id/spinnerFromExchangeFragment"
+                app:layout_constraintTop_toBottomOf="@id/spinnerFromExchangeFragment"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.25" />
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinnerToExchangeFragment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </LinearLayout>
+                android:textColor="@color/white"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.25"
+                app:layout_constraintLeft_toRightOf="@id/txtTo"
+                app:layout_constraintTop_toBottomOf="@id/txtTo"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.25"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -87,7 +107,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:hint="@string/exchange_amount"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textStyle="bold" />
@@ -137,6 +157,8 @@
                 android:gravity="center"
                 android:text="@string/no_info"
                 android:textColor="@android:color/holo_red_dark"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintHeight_default="percent"
                 app:layout_constraintHeight_percent="0.5"
                 app:layout_constraintLeft_toRightOf="@id/txtInfoExchangeFragment"
