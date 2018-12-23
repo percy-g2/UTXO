@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.activities.MainActivity
 import com.androidevlinux.percy.UTXO.adapters.ExchangePriceAdapter
+import com.androidevlinux.percy.UTXO.data.models.binance.BinanceApiTickerBean
 import com.androidevlinux.percy.UTXO.data.models.bitfinex.BitfinexPubTickerResponseBean
 import com.androidevlinux.percy.UTXO.data.models.bitstamp.BitstampBean
 import com.androidevlinux.percy.UTXO.data.models.gdax.GDAX
@@ -28,8 +29,10 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
 
     private var strRuppeSymbol = "\u20B9"
     private var strDollarSymbol = "$"
+    private var strUsdtSymbol = "₮"
     private var priceBeanArrayList: UniqueArrayList? = null
     private var priceAdapter: ExchangePriceAdapter? = null
+    private var binanceObservable: Observable<BinanceApiTickerBean>? = null
     private var bitfinexPubTickerResponseBeanObservable: Observable<BitfinexPubTickerResponseBean>? = null
     private var bitstampObservable: Observable<BitstampBean>? = null
     private var pocketBitsBeanObservable: Observable<PocketBitsBean>? = null
@@ -322,6 +325,209 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strDollarSymbol + Constants.btc_price
                         priceBean.low_price = strDollarSymbol + Constants.btc_price_low
                         priceBean.high_price = strDollarSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBinancePubBTCTicker() {
+        binanceObservable = apiManager!!.getBinanceTicker("BTCUSDT")
+        disposables = CompositeDisposable()
+        disposables!!.add(binanceObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BinanceApiTickerBean>() {
+
+                    override fun onNext(value: BinanceApiTickerBean) {
+                        Constants.btc_price = value.lastPrice!!.toString()
+                        Constants.btc_price_low = value.lowPrice!!.toString()
+                        Constants.btc_price_high = value.highPrice!!.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "Binance (BTC)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBinancePubBabTicker() {
+        binanceObservable = apiManager!!.getBinanceTicker("BCHABCUSDT")
+        disposables = CompositeDisposable()
+        disposables!!.add(binanceObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BinanceApiTickerBean>() {
+
+                    override fun onNext(value: BinanceApiTickerBean) {
+                        Constants.btc_price = value.lastPrice!!.toString()
+                        Constants.btc_price_low = value.lowPrice!!.toString()
+                        Constants.btc_price_high = value.highPrice!!.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "Binance (BCH ABC)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBinancePubTrxTicker() {
+        binanceObservable = apiManager!!.getBinanceTicker("TRXUSDT")
+        disposables = CompositeDisposable()
+        disposables!!.add(binanceObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BinanceApiTickerBean>() {
+
+                    override fun onNext(value: BinanceApiTickerBean) {
+                        Constants.btc_price = value.lastPrice!!.toString()
+                        Constants.btc_price_low = value.lowPrice!!.toString()
+                        Constants.btc_price_high = value.highPrice!!.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "Binance (TRX)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBinancePubXrpTicker() {
+        binanceObservable = apiManager!!.getBinanceTicker("XRPUSDT")
+        disposables = CompositeDisposable()
+        disposables!!.add(binanceObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BinanceApiTickerBean>() {
+
+                    override fun onNext(value: BinanceApiTickerBean) {
+                        Constants.btc_price = value.lastPrice!!.toString()
+                        Constants.btc_price_low = value.lowPrice!!.toString()
+                        Constants.btc_price_high = value.highPrice!!.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "Binance (XRP)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBinancePubBsvTicker() {
+        binanceObservable = apiManager!!.getBinanceTicker("BCHSVUSDT")
+        disposables = CompositeDisposable()
+        disposables!!.add(binanceObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BinanceApiTickerBean>() {
+
+                    override fun onNext(value: BinanceApiTickerBean) {
+                        Constants.btc_price = value.lastPrice!!.toString()
+                        Constants.btc_price_low = value.lowPrice!!.toString()
+                        Constants.btc_price_high = value.highPrice!!.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "Binance (BCH SV)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBinancePubLtcTicker() {
+        binanceObservable = apiManager!!.getBinanceTicker("LTCUSDT")
+        disposables = CompositeDisposable()
+        disposables!!.add(binanceObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BinanceApiTickerBean>() {
+
+                    override fun onNext(value: BinanceApiTickerBean) {
+                        Constants.btc_price = value.lastPrice!!.toString()
+                        Constants.btc_price_low = value.lowPrice!!.toString()
+                        Constants.btc_price_high = value.highPrice!!.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "Binance (LTC)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBinancePubEthTicker() {
+        binanceObservable = apiManager!!.getBinanceTicker("ETHUSDT")
+        disposables = CompositeDisposable()
+        disposables!!.add(binanceObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BinanceApiTickerBean>() {
+
+                    override fun onNext(value: BinanceApiTickerBean) {
+                        Constants.btc_price = value.lastPrice!!.toString()
+                        Constants.btc_price_low = value.lowPrice!!.toString()
+                        Constants.btc_price_high = value.highPrice!!.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "Binance (ETH)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
                         priceBeanArrayList!!.add(priceBean)
                         priceAdapter!!.notifyDataSetChanged()
                     }
@@ -839,6 +1045,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBitStampTicker()
             getPocketbitsTicker()
             getGdaxBtcTicker()
+            getBinancePubBTCTicker()
             return null
         }
 
@@ -862,6 +1069,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
         override fun doInBackground(vararg value: String?): String? {
             getPocketbitsBabTicker()
             getBitfinexPubBabTicker()
+            getBinancePubBabTicker()
             return null
         }
 
@@ -885,6 +1093,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
         override fun doInBackground(vararg value: String?): String? {
             getPocketbitsBsvTicker()
             getBitfinexPubBsvTicker()
+            getBinancePubBsvTicker()
             return null
         }
 
@@ -933,6 +1142,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBitfinexPubLtcTicker()
             getBitStampLtcTicker()
             getGdaxLtcTicker()
+            getBinancePubLtcTicker()
             return null
         }
 
@@ -957,6 +1167,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getPocketbitsXrpTicker()
             getBitfinexXrpPubTicker()
             getBitStampXrpTicker()
+            getBinancePubXrpTicker()
             return null
         }
 
@@ -982,6 +1193,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBitfinexPubEthTicker()
             getBitStampEthTicker()
             getGdaxEthTicker()
+            getBinancePubEthTicker()
             return null
         }
 
@@ -1005,6 +1217,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
         override fun doInBackground(vararg value: String?): String? {
             getPocketbitsTRXTicker()
             getBitfinexPubTRXTicker()
+            getBinancePubTrxTicker()
             return null
         }
 

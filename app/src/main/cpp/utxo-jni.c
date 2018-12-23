@@ -33,6 +33,13 @@ Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getChangellyBaseUrl(JNIEnv 
 }
 
 JNIEXPORT jstring JNICALL
+Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getBinanceBaseUrl(JNIEnv *env, jclass type) {
+
+    char *baseUrl = "https://www.binance.com/";
+    return (*env)->NewStringUTF(env, baseUrl);
+}
+
+JNIEXPORT jstring JNICALL
 Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getBlocktrailBaseUrl(JNIEnv *env,
                                                                           jclass type) {
     char * baseUrl = "https://api.blocktrail.com/";
@@ -47,14 +54,7 @@ Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getBlocktrailApiKey(JNIEnv 
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getZebpayBaseUrl(JNIEnv *env, jclass type) {
-
-    char * baseUrl = "https://www.zebapi.com/";
-    return (*env)->NewStringUTF(env, baseUrl);
-}
-
-JNIEXPORT jstring JNICALL
-Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getbitStampBaseUrl(JNIEnv *env, jclass type) {
+Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getBitStampBaseUrl(JNIEnv *env, jclass type) {
 
     char * baseUrl = "https://www.bitstamp.net/";
     return (*env)->NewStringUTF(env, baseUrl);
@@ -79,4 +79,17 @@ Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getGdaxBaseUrl(JNIEnv *env,
                                                                              jclass type) {
     char * baseUrl = "https://api.gdax.com/products/";
     return (*env)->NewStringUTF(env, baseUrl);
+}
+
+JNIEXPORT jstring JNICALL
+Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getNewsApiBaseUrl(JNIEnv *env,
+                                                                       jclass type) {
+    char *baseUrl = "https://newsapi.org/";
+    return (*env)->NewStringUTF(env, baseUrl);
+}
+
+JNIEXPORT jstring JNICALL
+Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getNewsApiKey(JNIEnv *env, jclass type) {
+    char *returnValue = "";
+    return (*env)->NewStringUTF(env, returnValue);
 }

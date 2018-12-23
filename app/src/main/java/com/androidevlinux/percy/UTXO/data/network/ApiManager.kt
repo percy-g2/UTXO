@@ -1,5 +1,6 @@
 package com.androidevlinux.percy.UTXO.data.network
 
+import com.androidevlinux.percy.UTXO.data.models.binance.BinanceApiTickerBean
 import com.androidevlinux.percy.UTXO.data.models.bitfinex.BitfinexPubTickerResponseBean
 import com.androidevlinux.percy.UTXO.data.models.bitstamp.BitstampBean
 import com.androidevlinux.percy.UTXO.data.models.blocktrail.AddressBean
@@ -19,6 +20,8 @@ import okhttp3.ResponseBody
 import retrofit2.Callback
 
 class ApiManager private constructor() {
+
+    private val binanceApiImpl: BinanceApiImpl = BinanceApiImpl.instance
     private val bitfinexApiImpl: BitfinexApiImpl = BitfinexApiImpl.instance
     private val bitstampApiImpl: BitstampApiImpl = BitstampApiImpl.instance
     private val blocktrailApiImpl: BlocktrailApiImpl = BlocktrailApiImpl.instance
@@ -37,6 +40,10 @@ class ApiManager private constructor() {
 
     fun getChartFooterData(currency: String): Observable<CoinMarketCapCoin> {
         return coinMarketCapApiImpl.getChartFooterData(currency)
+    }
+
+    fun getBinanceTicker(symbol: String): Observable<BinanceApiTickerBean> {
+        return binanceApiImpl.getBinanceTicker(symbol)
     }
 
     fun getData(symbol: String): Observable<GDAX> {

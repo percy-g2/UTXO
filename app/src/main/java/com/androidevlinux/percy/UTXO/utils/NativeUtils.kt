@@ -26,6 +26,9 @@ object NativeUtils {
     val changellyBaseUrl: String
         @JvmStatic
         external get
+    val binanceBaseUrl: String
+        @JvmStatic
+        external get
     val pocketbitsBaseUrl: String
         @JvmStatic
         external get
