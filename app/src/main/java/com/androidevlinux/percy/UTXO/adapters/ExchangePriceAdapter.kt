@@ -46,6 +46,7 @@ class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, priv
             priceBean.title.matches(".*Bitfinex.*".toRegex()) -> holder.exchangeImage.background = ContextCompat.getDrawable(context, R.mipmap.ic_bitfinex)
             priceBean.title.matches(".*Bitstamp.*".toRegex()) -> holder.exchangeImage.background = ContextCompat.getDrawable(context, R.mipmap.ic_bitstamp)
             priceBean.title.matches(".*Coinbase.*".toRegex()) -> holder.exchangeImage.background = ContextCompat.getDrawable(context, R.mipmap.ic_gdax)
+            priceBean.title.matches(".*OKEx.*".toRegex()) -> holder.exchangeImage.background = ContextCompat.getDrawable(context, R.mipmap.ic_okex)
         }
 
         holder.cardView.setOnClickListener {
@@ -75,12 +76,12 @@ class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, priv
             }
         }
 
-        if (priceBeanArrayList.size == 5 && priceBean.title.matches(".*BTC.*".toRegex()) || priceBean.title.matches(".*ETH.*".toRegex())
+        if (priceBeanArrayList.size == 6 && priceBean.title.matches(".*BTC.*".toRegex()) || priceBean.title.matches(".*ETH.*".toRegex())
                 || priceBean.title.matches(".*LTC.*".toRegex())) {
             if (mSwipeRefreshLayout.isRefreshing) {
                 mSwipeRefreshLayout.isRefreshing = false
             }
-        } else if (priceBeanArrayList.size == 3 && priceBean.title.matches(".*TRX.*".toRegex()) || priceBean.title.matches(".*ABC.*".toRegex())
+        } else if (priceBeanArrayList.size == 4 && priceBean.title.matches(".*TRX.*".toRegex()) || priceBean.title.matches(".*ABC.*".toRegex())
                 || priceBean.title.matches(".*SV.*".toRegex())) {
             if (mSwipeRefreshLayout.isRefreshing) {
                 mSwipeRefreshLayout.isRefreshing = false
@@ -89,8 +90,7 @@ class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, priv
             if (mSwipeRefreshLayout.isRefreshing) {
                 mSwipeRefreshLayout.isRefreshing = false
             }
-        } else if (priceBeanArrayList.size == 4 && priceBean.title.matches(".*XRP.*".toRegex())
-                || priceBean.title.matches(".*BCH.*".toRegex())) {
+        } else if (priceBeanArrayList.size == 5 && priceBean.title.matches(".*XRP.*".toRegex())) {
             if (mSwipeRefreshLayout.isRefreshing) {
                 mSwipeRefreshLayout.isRefreshing = false
             }

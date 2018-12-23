@@ -1,7 +1,3 @@
-//
-// Created by mantis on 11/20/17.
-//
-
 #include <jni.h>
 
 JNIEXPORT jstring JNICALL
@@ -38,6 +34,14 @@ Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getBinanceBaseUrl(JNIEnv *e
     char *baseUrl = "https://www.binance.com/";
     return (*env)->NewStringUTF(env, baseUrl);
 }
+
+JNIEXPORT jstring JNICALL
+Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getOkexBaseUrl(JNIEnv *env, jclass type) {
+
+    char *baseUrl = "https://www.okex.com/";
+    return (*env)->NewStringUTF(env, baseUrl);
+}
+
 
 JNIEXPORT jstring JNICALL
 Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getBlocktrailBaseUrl(JNIEnv *env,

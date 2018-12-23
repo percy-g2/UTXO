@@ -12,6 +12,7 @@ import com.androidevlinux.percy.UTXO.data.models.coinmarketcap.CoinMarketCapChar
 import com.androidevlinux.percy.UTXO.data.models.coinmarketcap.CoinMarketCapCoin
 import com.androidevlinux.percy.UTXO.data.models.gdax.GDAX
 import com.androidevlinux.percy.UTXO.data.models.newsapi.NewsBean
+import com.androidevlinux.percy.UTXO.data.models.okex.OkexTickerBean
 import com.androidevlinux.percy.UTXO.data.models.pocketbits.PocketBitsBean
 import com.androidevlinux.percy.UTXO.data.network.apis.*
 import com.google.gson.JsonObject
@@ -21,6 +22,7 @@ import retrofit2.Callback
 
 class ApiManager private constructor() {
 
+    private val okexApiImpl: OkexApiImpl = OkexApiImpl.instance
     private val binanceApiImpl: BinanceApiImpl = BinanceApiImpl.instance
     private val bitfinexApiImpl: BitfinexApiImpl = BitfinexApiImpl.instance
     private val bitstampApiImpl: BitstampApiImpl = BitstampApiImpl.instance
@@ -36,6 +38,10 @@ class ApiManager private constructor() {
 
     fun getChartData(url: String): Observable<CoinMarketCapChartData> {
         return coinMarketCapApiImpl.getChartData(url)
+    }
+
+    fun getOkexTicker(currency: String): Observable<OkexTickerBean> {
+        return okexApiImpl.getOkexTicker(currency)
     }
 
     fun getChartFooterData(currency: String): Observable<CoinMarketCapCoin> {

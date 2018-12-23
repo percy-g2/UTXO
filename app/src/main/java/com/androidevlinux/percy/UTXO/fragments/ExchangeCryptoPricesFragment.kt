@@ -13,6 +13,7 @@ import com.androidevlinux.percy.UTXO.data.models.binance.BinanceApiTickerBean
 import com.androidevlinux.percy.UTXO.data.models.bitfinex.BitfinexPubTickerResponseBean
 import com.androidevlinux.percy.UTXO.data.models.bitstamp.BitstampBean
 import com.androidevlinux.percy.UTXO.data.models.gdax.GDAX
+import com.androidevlinux.percy.UTXO.data.models.okex.OkexTickerBean
 import com.androidevlinux.percy.UTXO.data.models.pocketbits.PocketBitsBean
 import com.androidevlinux.percy.UTXO.data.models.price.PriceBean
 import com.androidevlinux.percy.UTXO.utils.Constants
@@ -33,6 +34,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
     private var priceBeanArrayList: UniqueArrayList? = null
     private var priceAdapter: ExchangePriceAdapter? = null
     private var binanceObservable: Observable<BinanceApiTickerBean>? = null
+    private var okexObservable: Observable<OkexTickerBean>? = null
     private var bitfinexPubTickerResponseBeanObservable: Observable<BitfinexPubTickerResponseBean>? = null
     private var bitstampObservable: Observable<BitstampBean>? = null
     private var pocketBitsBeanObservable: Observable<PocketBitsBean>? = null
@@ -351,6 +353,209 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                     override fun onComplete() {
                         val priceBean = PriceBean()
                         priceBean.title = "Binance (BTC)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getOkexPubBTCTicker() {
+        okexObservable = apiManager!!.getOkexTicker("btc_usdt")
+        disposables = CompositeDisposable()
+        disposables!!.add(okexObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<OkexTickerBean>() {
+
+                    override fun onNext(value: OkexTickerBean) {
+                        Constants.btc_price = value.ticker!!.last.toString()
+                        Constants.btc_price_low = value.ticker!!.low.toString()
+                        Constants.btc_price_high = value.ticker!!.high.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "OKEx (BTC)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getOkexPubBabTicker() {
+        okexObservable = apiManager!!.getOkexTicker("bch_usdt")
+        disposables = CompositeDisposable()
+        disposables!!.add(okexObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<OkexTickerBean>() {
+
+                    override fun onNext(value: OkexTickerBean) {
+                        Constants.btc_price = value.ticker!!.last.toString()
+                        Constants.btc_price_low = value.ticker!!.low.toString()
+                        Constants.btc_price_high = value.ticker!!.high.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "OKEx (BCH ABC)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getOkexPubBsvTicker() {
+        okexObservable = apiManager!!.getOkexTicker("bsv_usdt")
+        disposables = CompositeDisposable()
+        disposables!!.add(okexObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<OkexTickerBean>() {
+
+                    override fun onNext(value: OkexTickerBean) {
+                        Constants.btc_price = value.ticker!!.last.toString()
+                        Constants.btc_price_low = value.ticker!!.low.toString()
+                        Constants.btc_price_high = value.ticker!!.high.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "OKEx (BCH SV)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getOkexPubEthTicker() {
+        okexObservable = apiManager!!.getOkexTicker("eth_usdt")
+        disposables = CompositeDisposable()
+        disposables!!.add(okexObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<OkexTickerBean>() {
+
+                    override fun onNext(value: OkexTickerBean) {
+                        Constants.btc_price = value.ticker!!.last.toString()
+                        Constants.btc_price_low = value.ticker!!.low.toString()
+                        Constants.btc_price_high = value.ticker!!.high.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "OKEx (ETH)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getOkexPubLtcTicker() {
+        okexObservable = apiManager!!.getOkexTicker("ltc_usdt")
+        disposables = CompositeDisposable()
+        disposables!!.add(okexObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<OkexTickerBean>() {
+
+                    override fun onNext(value: OkexTickerBean) {
+                        Constants.btc_price = value.ticker!!.last.toString()
+                        Constants.btc_price_low = value.ticker!!.low.toString()
+                        Constants.btc_price_high = value.ticker!!.high.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "OKEx (LTC)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getOkexPubTrxTicker() {
+        okexObservable = apiManager!!.getOkexTicker("trx_usdt")
+        disposables = CompositeDisposable()
+        disposables!!.add(okexObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<OkexTickerBean>() {
+
+                    override fun onNext(value: OkexTickerBean) {
+                        Constants.btc_price = value.ticker!!.last.toString()
+                        Constants.btc_price_low = value.ticker!!.low.toString()
+                        Constants.btc_price_high = value.ticker!!.high.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "OKEx (TRX)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        priceBeanArrayList!!.add(priceBean)
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getOkexPubXrpTicker() {
+        okexObservable = apiManager!!.getOkexTicker("xrp_usdt")
+        disposables = CompositeDisposable()
+        disposables!!.add(okexObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<OkexTickerBean>() {
+
+                    override fun onNext(value: OkexTickerBean) {
+                        Constants.btc_price = value.ticker!!.last.toString()
+                        Constants.btc_price_low = value.ticker!!.low.toString()
+                        Constants.btc_price_high = value.ticker!!.high.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "OKEx (XRP)"
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
@@ -1046,6 +1251,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getPocketbitsTicker()
             getGdaxBtcTicker()
             getBinancePubBTCTicker()
+            getOkexPubBTCTicker()
             return null
         }
 
@@ -1070,6 +1276,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getPocketbitsBabTicker()
             getBitfinexPubBabTicker()
             getBinancePubBabTicker()
+            getOkexPubBabTicker()
             return null
         }
 
@@ -1094,6 +1301,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getPocketbitsBsvTicker()
             getBitfinexPubBsvTicker()
             getBinancePubBsvTicker()
+            getOkexPubBsvTicker()
             return null
         }
 
@@ -1143,6 +1351,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBitStampLtcTicker()
             getGdaxLtcTicker()
             getBinancePubLtcTicker()
+            getOkexPubLtcTicker()
             return null
         }
 
@@ -1168,6 +1377,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBitfinexXrpPubTicker()
             getBitStampXrpTicker()
             getBinancePubXrpTicker()
+            getOkexPubXrpTicker()
             return null
         }
 
@@ -1194,6 +1404,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBitStampEthTicker()
             getGdaxEthTicker()
             getBinancePubEthTicker()
+            getOkexPubEthTicker()
             return null
         }
 
@@ -1218,6 +1429,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getPocketbitsTRXTicker()
             getBitfinexPubTRXTicker()
             getBinancePubTrxTicker()
+            getOkexPubTrxTicker()
             return null
         }
 

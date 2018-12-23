@@ -29,6 +29,9 @@ object NativeUtils {
     val binanceBaseUrl: String
         @JvmStatic
         external get
+    val okexBaseUrl: String
+        @JvmStatic
+        external get
     val pocketbitsBaseUrl: String
         @JvmStatic
         external get
