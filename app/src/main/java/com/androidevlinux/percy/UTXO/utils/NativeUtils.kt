@@ -8,6 +8,9 @@ object NativeUtils {
     val bitfinexBaseUrl: String
         @JvmStatic
         external get
+    val bitmexBaseUrl: String
+        @JvmStatic
+        external get
     val blocktrailBaseUrl: String
         @JvmStatic
         external get

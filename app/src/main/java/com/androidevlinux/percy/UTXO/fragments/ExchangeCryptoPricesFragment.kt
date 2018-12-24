@@ -11,6 +11,7 @@ import com.androidevlinux.percy.UTXO.activities.MainActivity
 import com.androidevlinux.percy.UTXO.adapters.ExchangePriceAdapter
 import com.androidevlinux.percy.UTXO.data.models.binance.BinanceApiTickerBean
 import com.androidevlinux.percy.UTXO.data.models.bitfinex.BitfinexPubTickerResponseBean
+import com.androidevlinux.percy.UTXO.data.models.bitmex.BitMEXTickerBean
 import com.androidevlinux.percy.UTXO.data.models.bitstamp.BitstampBean
 import com.androidevlinux.percy.UTXO.data.models.gdax.GDAX
 import com.androidevlinux.percy.UTXO.data.models.okex.OkexTickerBean
@@ -29,13 +30,15 @@ import java.util.*
 
 class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener, PopupMenu.OnMenuItemClickListener {
 
-    private var strRuppeSymbol = "\u20B9"
-    private var strDollarSymbol = "$"
-    private var strUsdtSymbol = "₮"
+    private var strRuppeSymbol = "\u20B9 "
+    private var strDollarSymbol = "$ "
+    private var strXBTSymbol = "XBT "
+    private var strUsdtSymbol = "₮ "
     private var priceBeanArrayList: UniqueArrayList? = null
     private var priceAdapter: ExchangePriceAdapter? = null
     private var binanceObservable: Observable<BinanceApiTickerBean>? = null
     private var okexObservable: Observable<OkexTickerBean>? = null
+    private var bitmexObservable: Observable<List<BitMEXTickerBean>>? = null
     private var bitfinexPubTickerResponseBeanObservable: Observable<BitfinexPubTickerResponseBean>? = null
     private var bitstampObservable: Observable<BitstampBean>? = null
     private var pocketBitsBeanObservable: Observable<PocketBitsBean>? = null
@@ -400,6 +403,192 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                         priceBean.price = strUsdtSymbol + Constants.btc_price
                         priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
                         priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBitmexPubBTCTicker() {
+        bitmexObservable = apiManager!!.getBitmexTicker()
+        disposables = CompositeDisposable()
+        disposables!!.add(bitmexObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
+
+                    override fun onNext(value: List<BitMEXTickerBean>) {
+                        Constants.btc_price = value[10].lastPrice.toString()
+                        Constants.btc_price_low = value[10].lowPrice.toString()
+                        Constants.btc_price_high = value[10].highPrice.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "BitMEX (BTC)"
+                        priceBean.price = strDollarSymbol + Constants.btc_price
+                        priceBean.low_price = strDollarSymbol + Constants.btc_price_low
+                        priceBean.high_price = strDollarSymbol + Constants.btc_price_high
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBitmexPubEthTicker() {
+        bitmexObservable = apiManager!!.getBitmexTicker()
+        disposables = CompositeDisposable()
+        disposables!!.add(bitmexObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
+
+                    override fun onNext(value: List<BitMEXTickerBean>) {
+                        Constants.btc_price = value[16].lastPrice.toString()
+                        Constants.btc_price_low = value[16].lowPrice.toString()
+                        Constants.btc_price_high = value[16].highPrice.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "BitMEX (ETH)"
+                        priceBean.price = strDollarSymbol + Constants.btc_price
+                        priceBean.low_price = strDollarSymbol + Constants.btc_price_low
+                        priceBean.high_price = strDollarSymbol + Constants.btc_price_high
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBitmexPubLtcTicker() {
+        bitmexObservable = apiManager!!.getBitmexTicker()
+        disposables = CompositeDisposable()
+        disposables!!.add(bitmexObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
+
+                    override fun onNext(value: List<BitMEXTickerBean>) {
+                        Constants.btc_price = value[19].lastPrice!!.toString()
+                        Constants.btc_price_low = value[19].lowPrice!!.toString()
+                        Constants.btc_price_high = value[19].highPrice!!.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "BitMEX (LTCZ18)"
+                        priceBean.price = strXBTSymbol + Constants.btc_price
+                        priceBean.low_price = strXBTSymbol + Constants.btc_price_low
+                        priceBean.high_price = strXBTSymbol + Constants.btc_price_high
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBitmexPubBchTicker() {
+        bitmexObservable = apiManager!!.getBitmexTicker()
+        disposables = CompositeDisposable()
+        disposables!!.add(bitmexObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
+
+                    override fun onNext(value: List<BitMEXTickerBean>) {
+                        Constants.btc_price = value[1].lastPrice!!.toString()
+                        Constants.btc_price_low = value[1].lowPrice!!.toString()
+                        Constants.btc_price_high = value[1].highPrice!!.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "BitMEX (BCHZ18)"
+                        priceBean.price = strXBTSymbol + Constants.btc_price
+                        priceBean.low_price = strXBTSymbol + Constants.btc_price_low
+                        priceBean.high_price = strXBTSymbol + Constants.btc_price_high
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBitmexPubTrxTicker() {
+        bitmexObservable = apiManager!!.getBitmexTicker()
+        disposables = CompositeDisposable()
+        disposables!!.add(bitmexObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
+
+                    override fun onNext(value: List<BitMEXTickerBean>) {
+                        Constants.btc_price = value[4].lastPrice!!.toString()
+                        Constants.btc_price_low = value[4].lowPrice!!.toString()
+                        Constants.btc_price_high = value[4].highPrice!!.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "BitMEX (TRXZ18)"
+                        priceBean.price = strXBTSymbol + Constants.btc_price
+                        priceBean.low_price = strXBTSymbol + Constants.btc_price_low
+                        priceBean.high_price = strXBTSymbol + Constants.btc_price_high
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getBitmexPubXrpTicker() {
+        bitmexObservable = apiManager!!.getBitmexTicker()
+        disposables = CompositeDisposable()
+        disposables!!.add(bitmexObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
+
+                    override fun onNext(value: List<BitMEXTickerBean>) {
+                        Constants.btc_price = value[0].lastPrice!!.toString()
+                        Constants.btc_price_low = value[0].lowPrice!!.toString()
+                        Constants.btc_price_high = value[0].highPrice!!.toString()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "BitMEX (XRPZ18)"
+                        priceBean.price = strXBTSymbol + Constants.btc_price
+                        priceBean.low_price = strXBTSymbol + Constants.btc_price_low
+                        priceBean.high_price = strXBTSymbol + Constants.btc_price_high
                         if (!isHavingDuplicateTitle(priceBean.title)) {
                             priceBeanArrayList!!.add(priceBean)
                         }
@@ -1336,6 +1525,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getGdaxBtcTicker()
             getBinancePubBTCTicker()
             getOkexPubBTCTicker()
+            getBitmexPubBTCTicker()
             return null
         }
 
@@ -1409,6 +1599,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
         override fun doInBackground(vararg value: String?): String? {
             getBitStampBchTicker()
             getGdaxBchTicker()
+            getBitmexPubBchTicker()
             return null
         }
 
@@ -1436,6 +1627,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getGdaxLtcTicker()
             getBinancePubLtcTicker()
             getOkexPubLtcTicker()
+            getBitmexPubLtcTicker()
             return null
         }
 
@@ -1462,6 +1654,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBitStampXrpTicker()
             getBinancePubXrpTicker()
             getOkexPubXrpTicker()
+            getBitmexPubXrpTicker()
             return null
         }
 
@@ -1489,6 +1682,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getGdaxEthTicker()
             getBinancePubEthTicker()
             getOkexPubEthTicker()
+            getBitmexPubEthTicker()
             return null
         }
 
@@ -1514,6 +1708,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBitfinexPubTRXTicker()
             getBinancePubTrxTicker()
             getOkexPubTrxTicker()
+            getBitmexPubTrxTicker()
             return null
         }
 

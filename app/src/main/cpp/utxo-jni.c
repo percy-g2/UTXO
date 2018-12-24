@@ -22,6 +22,13 @@ Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getBitfinexBaseUrl(JNIEnv *
 }
 
 JNIEXPORT jstring JNICALL
+Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getBitmexBaseUrl(JNIEnv *env, jclass type) {
+
+    char *baseUrl = "https://www.bitmex.com/";
+    return (*env)->NewStringUTF(env, baseUrl);
+}
+
+JNIEXPORT jstring JNICALL
 Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getChangellyBaseUrl(JNIEnv *env, jclass type) {
 
     char * baseUrl = "https://api.changelly.com";
