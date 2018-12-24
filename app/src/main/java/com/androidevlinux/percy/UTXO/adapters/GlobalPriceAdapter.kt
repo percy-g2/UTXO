@@ -57,8 +57,10 @@ class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinM
 
         // EOS is having dark black border icon which is not visible
         // in black background so add a white background color
-        if (coinMarketCapCoin.data!!.id == 1765) {
+        if (coinMarketCapCoin.data!!.id == 1765 || coinMarketCapCoin.data!!.id == 52 || coinMarketCapCoin.data!!.id == 1720 || coinMarketCapCoin.data!!.id == 1027) {
             holder.exchangeImage.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+        } else {
+            holder.exchangeImage.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent))
         }
 
         val isExpanded = coinMarketCapCoin.isExpanded

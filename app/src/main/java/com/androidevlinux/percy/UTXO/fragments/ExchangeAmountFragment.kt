@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import butterknife.OnClick
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.activities.TransactionActivity
 import com.androidevlinux.percy.UTXO.data.models.changelly.GetCurrenciesResponseBean
@@ -129,7 +128,6 @@ class ExchangeAmountFragment : BaseFragment(), View.OnClickListener {
         })
     }
 
-    @OnClick(R.id.btnGetExchangeFragment, R.id.createTransactionExchangeFragment)
     override fun onClick(view: View) {
         when (view.id) {
             R.id.btnGetExchangeFragment -> if (Utils.isConnectingToInternet(mActivity!!)) {

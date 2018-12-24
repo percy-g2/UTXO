@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import butterknife.OnClick
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.activities.TransactionActivity
 import com.androidevlinux.percy.UTXO.data.models.changelly.GetCurrenciesResponseBean
@@ -126,7 +125,6 @@ class MinimumAmountFragment : BaseFragment(), View.OnClickListener {
         })
     }
 
-    @OnClick(R.id.btnGetMinAmountFragment, R.id.createTransactionMinAmountFragment)
     override fun onClick(view: View) {
         when (view.id) {
             R.id.btnGetMinAmountFragment -> if (Utils.isConnectingToInternet(mActivity!!)) {

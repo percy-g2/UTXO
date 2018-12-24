@@ -31,9 +31,7 @@ class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, priv
         holder.id.text = (position + 1).toString()
         holder.title.text = priceBean.title
         holder.price.text = MessageFormat.format("{0}{1}", context.resources.getString(R.string.price), priceBean.price)
-        if (priceBean.title.matches(".*Zebpay.*".toRegex())
-                || priceBean.title.matches(".*Pocketbits.*".toRegex())
-                || priceBean.title.matches(".*Coinbase.*".toRegex())) {
+        if (priceBean.title.matches(".*Pocketbits.*".toRegex()) || priceBean.title.matches(".*Coinbase.*".toRegex())) {
             holder.priceLow.text = MessageFormat.format("{0} {1}", context.resources.getString(R.string.sell), priceBean.low_price)
             holder.priceHigh.text = MessageFormat.format("{0} {1}", context.resources.getString(R.string.buy), priceBean.high_price)
         } else {
@@ -55,6 +53,18 @@ class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, priv
                     val builder = CustomTabsIntent.Builder()
                     val customTabsIntent = builder.build()
                     customTabsIntent.launchUrl(context, Uri.parse("https://www.pocketbits.in/"))
+                }
+                priceBean.title.matches(".*Binance.*".toRegex()) -> {
+                    val builder = CustomTabsIntent.Builder()
+                    val customTabsIntent = builder.build()
+                    customTabsIntent.launchUrl(context, Uri.parse("https://www.binance.com/"))
+                    startNewActivity("com.binance.dev")
+                }
+                priceBean.title.matches(".*OKEx.*".toRegex()) -> {
+                    val builder = CustomTabsIntent.Builder()
+                    val customTabsIntent = builder.build()
+                    customTabsIntent.launchUrl(context, Uri.parse("https://www.okex.com/"))
+                    startNewActivity("com.okinc.okex")
                 }
                 priceBean.title.matches(".*Bitfinex.*".toRegex()) -> {
                     val builder = CustomTabsIntent.Builder()

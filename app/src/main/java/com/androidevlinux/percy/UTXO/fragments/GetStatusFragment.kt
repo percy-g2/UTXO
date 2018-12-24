@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import butterknife.OnClick
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.activities.TransactionActivity
 import com.androidevlinux.percy.UTXO.data.models.changelly.GetMinAmountReponseBean
@@ -76,7 +75,6 @@ class GetStatusFragment : BaseFragment(), View.OnClickListener {
         })
     }
 
-    @OnClick(R.id.btnGetStatusFragment, R.id.createTransactionStatusFragment)
     override fun onClick(view: View) {
         when (view.id) {
             R.id.btnGetStatusFragment -> if (Utils.isConnectingToInternet(mActivity!!)) {
