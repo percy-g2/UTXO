@@ -16,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:background="@color/md_grey_900"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -40,8 +39,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@+id/exchangeImage"
-                android:gravity="center"
-                android:textColor="@android:color/white" />
+                android:gravity="center" />
 
             <View
                 android:id="@+id/view_vertical_line"
@@ -52,7 +50,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="20dp"
                 android:layout_toEndOf="@+id/id"
-                android:background="@android:color/white" />
+                android:background="@android:color/black" />
 
             <TextView
                 android:id="@+id/txt_title"
@@ -60,7 +58,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@id/view_vertical_line"
-                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 tools:text="Bitcoin" />
 
@@ -89,7 +86,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textColor="@android:color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     tools:text="5000.00$" />
@@ -100,7 +96,6 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txt_price"
                     android:gravity="center"
-                    android:textColor="@android:color/white"
                     tools:text="24h: 0.25%" />
 
                 <ImageView
@@ -130,7 +125,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="2dp"
                 android:gravity="center"
-                android:textColor="@color/darkGreen"
+                android:textColor="@color/md_green"
                 android:textSize="16sp"
                 tools:text="0%" />
 
@@ -141,7 +136,7 @@
                 android:layout_margin="2dp"
                 android:layout_toEndOf="@+id/txt_1hr_percent_change"
                 android:gravity="center"
-                android:textColor="@color/darkGreen"
+                android:textColor="@color/md_green"
                 android:textSize="16sp"
                 tools:text="0%" />
 
@@ -152,7 +147,7 @@
                 android:layout_margin="2dp"
                 android:layout_toEndOf="@+id/txt_24hr_percent_change"
                 android:gravity="center"
-                android:textColor="@color/darkGreen"
+                android:textColor="@color/md_green"
                 android:textSize="16sp"
                 tools:text="0%" />
         </RelativeLayout>

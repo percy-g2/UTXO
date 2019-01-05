@@ -33,23 +33,23 @@ class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinM
 
         holder.txt1hrPercentChange.text = MessageFormat.format("{0}{1}", coinMarketCapCoin.data!!.quotes!!.usd!!.percentChange1h, "% 1Hr")
         if (coinMarketCapCoin.data!!.quotes!!.usd!!.percentChange1h!! > 0) {
-            holder.txt1hrPercentChange.setTextColor(ContextCompat.getColor(context, R.color.md_green_900))
+            holder.txt1hrPercentChange.setTextColor(ContextCompat.getColor(context, R.color.md_green))
         } else {
-            holder.txt1hrPercentChange.setTextColor(ContextCompat.getColor(context, R.color.md_red_900))
+            holder.txt1hrPercentChange.setTextColor(ContextCompat.getColor(context, R.color.md_red))
         }
 
         holder.txt24hrPercentChange.text = MessageFormat.format("{0}{1}", coinMarketCapCoin.data!!.quotes!!.usd!!.percentChange24h!!, "% 24Hr")
         if (coinMarketCapCoin.data!!.quotes!!.usd!!.percentChange24h!! > 0) {
-            holder.txt24hrPercentChange.setTextColor(ContextCompat.getColor(context, R.color.md_green_900))
+            holder.txt24hrPercentChange.setTextColor(ContextCompat.getColor(context, R.color.md_green))
         } else {
-            holder.txt24hrPercentChange.setTextColor(ContextCompat.getColor(context, R.color.md_red_900))
+            holder.txt24hrPercentChange.setTextColor(ContextCompat.getColor(context, R.color.md_red))
         }
 
         holder.txt7dPercentChange.text = MessageFormat.format("{0}{1}", coinMarketCapCoin.data!!.quotes!!.usd!!.percentChange7d, "% 7d")
         if (coinMarketCapCoin.data!!.quotes!!.usd!!.percentChange7d!! > 0) {
-            holder.txt7dPercentChange.setTextColor(ContextCompat.getColor(context, R.color.md_green_900))
+            holder.txt7dPercentChange.setTextColor(ContextCompat.getColor(context, R.color.md_green))
         } else {
-            holder.txt7dPercentChange.setTextColor(ContextCompat.getColor(context, R.color.md_red_900))
+            holder.txt7dPercentChange.setTextColor(ContextCompat.getColor(context, R.color.md_red))
         }
 
         Picasso.get().load("https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/" + coinMarketCapCoin.data!!.id.toString() + ".png").into(holder.snapshotImage)
@@ -58,7 +58,7 @@ class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinM
         // EOS is having dark black border icon which is not visible
         // in black background so add a white background color
         if (coinMarketCapCoin.data!!.id == 1765 || coinMarketCapCoin.data!!.id == 52 || coinMarketCapCoin.data!!.id == 1720 || coinMarketCapCoin.data!!.id == 1027) {
-            holder.exchangeImage.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+            holder.exchangeImage.setBackgroundColor(ContextCompat.getColor(context, android.R.color.white))
         } else {
             holder.exchangeImage.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent))
         }

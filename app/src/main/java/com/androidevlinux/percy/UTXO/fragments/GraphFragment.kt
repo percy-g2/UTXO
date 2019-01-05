@@ -11,6 +11,7 @@ import android.view.*
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import com.afollestad.aesthetic.Aesthetic
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.activities.MainActivity
 import com.androidevlinux.percy.UTXO.data.models.coinmarketcap.CoinMarketCapChartData
@@ -349,8 +350,8 @@ class GraphFragment : BaseFragment(), OnChartValueSelectedListener, PopupMenu.On
                             return
                         }
                         val xAxis = chart!!.xAxis
-                        xAxis.textColor = ContextCompat.getColor(mActivity!!, R.color.white)
-                        chart!!.axisLeft.textColor = ContextCompat.getColor(mActivity!!, R.color.white)
+                        xAxis.textColor = textColor!!
+                        chart!!.axisLeft.textColor = textColor!!
                         xAxis.valueFormatter = xAxisFormatter
                         val currPrice = closePrices[closePrices.size - 1].y
                         graphFragmentDateTextView!!.text = getFormattedFullDate(closePrices[closePrices.size - 1].x)
@@ -548,8 +549,26 @@ class GraphFragment : BaseFragment(), OnChartValueSelectedListener, PopupMenu.On
         setHasOptionsMenu(true)
     }
 
+    private var textColor: Int? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Aesthetic.get()
+                .colorAccent()
+                .take(1)
+                .subscribe { color ->
+                    dayButton.markerColor = color
+                    weekButton.markerColor = color
+                    monthButton.markerColor = color
+                    threeMonthButton.markerColor = color
+                    yearButton.markerColor = color
+                    allTimeButton.markerColor = color
+                }.dispose()
+        Aesthetic.get()
+                .textColorPrimary()
+                .take(1)
+                .subscribe { color ->
+                    textColor = color
+                }.dispose()
         chartUSDPriceFormat = NumberFormat.getInstance()
         chartUSDPriceFormat.maximumFractionDigits = 10
         setUpChart()

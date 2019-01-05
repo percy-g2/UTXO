@@ -1,7 +1,6 @@
 package com.androidevlinux.percy.UTXO.activities
 
 import android.app.Activity
-import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
 import android.net.ConnectivityManager
@@ -119,7 +118,7 @@ class MainActivity : BaseFragmentActivity(), ConnectionReceiver.ConnectionReceiv
             R.id.nav_global_crypto_prices -> loadFragment(GlobalCryptoPricesFragment::class.java, menuItem.itemId, resources.getString(R.string.nav_global_crypto_prices))
             R.id.nav_crypto_graphs -> loadFragment(GraphFragment::class.java, menuItem.itemId, resources.getString(R.string.nav_crypto_graph_btc))
             R.id.nav_bitfinex_candle_chart -> loadFragment(BitfinexCandleChartFragment::class.java, menuItem.itemId, resources.getString(R.string.nav_crypto_candle_chart_btc))
-            R.id.nav_about -> startActivity(Intent(this, AboutTheDevActivity::class.java))
+            R.id.nav_settings -> loadFragment(SettingsFragment::class.java, menuItem.itemId, resources.getString(R.string.action_settings))
             R.id.nav_get_min_amount -> loadFragment(MinimumAmountFragment::class.java, menuItem.itemId, resources.getString(R.string.min_amount_check))
             R.id.nav_exchange_amount -> loadFragment(ExchangeAmountFragment::class.java, menuItem.itemId, resources.getString(R.string.exchange_amount))
             R.id.nav_get_status -> loadFragment(GetStatusFragment::class.java, menuItem.itemId, resources.getString(R.string.get_status))
@@ -185,7 +184,7 @@ class MainActivity : BaseFragmentActivity(), ConnectionReceiver.ConnectionReceiv
 
     override fun onDestroy() {
         super.onDestroy()
-        unregisterReceiver(mConnectionReceiver)
+        //unregisterReceiver(mConnectionReceiver)
     }
 
     override fun onNetworkConnectionChanged(isConnected: Boolean) {

@@ -58,7 +58,7 @@ class CreateTransactionFragment : BaseFragment() {
             init()
         } else {
             val currenciesStringListAdapter = ArrayAdapter(mActivity!!,
-                    R.layout.spinner_item, Constants.currenciesStringList!!)
+                    android.R.layout.simple_spinner_item, Constants.currenciesStringList!!)
             currenciesStringListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerFromTransactionFragment!!.adapter = currenciesStringListAdapter
             spinnerToTransactionFragment!!.adapter = currenciesStringListAdapter
@@ -133,7 +133,7 @@ class CreateTransactionFragment : BaseFragment() {
                     currenciesStringList = response.body()!!.result
                     Constants.currenciesStringList = currenciesStringList
                     val currenciesStringListAdapter = ArrayAdapter(mActivity!!,
-                            R.layout.spinner_item, currenciesStringList!!)
+                            android.R.layout.simple_spinner_item, currenciesStringList!!)
                     currenciesStringListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     spinnerFromTransactionFragment!!.adapter = currenciesStringListAdapter
                     spinnerToTransactionFragment!!.adapter = currenciesStringListAdapter

@@ -11,7 +11,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/md_grey_900"
         android:padding="15dp">
 
         <ImageView
@@ -30,8 +29,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/exchangeImage"
-            android:gravity="center"
-            android:textColor="@android:color/white" />
+            android:gravity="center" />
 
         <View
             android:id="@+id/view_vertical_line"
@@ -41,8 +39,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:layout_toEndOf="@+id/id"
-            android:background="@android:color/white" />
+            android:layout_toEndOf="@+id/id" />
 
 
         <TextView
@@ -53,7 +50,6 @@
             android:layout_toEndOf="@id/view_vertical_line"
             android:layout_toStartOf="@+id/linearLayout_prices"
             android:gravity="center"
-            android:textColor="@android:color/white"
             android:textSize="16sp"
             tools:text="Bitcoin" />
 
@@ -69,7 +65,6 @@
                 android:id="@+id/txt_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="5000.00$" />
@@ -78,14 +73,12 @@
                 android:id="@+id/txt_high_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/md_grey_300"
                 tools:text="24h: 0.25%" />
 
             <TextView
                 android:id="@+id/txt_low_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/md_grey_300"
                 tools:text="7d: -0.25%" />
 
         </LinearLayout>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/top_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <!-- The ActionBar (Toolbar) displayed at the top -->
     <include
@@ -14,8 +13,7 @@
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar">
+        android:layout_height="match_parent">
 
         <!-- The main content view where fragments are loaded -->
         <FrameLayout
@@ -28,11 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@color/md_grey_700"
-            android:theme="@style/NavigationView"
-            app:itemIconTint="@color/md_blue_grey_500"
-            app:itemTextColor="@color/md_grey_100"
+            app:itemTextColor="?android:textColorPrimary"
             app:menu="@menu/drawer_view"/>
     </androidx.drawerlayout.widget.DrawerLayout>
 
-</RelativeLayout>
+</LinearLayout>

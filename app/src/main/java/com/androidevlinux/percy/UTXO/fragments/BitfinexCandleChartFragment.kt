@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.content.ContextCompat
+import com.afollestad.aesthetic.Aesthetic
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.activities.MainActivity
 import com.androidevlinux.percy.UTXO.data.models.bitfinex.BitfinexPubTickerResponseBean
@@ -43,6 +43,7 @@ import java.util.*
 class BitfinexCandleChartFragment : BaseFragment(), OnChartValueSelectedListener, PopupMenu.OnMenuItemClickListener {
 
     private var entries = ArrayList<CandleEntry>()
+    private var textColor: Int? = null
     private var xValues = ArrayList<String>()
     private var xFloatValues = ArrayList<Long>()
     private var currencyId = 0
@@ -63,6 +64,25 @@ class BitfinexCandleChartFragment : BaseFragment(), OnChartValueSelectedListener
         chart_interval_button_grp!!.check(R.id.fifteenMinButton)
         getBitfinexData(currencyId, "15m")
         candleChart!!.setOnChartValueSelectedListener(this)
+        Aesthetic.get()
+                .colorAccent()
+                .take(1)
+                .subscribe { color ->
+                    fifteenMinButton.markerColor = color
+                    sixHourssButton.markerColor = color
+                    dayButton.markerColor = color
+                    weekButton.markerColor = color
+                    twoWeeksButton.markerColor = color
+                    monthButton.markerColor = color
+                }.dispose()
+
+        Aesthetic.get()
+                .textColorPrimary()
+                .take(1)
+                .subscribe { color ->
+                    textColor = color
+                }.dispose()
+
         val displayMetrics = DisplayMetrics()
         mActivity!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
         val displayWidth = displayMetrics.widthPixels
@@ -338,7 +358,7 @@ class BitfinexCandleChartFragment : BaseFragment(), OnChartValueSelectedListener
                         dataSet.shadowWidth = 0.7f
                         dataSet.decreasingColor = Color.RED
                         dataSet.decreasingPaintStyle = Paint.Style.FILL
-                        dataSet.increasingColor = Color.rgb(122, 242, 84)
+                        dataSet.increasingColor = Color.GREEN
                         dataSet.increasingPaintStyle = Paint.Style.FILL
                         dataSet.neutralColor = Color.BLUE
                         dataSet.valueTextColor = Color.RED
@@ -369,22 +389,23 @@ class BitfinexCandleChartFragment : BaseFragment(), OnChartValueSelectedListener
                     val currPrice = entries[entries.size - 1].y
                     dateTextView!!.text = getFormattedFullDate(xFloatValues[entries.size - 1].toFloat())
                     current_price!!.text = String.format(getString(R.string.unrounded_usd_chart_price_format), currPrice.toString())
-                    current_price!!.setTextColor(Color.WHITE)
+                    current_price!!.setTextColor(textColor!!)
 
                     candleChart!!.animateX(800)
                     description.text = finalCurrency
                     description.textSize = 15f
                     description.textAlign = Paint.Align.RIGHT
+                    description.textColor = textColor!!
                     candleChart!!.description = description
                     //candleChart.setDragEnabled(false);
                     candleChart!!.setScaleEnabled(true)
                     candleChart!!.extraRightOffset = 30f
-                    candleChart!!.setBackgroundColor(Color.BLACK)
                     candleChart!!.setDrawGridBackground(false)
                     candleChart!!.axisLeft.setDrawGridLines(false)
                     candleChart!!.xAxis.setDrawGridLines(false)
-                    candleChart!!.axisLeft.textColor = ContextCompat.getColor(mActivity!!, R.color.white)
-                    candleChart!!.xAxis.textColor = ContextCompat.getColor(mActivity!!, R.color.white)
+                    candleChart!!.axisLeft.textColor = textColor!!
+                    candleChart!!.xAxis.textColor = textColor!!
+                    candleChart!!.axisRight.textColor = textColor!!
                     candleChart!!.axisRight.setDrawGridLines(false)
                     candleChart!!.setDrawBorders(false)
                     candleChart!!.setPinchZoom(true)

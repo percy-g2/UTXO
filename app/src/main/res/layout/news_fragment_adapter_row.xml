@@ -4,8 +4,7 @@
     android:id="@+id/inner_frame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="2dp"
-    android:background="@color/md_grey_900">
+    android:layout_margin="2dp">
 
     <LinearLayout
         android:id="@+id/inner_cont"
@@ -14,7 +13,6 @@
         android:layout_margin="3dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/md_grey_900"
         android:gravity="top|bottom|start|end|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
         android:orientation="horizontal">
 
@@ -39,7 +37,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -48,7 +45,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:textColor="@color/white"
                 android:textSize="12sp" />
 
             <RelativeLayout
@@ -64,7 +60,6 @@
                     android:layout_toStartOf="@+id/txt_date"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:textColor="@color/white"
                     android:textSize="12sp" />
 
                 <TextView
@@ -74,7 +69,6 @@
                     android:layout_alignParentEnd="true"
                     android:gravity="start|end|center_horizontal|fill_horizontal|center|fill|start|end"
                     android:singleLine="true"
-                    android:textColor="@color/white"
                     android:textSize="12sp" />
             </RelativeLayout>
         </LinearLayout>

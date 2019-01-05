@@ -41,7 +41,7 @@ class MinimumAmountFragment : BaseFragment(), View.OnClickListener {
             init()
         } else {
             val currencyListAdapter = ArrayAdapter(mActivity!!,
-                    R.layout.spinner_item, Constants.currenciesStringList!!)
+                    android.R.layout.simple_spinner_item, Constants.currenciesStringList!!)
             currencyListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner_from!!.adapter = currencyListAdapter
             spinner_to!!.adapter = currencyListAdapter
@@ -107,7 +107,7 @@ class MinimumAmountFragment : BaseFragment(), View.OnClickListener {
                     var currencyListAdapter: ArrayAdapter<String>? = null
                     if (currenciesStringList != null) {
                         currencyListAdapter = ArrayAdapter(mActivity!!,
-                                R.layout.spinner_item, currenciesStringList!!)
+                                android.R.layout.simple_spinner_item, currenciesStringList!!)
                     }
                     currencyListAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     spinner_from!!.adapter = currencyListAdapter

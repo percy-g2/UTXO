@@ -45,7 +45,7 @@ class ExchangeAmountFragment : BaseFragment(), View.OnClickListener {
             init()
         } else {
             val currenciesStringListAdapter = ArrayAdapter(mActivity!!,
-                    R.layout.spinner_item, Constants.currenciesStringList!!)
+                    android.R.layout.simple_spinner_item, Constants.currenciesStringList!!)
             currenciesStringListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerFromExchangeFragment!!.adapter = currenciesStringListAdapter
             spinnerToExchangeFragment!!.adapter = currenciesStringListAdapter
@@ -110,7 +110,7 @@ class ExchangeAmountFragment : BaseFragment(), View.OnClickListener {
                     currenciesStringList = response.body()!!.result
                     Constants.currenciesStringList = currenciesStringList
                     val currenciesStringListAdapter = ArrayAdapter(mActivity!!,
-                            R.layout.spinner_item, currenciesStringList!!)
+                            android.R.layout.simple_spinner_item, currenciesStringList!!)
                     currenciesStringListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     spinnerFromExchangeFragment!!.adapter = currenciesStringListAdapter
                     spinnerToExchangeFragment!!.adapter = currenciesStringListAdapter

@@ -1,29 +1,11 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/md_grey_800</item>
-        <item name="colorPrimaryDark">@color/md_grey_900</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
-        <item name="windowActionModeOverlay">true</item>
+    <style name="AppCompatDemoTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="my_custom_attr">#000</item>
     </style>
 
-    <style name="progress_dialog" parent="@android:style/Theme.Dialog">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@drawable/progress_dialog_background</item>
-        <item name="android:windowFrame">@drawable/progress_dialog_frame</item>
+    <style name="AppCompatDemoThemeDark" parent="Theme.AppCompat.NoActionBar">
+        <item name="my_custom_attr">#fff</item>
     </style>
 
-    <style name="title_text_view" parent="@android:style/TextAppearance">
-        <item name="android:typeface">sans</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:padding">1dp</item>
-        <item name="android:gravity">left</item>
-    </style>
-
-    <style name="NavigationView">
-        <item name="android:textColorSecondary">@color/white</item>
-    </style>
 </resources>

@@ -61,10 +61,10 @@
                     android:icon="@drawable/news"
                     android:title="@string/nav_news" />
                 <item
-                    android:id="@+id/nav_about"
+                    android:id="@+id/nav_settings"
                     android:checkable="false"
-                    android:icon="@drawable/about"
-                    android:title="@string/nav_about" />
+                    android:icon="@mipmap/settings_icon"
+                    android:title="@string/action_settings" />
             </group>
         </menu>
     </item>
