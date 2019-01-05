@@ -62,7 +62,7 @@
                     android:title="@string/nav_news" />
                 <item
                     android:id="@+id/nav_settings"
-                    android:checkable="false"
+                    android:checkable="true"
                     android:icon="@mipmap/settings_icon"
                     android:title="@string/action_settings" />
             </group>

@@ -165,7 +165,7 @@ class BitfinexCandleChartFragment : BaseFragment(), OnChartValueSelectedListener
         popup.setOnMenuItemClickListener(this@BitfinexCandleChartFragment)
 
         val inflater = popup.menuInflater
-        inflater.inflate(R.menu.crypto_prices_filter_popup, popup.menu)
+        inflater.inflate(R.menu.crypto_candle_chart_filter_popup, popup.menu)
         popup.show()
     }
 
