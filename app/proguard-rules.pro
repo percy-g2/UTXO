@@ -85,3 +85,5 @@
 -dontwarn javax.servlet.**
 -dontwarn org.slf4j.**
 -dontwarn sun.misc.Unsafe
+
+-keep class com.afollestad.aesthetic.** { *; }
