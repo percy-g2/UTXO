@@ -1,6 +1,5 @@
 package com.androidevlinux.percy.UTXO.activities
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
@@ -30,15 +29,12 @@ abstract class BaseFragmentActivity : AestheticActivity() {
                 activityTheme(R.style.AppCompatDemoTheme)
                 textColorPrimary(res = R.color.text_color_primary)
                 textColorSecondary(res = R.color.text_color_secondary)
-                textColorPrimaryInverse(res = R.color.text_color_primary)
-                textColorSecondaryInverse(res = R.color.text_color_secondary)
                 colorPrimary(res = R.color.md_blue)
                 colorPrimaryDark(res = R.color.md_blueDark)
                 colorWindowBackground(res = android.R.color.white)
                 colorAccent(res = R.color.md_pink)
                 colorStatusBarAuto()
                 colorNavigationBarAuto()
-                textColorPrimary(Color.BLACK)
                 navigationViewMode(NavigationViewMode.NONE)
                 bottomNavigationBackgroundMode(BottomNavBgMode.PRIMARY)
                 bottomNavigationIconTextMode(BottomNavIconTextMode.SELECTED_ACCENT)

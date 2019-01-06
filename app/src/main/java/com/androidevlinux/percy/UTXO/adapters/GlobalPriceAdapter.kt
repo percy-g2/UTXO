@@ -4,11 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.androidevlinux.percy.UTXO.R
 import com.androidevlinux.percy.UTXO.data.models.coinmarketcap.CoinMarketCapCoin
 import com.squareup.picasso.Picasso
@@ -17,6 +19,7 @@ import java.util.*
 
 
 class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinMarketCapCoin>, private val context: Context, private val mSwipeRefreshLayout: androidx.swiperefreshlayout.widget.SwipeRefreshLayout) : androidx.recyclerview.widget.RecyclerView.Adapter<GlobalPriceAdapter.ViewHolder>() {
+    private var lastPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GlobalPriceAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context)
@@ -26,6 +29,16 @@ class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinM
 
     override fun onBindViewHolder(holder: GlobalPriceAdapter.ViewHolder, position: Int) {
         val coinMarketCapCoin = coinMarketCapCoinArrayList[position]
+        val animation = AnimationUtils.loadAnimation(
+                context,
+                if (position > lastPosition)
+                    R.anim.up_from_bottom
+                else
+                    R.anim.down_from_top
+        )
+        holder.itemView.startAnimation(animation)
+        lastPosition = holder.adapterPosition
+
         holder.id.text = (position + 1).toString()
         holder.title.text = coinMarketCapCoin.data!!.name
         holder.price.text = MessageFormat.format("{0}{1}", context.resources.getString(R.string.price) + " $", coinMarketCapCoin.data!!.quotes!!.usd!!.price)
@@ -52,8 +65,14 @@ class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinM
             holder.txt7dPercentChange.setTextColor(ContextCompat.getColor(context, R.color.md_red))
         }
 
-        Picasso.get().load("https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/" + coinMarketCapCoin.data!!.id.toString() + ".png").into(holder.snapshotImage)
-        Picasso.get().load("https://s2.coinmarketcap.com/static/img/coins/64x64/" + coinMarketCapCoin.data!!.id.toString() + ".png").into(holder.exchangeImage)
+        val circularProgressDrawable = CircularProgressDrawable(context)
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.setColorSchemeColors(R.color.md_blue,
+                R.color.md_pink)
+        circularProgressDrawable.start()
+        Picasso.get().load("https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/" + coinMarketCapCoin.data!!.id.toString() + ".png").placeholder(circularProgressDrawable).into(holder.snapshotImage)
+        Picasso.get().load("https://s2.coinmarketcap.com/static/img/coins/64x64/" + coinMarketCapCoin.data!!.id.toString() + ".png").placeholder(circularProgressDrawable).into(holder.exchangeImage)
 
         // EOS is having dark black border icon which is not visible
         // in black background so add a white background color
