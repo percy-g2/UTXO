@@ -414,9 +414,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                 .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
 
                     override fun onNext(value: List<BitMEXTickerBean>) {
-                        Constants.btc_price = value[5].lastPrice.toString()
-                        Constants.btc_price_low = value[5].lowPrice.toString()
-                        Constants.btc_price_high = value[5].highPrice.toString()
+                        Constants.btc_price = value[10].lastPrice.toString()
+                        Constants.btc_price_low = value[10].lowPrice.toString()
+                        Constants.btc_price_high = value[10].highPrice.toString()
                     }
 
                     override fun onError(e: Throwable) {
@@ -445,9 +445,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                 .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
 
                     override fun onNext(value: List<BitMEXTickerBean>) {
-                        Constants.btc_price = value[10].lastPrice.toString()
-                        Constants.btc_price_low = value[10].lowPrice.toString()
-                        Constants.btc_price_high = value[10].highPrice.toString()
+                        Constants.btc_price = value[16].lastPrice.toString()
+                        Constants.btc_price_low = value[16].lowPrice.toString()
+                        Constants.btc_price_high = value[16].highPrice.toString()
                     }
 
                     override fun onError(e: Throwable) {
@@ -476,9 +476,9 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                 .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
 
                     override fun onNext(value: List<BitMEXTickerBean>) {
-                        Constants.btc_price = value[12].lastPrice!!.toString()
-                        Constants.btc_price_low = value[12].lowPrice!!.toString()
-                        Constants.btc_price_high = value[12].highPrice!!.toString()
+                        Constants.btc_price = value[19].lastPrice!!.toString()
+                        Constants.btc_price_low = value[19].lowPrice!!.toString()
+                        Constants.btc_price_high = value[19].highPrice!!.toString()
                     }
 
                     override fun onError(e: Throwable) {
@@ -549,7 +549,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
 
                     override fun onComplete() {
                         val priceBean = PriceBean()
-                        priceBean.title = "BitMEX (TRXZ18)"
+                        priceBean.title = "BitMEX (TRXH19)"
                         priceBean.price = strXBTSymbol + Constants.btc_price
                         priceBean.low_price = strXBTSymbol + Constants.btc_price_low
                         priceBean.high_price = strXBTSymbol + Constants.btc_price_high
@@ -580,7 +580,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
 
                     override fun onComplete() {
                         val priceBean = PriceBean()
-                        priceBean.title = "BitMEX (XRPZ18)"
+                        priceBean.title = "BitMEX (XRPH19)"
                         priceBean.price = strXBTSymbol + Constants.btc_price
                         priceBean.low_price = strXBTSymbol + Constants.btc_price_low
                         priceBean.high_price = strXBTSymbol + Constants.btc_price_high
