@@ -12,7 +12,7 @@ More things will be added in the future versions.
 
 **Support**
 1. You can drop me a [email](proxthehacker@gmail.com) here for any queries.
-2. Buy me a beer, BTC  wallet address :- 32nRfmpUazZQBK7aFCK6YVuFsr2RzdzZrE
+2. Buy me a beer, BTC  wallet address :- 3QejEtoWbj6jQwH6xHea3gNGZ4hEXpisS3
 
 **Privacy Policy**
 1. Read Here [privacy policy](https://github.com/percy-g2/android_application_utxo/blob/master/privacy_policy.html)
