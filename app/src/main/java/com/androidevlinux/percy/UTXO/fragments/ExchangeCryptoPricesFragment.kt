@@ -414,9 +414,13 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                 .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
 
                     override fun onNext(value: List<BitMEXTickerBean>) {
-                        Constants.btc_price = value[10].lastPrice.toString()
-                        Constants.btc_price_low = value[10].lowPrice.toString()
-                        Constants.btc_price_high = value[10].highPrice.toString()
+                        for (data in value) {
+                            if (data.rootSymbol.equals("XBT")) {
+                                Constants.btc_price = data.lastPrice!!.toString()
+                                Constants.btc_price_low = data.lowPrice!!.toString()
+                                Constants.btc_price_high = data.highPrice!!.toString()
+                            }
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -445,9 +449,13 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                 .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
 
                     override fun onNext(value: List<BitMEXTickerBean>) {
-                        Constants.btc_price = value[16].lastPrice.toString()
-                        Constants.btc_price_low = value[16].lowPrice.toString()
-                        Constants.btc_price_high = value[16].highPrice.toString()
+                        for (data in value) {
+                            if (data.rootSymbol.equals("ETH")) {
+                                Constants.btc_price = data.lastPrice!!.toString()
+                                Constants.btc_price_low = data.lowPrice!!.toString()
+                                Constants.btc_price_high = data.highPrice!!.toString()
+                            }
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -476,9 +484,13 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                 .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
 
                     override fun onNext(value: List<BitMEXTickerBean>) {
-                        Constants.btc_price = value[19].lastPrice!!.toString()
-                        Constants.btc_price_low = value[19].lowPrice!!.toString()
-                        Constants.btc_price_high = value[19].highPrice!!.toString()
+                        for (data in value) {
+                            if (data.rootSymbol.equals("LTC")) {
+                                Constants.btc_price = data.lastPrice!!.toString()
+                                Constants.btc_price_low = data.lowPrice!!.toString()
+                                Constants.btc_price_high = data.highPrice!!.toString()
+                            }
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -487,7 +499,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
 
                     override fun onComplete() {
                         val priceBean = PriceBean()
-                        priceBean.title = "BitMEX (LTCH19)"
+                        priceBean.title = "BitMEX (LTC)"
                         priceBean.price = strXBTSymbol + Constants.btc_price
                         priceBean.low_price = strXBTSymbol + Constants.btc_price_low
                         priceBean.high_price = strXBTSymbol + Constants.btc_price_high
@@ -507,9 +519,13 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                 .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
 
                     override fun onNext(value: List<BitMEXTickerBean>) {
-                        Constants.btc_price = value[1].lastPrice!!.toString()
-                        Constants.btc_price_low = value[1].lowPrice!!.toString()
-                        Constants.btc_price_high = value[1].highPrice!!.toString()
+                        for (data in value) {
+                            if (data.rootSymbol.equals("BCH")) {
+                                Constants.btc_price = data.lastPrice!!.toString()
+                                Constants.btc_price_low = data.lowPrice!!.toString()
+                                Constants.btc_price_high = data.highPrice!!.toString()
+                            }
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -518,7 +534,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
 
                     override fun onComplete() {
                         val priceBean = PriceBean()
-                        priceBean.title = "BitMEX (BCHZ18)"
+                        priceBean.title = "BitMEX (BCH)"
                         priceBean.price = strXBTSymbol + Constants.btc_price
                         priceBean.low_price = strXBTSymbol + Constants.btc_price_low
                         priceBean.high_price = strXBTSymbol + Constants.btc_price_high
@@ -538,9 +554,13 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                 .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
 
                     override fun onNext(value: List<BitMEXTickerBean>) {
-                        Constants.btc_price = value[4].lastPrice!!.toString()
-                        Constants.btc_price_low = value[4].lowPrice!!.toString()
-                        Constants.btc_price_high = value[4].highPrice!!.toString()
+                        for (data in value) {
+                            if (data.rootSymbol.equals("TRX")) {
+                                Constants.btc_price = data.lastPrice!!.toString()
+                                Constants.btc_price_low = data.lowPrice!!.toString()
+                                Constants.btc_price_high = data.highPrice!!.toString()
+                            }
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -549,7 +569,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
 
                     override fun onComplete() {
                         val priceBean = PriceBean()
-                        priceBean.title = "BitMEX (TRXH19)"
+                        priceBean.title = "BitMEX (TRX)"
                         priceBean.price = strXBTSymbol + Constants.btc_price
                         priceBean.low_price = strXBTSymbol + Constants.btc_price_low
                         priceBean.high_price = strXBTSymbol + Constants.btc_price_high
@@ -569,9 +589,13 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
                 .subscribeWith(object : DisposableObserver<List<BitMEXTickerBean>>() {
 
                     override fun onNext(value: List<BitMEXTickerBean>) {
-                        Constants.btc_price = value[0].lastPrice!!.toString()
-                        Constants.btc_price_low = value[0].lowPrice!!.toString()
-                        Constants.btc_price_high = value[0].highPrice!!.toString()
+                        for (data in value) {
+                            if (data.rootSymbol.equals("XRP")) {
+                                Constants.btc_price = data.lastPrice!!.toString()
+                                Constants.btc_price_low = data.lowPrice!!.toString()
+                                Constants.btc_price_high = data.highPrice!!.toString()
+                            }
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -580,7 +604,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
 
                     override fun onComplete() {
                         val priceBean = PriceBean()
-                        priceBean.title = "BitMEX (XRPH19)"
+                        priceBean.title = "BitMEX (XRP)"
                         priceBean.price = strXBTSymbol + Constants.btc_price
                         priceBean.low_price = strXBTSymbol + Constants.btc_price_low
                         priceBean.high_price = strXBTSymbol + Constants.btc_price_high
