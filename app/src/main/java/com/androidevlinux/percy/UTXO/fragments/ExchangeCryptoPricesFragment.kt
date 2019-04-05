@@ -415,7 +415,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
 
                     override fun onNext(value: List<BitMEXTickerBean>) {
                         for (data in value) {
-                            if (data.rootSymbol.equals("XBT")) {
+                            if (data.rootSymbol.equals("XBT") && data.symbol.equals("XBTUSD")) {
                                 Constants.btc_price = data.lastPrice!!.toString()
                                 Constants.btc_price_low = data.lowPrice!!.toString()
                                 Constants.btc_price_high = data.highPrice!!.toString()
@@ -450,7 +450,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
 
                     override fun onNext(value: List<BitMEXTickerBean>) {
                         for (data in value) {
-                            if (data.rootSymbol.equals("ETH")) {
+                            if (data.rootSymbol.equals("ETH") && data.symbol.equals("ETHUSD")) {
                                 Constants.btc_price = data.lastPrice!!.toString()
                                 Constants.btc_price_low = data.lowPrice!!.toString()
                                 Constants.btc_price_high = data.highPrice!!.toString()
