@@ -139,8 +139,8 @@ class MainActivity : BaseFragmentActivity(), ConnectionReceiver.ConnectionReceiv
         closeNavigationDrawer()
     }
 
-    private fun loadFragment(fragmentClass: Class<*>, @IdRes navDrawerCheckedItemId: Int,
-                             toolbarTitle: CharSequence) {
+    public fun loadFragment(fragmentClass: Class<*>, @IdRes navDrawerCheckedItemId: Int,
+                            toolbarTitle: CharSequence) {
         var fragment: androidx.fragment.app.Fragment? = null
         try {
             fragment = fragmentClass.newInstance() as androidx.fragment.app.Fragment

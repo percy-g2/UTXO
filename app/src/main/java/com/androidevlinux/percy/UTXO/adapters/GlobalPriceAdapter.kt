@@ -21,13 +21,13 @@ import java.util.*
 class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinMarketCapCoin>, private val context: Context, private val mSwipeRefreshLayout: androidx.swiperefreshlayout.widget.SwipeRefreshLayout) : androidx.recyclerview.widget.RecyclerView.Adapter<GlobalPriceAdapter.ViewHolder>() {
     private var lastPosition = -1
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GlobalPriceAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.global_price_fragment_adapter_row, parent, false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: GlobalPriceAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val coinMarketCapCoin = coinMarketCapCoinArrayList[position]
         val animation = AnimationUtils.loadAnimation(
                 context,
@@ -117,7 +117,6 @@ class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinM
      * View holder class
      */
     inner class ViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
-        val cardView: androidx.cardview.widget.CardView = view.findViewById(R.id.cardView)
         val id: TextView = view.findViewById(R.id.id)
         val exchangeImage: AppCompatImageView = view.findViewById(R.id.exchangeImage)
         val title: TextView = view.findViewById(R.id.txt_title)
@@ -128,9 +127,7 @@ class GlobalPriceAdapter(private val coinMarketCapCoinArrayList: ArrayList<CoinM
         val txt7dPercentChange: TextView = view.findViewById(R.id.txt_7d_percent_change)
         val snapshotImage: AppCompatImageView = view.findViewById(R.id.snapshotImage)
         val expandedView: RelativeLayout = view.findViewById(R.id.expandView)
-        val mainLayout: RelativeLayout = view.findViewById(R.id.mainLayout)
         val imageViewToggle: ImageView = view.findViewById(R.id.imageView_toggle)
-
     }
 }
 

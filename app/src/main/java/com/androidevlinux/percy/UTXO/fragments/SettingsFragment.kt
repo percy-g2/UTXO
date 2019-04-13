@@ -4,10 +4,11 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.afollestad.aesthetic.Aesthetic
 import com.androidevlinux.percy.UTXO.R
-import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat
+import com.androidevlinux.percy.UTXO.activities.MainActivity
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -24,7 +25,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
 
-    override fun onCreatePreferencesFix(savedInstanceState: Bundle?, rootKey: String?) {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
     }
 
@@ -34,6 +35,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         darkModePref.setOnPreferenceChangeListener { _, newValue ->
             if (newValue as Boolean) {
+                (mActivity as MainActivity).loadFragment(ExchangeCryptoPricesFragment::class.java, R.id.nav_exchange_crypto_prices, resources.getString(R.string.nav_crypto_prices_btc))
                 Aesthetic.config {
                     activityTheme(R.style.AppCompatDemoThemeDark)
                     isDark(true)
@@ -44,6 +46,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     colorPrimaryDark(res = R.color.md_black_1000)
                 }
             } else {
+                (mActivity as MainActivity).loadFragment(ExchangeCryptoPricesFragment::class.java, R.id.nav_exchange_crypto_prices, resources.getString(R.string.nav_crypto_prices_btc))
                 Aesthetic.config {
                     isDark(false)
                     activityTheme(R.style.AppCompatDemoTheme)

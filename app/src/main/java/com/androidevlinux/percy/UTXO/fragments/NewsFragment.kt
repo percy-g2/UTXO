@@ -36,7 +36,7 @@ class NewsFragment : BaseFragment(), androidx.swiperefreshlayout.widget.SwipeRef
         articleArrayList = ArrayList()
         val linearLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         news_recycler_view!!.layoutManager = linearLayoutManager
-        newsAdapter = NewsAdapter(articleArrayList!!, mActivity!!, swipe_container!!)
+        newsAdapter = NewsAdapter(articleArrayList!!, mActivity!!)
         news_recycler_view!!.adapter = newsAdapter
         swipe_container!!.setOnRefreshListener(this)
         swipe_container!!.setColorSchemeColors(ContextCompat.getColor(mActivity!!, android.R.color.holo_green_dark),

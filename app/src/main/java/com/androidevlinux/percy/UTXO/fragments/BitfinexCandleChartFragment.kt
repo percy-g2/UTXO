@@ -15,6 +15,7 @@ import com.github.mikephil.charting.data.CandleData
 import com.github.mikephil.charting.data.CandleDataSet
 import com.github.mikephil.charting.data.CandleEntry
 import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.ChartTouchListener
 import com.github.mikephil.charting.listener.OnChartGestureListener
@@ -377,7 +378,12 @@ class BitfinexCandleChartFragment : BaseFragment(), OnChartValueSelectedListener
                         yAxis.isGranularityEnabled = true
                         val xAxis = candleChart!!.xAxis
                         xAxis.granularity = 1f
-                        xAxis.setValueFormatter { value1, _ -> xValues[value1.toInt() % xValues.size] }
+
+                        xAxis.valueFormatter = object : ValueFormatter() {
+                            override fun getFormattedValue(value: Float): String {
+                                return xValues[value.toInt() % xValues.size]
+                            }
+                        }
 
                         dataSet.highlightLineWidth = 2f
                         dataSet.isHighlightEnabled = true

@@ -24,7 +24,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.ChartTouchListener
 import com.github.mikephil.charting.listener.OnChartGestureListener
@@ -49,8 +49,8 @@ class GraphFragment : BaseFragment(), OnChartValueSelectedListener, PopupMenu.On
     private var cryptoID: String? = null
     private var currencyId: String? = null
     private var percentageColor: Int = 0
-    private var xAxisFormatter: IAxisValueFormatter? = null
-    private val monthSlashDayXAxisFormatter: IAxisValueFormatter = MonthSlashDayDateFormatter()
+    private var xAxisFormatter: ValueFormatter? = null
+    private val monthSlashDayXAxisFormatter: ValueFormatter = MonthSlashDayDateFormatter()
     private val dayCommaTimeDateFormatter = TimeDateFormatter()
     private val monthSlashYearFormatter = MonthSlashYearFormatter()
     private var currentTimeWindow = ""

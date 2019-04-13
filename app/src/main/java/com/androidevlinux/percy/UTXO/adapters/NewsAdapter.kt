@@ -17,16 +17,16 @@ import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
 
-class NewsAdapter(private val articleArrayList: ArrayList<Article>, private val context: Context, private val mSwipeRefreshLayout: androidx.swiperefreshlayout.widget.SwipeRefreshLayout) : androidx.recyclerview.widget.RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+class NewsAdapter(private val articleArrayList: ArrayList<Article>, private val context: Context) : androidx.recyclerview.widget.RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     private var lastPosition = -1
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.news_fragment_adapter_row, parent, false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: NewsAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = articleArrayList[position]
         val animation = AnimationUtils.loadAnimation(
                 context,
@@ -51,7 +51,7 @@ class NewsAdapter(private val articleArrayList: ArrayList<Article>, private val 
         circularProgressDrawable.setColorSchemeColors(R.color.md_blue,
                 R.color.md_pink)
         circularProgressDrawable.start()
-        if (null != article.urlToImage && !article.urlToImage!!.isEmpty()) {
+        if (null != article.urlToImage && article.urlToImage!!.isNotEmpty()) {
             Picasso.get().load(article.urlToImage).placeholder(circularProgressDrawable).into(holder.articleImage)
         }
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())

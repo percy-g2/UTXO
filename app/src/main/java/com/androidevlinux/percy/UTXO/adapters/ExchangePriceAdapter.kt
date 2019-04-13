@@ -20,13 +20,13 @@ import java.text.MessageFormat
 
 class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, private val context: Context, private val mSwipeRefreshLayout: androidx.swiperefreshlayout.widget.SwipeRefreshLayout) : androidx.recyclerview.widget.RecyclerView.Adapter<ExchangePriceAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExchangePriceAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.exchange_price_fragment_adapter_row, parent, false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: ExchangePriceAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val priceBean = priceBeanArrayList[position]
         holder.id.text = (position + 1).toString()
         holder.title.text = priceBean.title
