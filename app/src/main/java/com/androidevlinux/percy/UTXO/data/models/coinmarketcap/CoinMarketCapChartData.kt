@@ -5,10 +5,6 @@ import com.google.gson.annotations.SerializedName
 
 import java.io.Serializable
 
-/**
- * Created by Ryan on 2/3/2018.
- */
-
 class CoinMarketCapChartData : Serializable {
 
     @SerializedName("market_cap_by_available_supply")

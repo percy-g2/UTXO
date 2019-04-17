@@ -7,7 +7,7 @@ import java.util.*
 
 class TimeDateFormatter : ValueFormatter() {
 
-    override fun getFormattedValue(unixSeconds: Float, axis: AxisBase): String {
+    override fun getAxisLabel(unixSeconds: Float, axis: AxisBase): String {
         val date = Date(unixSeconds.toLong())
         val sdf = SimpleDateFormat("HH:MM", Locale.ENGLISH)
         return sdf.format(date)
