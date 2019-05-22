@@ -79,6 +79,13 @@ Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getPocketbitsBaseUrl(JNIEnv
 }
 
 JNIEXPORT jstring JNICALL
+Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getWazirxBaseUrl(JNIEnv *env,
+                                                                      jclass type) {
+    char *baseUrl = "https://api.wazirx.com/";
+    return (*env)->NewStringUTF(env, baseUrl);
+}
+
+JNIEXPORT jstring JNICALL
 Java_com_androidevlinux_percy_UTXO_utils_NativeUtils_getCoinMarketCapBaseUrl(JNIEnv *env,
                                                                           jclass type) {
     char * baseUrl = "https://api.coinmarketcap.com/";

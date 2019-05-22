@@ -38,6 +38,9 @@ object NativeUtils {
     val pocketbitsBaseUrl: String
         @JvmStatic
         external get
+    val wazirxBaseUrl: String
+        @JvmStatic
+        external get
     val coinMarketCapBaseUrl: String
         @JvmStatic
         external get

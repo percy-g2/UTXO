@@ -16,6 +16,7 @@ import com.androidevlinux.percy.UTXO.data.models.gdax.GDAX
 import com.androidevlinux.percy.UTXO.data.models.okex.OkexTickerBean
 import com.androidevlinux.percy.UTXO.data.models.pocketbits.PocketBitsBean
 import com.androidevlinux.percy.UTXO.data.models.price.PriceBean
+import com.androidevlinux.percy.UTXO.data.models.wazirx.Wazirx
 import com.androidevlinux.percy.UTXO.utils.Constants
 import com.androidevlinux.percy.UTXO.utils.UniqueArrayList
 import io.reactivex.Observable
@@ -39,6 +40,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
     private var okexObservable: Observable<OkexTickerBean>? = null
     private var bitmexObservable: Observable<List<BitMEXTickerBean>>? = null
     private var bitfinexPubTickerResponseBeanObservable: Observable<BitfinexPubTickerResponseBean>? = null
+    private var wazirxTickerResponseBeanObservable: Observable<Wazirx>? = null
     private var bitstampObservable: Observable<BitstampBean>? = null
     private var pocketBitsBeanObservable: Observable<PocketBitsBean>? = null
     private var gdaxObservable: Observable<GDAX>? = null
@@ -1545,12 +1547,233 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBinancePubBTCTicker()
             getOkexPubBTCTicker()
             getBitmexPubBTCTicker()
+            getWazirxBtcTicker()
             return null
         }
 
         override fun onPostExecute(value: String?) {
             priceAdapter!!.notifyDataSetChanged()
         }
+    }
+
+    private fun getWazirxBtcTicker() {
+        wazirxTickerResponseBeanObservable = apiManager!!.wazirxTicker
+        disposables = CompositeDisposable()
+        disposables!!.add(wazirxTickerResponseBeanObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<Wazirx>() {
+
+                    override fun onNext(value: Wazirx) {
+                        Constants.btc_price = value.btcinr!!.last!!
+                        Constants.btc_price_low = value.btcinr!!.low!!
+                        Constants.btc_price_high = value.btcinr!!.high!!
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "WazirX (BTC)"
+                        priceBean.price = strRuppeSymbol + Constants.btc_price
+                        priceBean.low_price = strRuppeSymbol + Constants.btc_price_low
+                        priceBean.high_price = strRuppeSymbol + Constants.btc_price_high
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getWazirxBchAbcTicker() {
+        wazirxTickerResponseBeanObservable = apiManager!!.wazirxTicker
+        disposables = CompositeDisposable()
+        disposables!!.add(wazirxTickerResponseBeanObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<Wazirx>() {
+
+                    override fun onNext(value: Wazirx) {
+                        Constants.btc_price = value.bchabcusdt!!.last!!
+                        Constants.btc_price_low = value.bchabcusdt!!.low!!
+                        Constants.btc_price_high = value.bchabcusdt!!.high!!
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "WazirX (BCH ABC)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+
+    private fun getWazirxBchSvTicker() {
+        wazirxTickerResponseBeanObservable = apiManager!!.wazirxTicker
+        disposables = CompositeDisposable()
+        disposables!!.add(wazirxTickerResponseBeanObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<Wazirx>() {
+
+                    override fun onNext(value: Wazirx) {
+                        Constants.btc_price = value.bchsvusdt!!.last!!
+                        Constants.btc_price_low = value.bchsvusdt!!.low!!
+                        Constants.btc_price_high = value.bchsvusdt!!.high!!
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "WazirX (BCH SV)"
+                        priceBean.price = strUsdtSymbol + Constants.btc_price
+                        priceBean.low_price = strUsdtSymbol + Constants.btc_price_low
+                        priceBean.high_price = strUsdtSymbol + Constants.btc_price_high
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getWazirxEthTicker() {
+        wazirxTickerResponseBeanObservable = apiManager!!.wazirxTicker
+        disposables = CompositeDisposable()
+        disposables!!.add(wazirxTickerResponseBeanObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<Wazirx>() {
+
+                    override fun onNext(value: Wazirx) {
+                        Constants.btc_price = value.ethinr!!.last!!
+                        Constants.btc_price_low = value.ethinr!!.low!!
+                        Constants.btc_price_high = value.ethinr!!.high!!
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "WazirX (ETH)"
+                        priceBean.price = strRuppeSymbol + Constants.btc_price
+                        priceBean.low_price = strRuppeSymbol + Constants.btc_price_low
+                        priceBean.high_price = strRuppeSymbol + Constants.btc_price_high
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+
+    private fun getWazirxLtcTicker() {
+        wazirxTickerResponseBeanObservable = apiManager!!.wazirxTicker
+        disposables = CompositeDisposable()
+        disposables!!.add(wazirxTickerResponseBeanObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<Wazirx>() {
+
+                    override fun onNext(value: Wazirx) {
+                        Constants.btc_price = value.ltcinr!!.last!!
+                        Constants.btc_price_low = value.ltcinr!!.low!!
+                        Constants.btc_price_high = value.ltcinr!!.high!!
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "WazirX (LTC)"
+                        priceBean.price = strRuppeSymbol + Constants.btc_price
+                        priceBean.low_price = strRuppeSymbol + Constants.btc_price_low
+                        priceBean.high_price = strRuppeSymbol + Constants.btc_price_high
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+    private fun getWazirxTrxTicker() {
+        wazirxTickerResponseBeanObservable = apiManager!!.wazirxTicker
+        disposables = CompositeDisposable()
+        disposables!!.add(wazirxTickerResponseBeanObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<Wazirx>() {
+
+                    override fun onNext(value: Wazirx) {
+                        Constants.btc_price = value.trxinr!!.last!!
+                        Constants.btc_price_low = value.trxinr!!.low!!
+                        Constants.btc_price_high = value.trxinr!!.high!!
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "WazirX (TRX)"
+                        priceBean.price = strRuppeSymbol + Constants.btc_price
+                        priceBean.low_price = strRuppeSymbol + Constants.btc_price_low
+                        priceBean.high_price = strRuppeSymbol + Constants.btc_price_high
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
+    }
+
+
+    private fun getWazirxXrpTicker() {
+        wazirxTickerResponseBeanObservable = apiManager!!.wazirxTicker
+        disposables = CompositeDisposable()
+        disposables!!.add(wazirxTickerResponseBeanObservable!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<Wazirx>() {
+
+                    override fun onNext(value: Wazirx) {
+                        Constants.btc_price = value.xrpinr!!.last!!
+                        Constants.btc_price_low = value.xrpinr!!.low!!
+                        Constants.btc_price_high = value.xrpinr!!.high!!
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+
+                    override fun onComplete() {
+                        val priceBean = PriceBean()
+                        priceBean.title = "WazirX (XRP)"
+                        priceBean.price = strRuppeSymbol + Constants.btc_price
+                        priceBean.low_price = strRuppeSymbol + Constants.btc_price_low
+                        priceBean.high_price = strRuppeSymbol + Constants.btc_price_high
+                        if (!isHavingDuplicateTitle(priceBean.title)) {
+                            priceBeanArrayList!!.add(priceBean)
+                        }
+                        priceAdapter!!.notifyDataSetChanged()
+                    }
+                }))
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -1570,6 +1793,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBitfinexPubBabTicker()
             getBinancePubBabTicker()
             getOkexPubBabTicker()
+            getWazirxBchAbcTicker()
             return null
         }
 
@@ -1595,6 +1819,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBitfinexPubBsvTicker()
             getBinancePubBsvTicker()
             getOkexPubBsvTicker()
+            getWazirxBchSvTicker()
             return null
         }
 
@@ -1647,6 +1872,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBinancePubLtcTicker()
             getOkexPubLtcTicker()
             getBitmexPubLtcTicker()
+            getWazirxLtcTicker()
             return null
         }
 
@@ -1674,6 +1900,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBinancePubXrpTicker()
             getOkexPubXrpTicker()
             getBitmexPubXrpTicker()
+            getWazirxXrpTicker()
             return null
         }
 
@@ -1702,6 +1929,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBinancePubEthTicker()
             getOkexPubEthTicker()
             getBitmexPubEthTicker()
+            getWazirxEthTicker()
             return null
         }
 
@@ -1728,6 +1956,7 @@ class ExchangeCryptoPricesFragment : BaseFragment(), androidx.swiperefreshlayout
             getBinancePubTrxTicker()
             getOkexPubTrxTicker()
             getBitmexPubTrxTicker()
+            getWazirxTrxTicker()
             return null
         }
 

@@ -46,6 +46,7 @@ class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, priv
             priceBean.title.matches(".*Bitstamp.*".toRegex()) -> holder.exchangeImage.background = ContextCompat.getDrawable(context, R.mipmap.ic_bitstamp)
             priceBean.title.matches(".*Coinbase.*".toRegex()) -> holder.exchangeImage.background = ContextCompat.getDrawable(context, R.mipmap.ic_gdax)
             priceBean.title.matches(".*OKEx.*".toRegex()) -> holder.exchangeImage.background = ContextCompat.getDrawable(context, R.mipmap.ic_okex)
+            priceBean.title.matches(".*WazirX.*".toRegex()) -> holder.exchangeImage.background = ContextCompat.getDrawable(context, R.mipmap.ic_wazirx_logo)
         }
 
         holder.cardView.setOnClickListener {
@@ -76,18 +77,24 @@ class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, priv
                     val builder = CustomTabsIntent.Builder()
                     val customTabsIntent = builder.build()
                     customTabsIntent.launchUrl(context, Uri.parse("https://www.bitfinex.com/"))
-                    startNewActivity("com.bitfinex.bfxapp")
+                    startNewActivity("com.bitfinex.mobileapp")
                 }
                 priceBean.title.matches(".*Bitstamp.*".toRegex()) -> {
                     val builder = CustomTabsIntent.Builder()
                     val customTabsIntent = builder.build()
                     customTabsIntent.launchUrl(context, Uri.parse("https://www.bitstamp.net/"))
-                    startNewActivity("net.bitstamp.bitstamp")
+                    startNewActivity("net.bitstamp.app")
                 }
                 priceBean.title.matches(".*Coinbase.*".toRegex()) -> {
                     val builder = CustomTabsIntent.Builder()
                     val customTabsIntent = builder.build()
                     customTabsIntent.launchUrl(context, Uri.parse("https://pro.coinbase.com/"))
+                }
+                priceBean.title.matches(".*WazirX.*".toRegex()) -> {
+                    val builder = CustomTabsIntent.Builder()
+                    val customTabsIntent = builder.build()
+                    customTabsIntent.launchUrl(context, Uri.parse("https://wazirx.com/"))
+                    startNewActivity("com.wrx.wazirx")
                 }
             }
         }
@@ -96,20 +103,20 @@ class ExchangePriceAdapter(private val priceBeanArrayList: UniqueArrayList, priv
             if (mSwipeRefreshLayout.isRefreshing) {
                 mSwipeRefreshLayout.isRefreshing = false
             }
-        } else if (priceBeanArrayList.size == 4 && priceBean.title.matches(".*ABC.*".toRegex())
+        } else if (priceBeanArrayList.size == 5 && priceBean.title.matches(".*ABC.*".toRegex())
                 || priceBean.title.matches(".*SV.*".toRegex())) {
             if (mSwipeRefreshLayout.isRefreshing) {
                 mSwipeRefreshLayout.isRefreshing = false
             }
-        } else if (priceBeanArrayList.size == 5 && priceBean.title.matches(".*TRX.*".toRegex())) {
+        } else if (priceBeanArrayList.size == 6 && priceBean.title.matches(".*TRX.*".toRegex())) {
             if (mSwipeRefreshLayout.isRefreshing) {
                 mSwipeRefreshLayout.isRefreshing = false
             }
-        } else if (priceBeanArrayList.size == 6 && priceBean.title.matches(".*XRP.*".toRegex())) {
+        } else if (priceBeanArrayList.size == 7 && priceBean.title.matches(".*XRP.*".toRegex())) {
             if (mSwipeRefreshLayout.isRefreshing) {
                 mSwipeRefreshLayout.isRefreshing = false
             }
-        } else if (priceBeanArrayList.size == 7 && priceBean.title.matches(".*BTC.*".toRegex()) || priceBean.title.matches(".*ETH.*".toRegex())
+        } else if (priceBeanArrayList.size == 8 && priceBean.title.matches(".*BTC.*".toRegex()) || priceBean.title.matches(".*ETH.*".toRegex())
                 || priceBean.title.matches(".*LTC.*".toRegex())) {
             if (mSwipeRefreshLayout.isRefreshing) {
                 mSwipeRefreshLayout.isRefreshing = false

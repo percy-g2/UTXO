@@ -15,6 +15,7 @@ import com.androidevlinux.percy.UTXO.data.models.gdax.GDAX
 import com.androidevlinux.percy.UTXO.data.models.newsapi.NewsBean
 import com.androidevlinux.percy.UTXO.data.models.okex.OkexTickerBean
 import com.androidevlinux.percy.UTXO.data.models.pocketbits.PocketBitsBean
+import com.androidevlinux.percy.UTXO.data.models.wazirx.Wazirx
 import com.androidevlinux.percy.UTXO.data.network.apis.*
 import com.google.gson.JsonObject
 import io.reactivex.Observable
@@ -34,6 +35,10 @@ class ApiManager private constructor() {
     private val gdaxApiImpl: GdaxApiImpl = GdaxApiImpl.instance
     private val coinMarketCapApiImpl: CoinMarketCapApiImpl = CoinMarketCapApiImpl.instance
     private val newsApiImpl: NewsApiImpl = NewsApiImpl.instance
+    private val wazirxAPI: WazirxApiImpl = WazirxApiImpl.instance
+
+    val wazirxTicker: Observable<Wazirx>
+        get() = wazirxAPI.wazirxTicker
 
     val pocketbitsTicker: Observable<PocketBitsBean>
         get() = pocketbitsApiImpl.pocketbitsTicker
