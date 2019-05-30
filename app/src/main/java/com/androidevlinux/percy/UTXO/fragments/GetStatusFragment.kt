@@ -78,7 +78,7 @@ class GetStatusFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(view: View) {
         when (view.id) {
             R.id.btnGetStatusFragment -> if (Utils.isConnectingToInternet(mActivity!!)) {
-                if (!edtTransactionIdStatusFragment!!.text!!.toString().isEmpty()) {
+                if (edtTransactionIdStatusFragment!!.text!!.toString().isNotEmpty()) {
                     minAmount(edtTransactionIdStatusFragment!!.text!!.toString())
                 } else {
                     Toasty.warning(mActivity!!, "Empty Fields Please Check", Toast.LENGTH_SHORT, true).show()

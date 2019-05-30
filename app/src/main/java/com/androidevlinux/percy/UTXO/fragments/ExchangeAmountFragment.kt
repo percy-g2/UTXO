@@ -131,7 +131,7 @@ class ExchangeAmountFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(view: View) {
         when (view.id) {
             R.id.btnGetExchangeFragment -> if (Utils.isConnectingToInternet(mActivity!!)) {
-                if (spinnerFromExchangeFragment!!.selectedItem != null && spinnerToExchangeFragment!!.selectedItem != null && !edtAmountExchangeFragment!!.text!!.toString().isEmpty()) {
+                if (spinnerFromExchangeFragment!!.selectedItem != null && spinnerToExchangeFragment!!.selectedItem != null && edtAmountExchangeFragment!!.text!!.toString().isNotEmpty()) {
                     minAmount(spinnerFromExchangeFragment!!.selectedItem.toString(), spinnerToExchangeFragment!!.selectedItem.toString(), edtAmountExchangeFragment!!.text!!.toString())
                 } else {
                     Toasty.warning(mActivity!!, "Empty Fields Please Check", Toast.LENGTH_SHORT, true).show()

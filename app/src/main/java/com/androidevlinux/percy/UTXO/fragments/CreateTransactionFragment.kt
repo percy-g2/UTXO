@@ -44,7 +44,7 @@ class CreateTransactionFragment : BaseFragment() {
         currenciesStringList = ArrayList()
         btnGetTransactionFragment.setOnClickListener {
             if (Utils.isConnectingToInternet(mActivity!!)) {
-                if (spinnerFromTransactionFragment!!.selectedItem != null && spinnerToTransactionFragment!!.selectedItem != null && !edtAmountTransactionFragment!!.text!!.toString().isEmpty() && !edtUserPayOutAddressTransactionFragment!!.text!!.toString().isEmpty()) {
+                if (spinnerFromTransactionFragment!!.selectedItem != null && spinnerToTransactionFragment!!.selectedItem != null && edtAmountTransactionFragment!!.text!!.toString().isNotEmpty() && edtUserPayOutAddressTransactionFragment!!.text!!.toString().isNotEmpty()) {
                     createTransaction(spinnerFromTransactionFragment!!.selectedItem.toString(), spinnerToTransactionFragment!!.selectedItem.toString(), edtAmountTransactionFragment!!.text!!.toString(), edtUserPayOutAddressTransactionFragment!!.text!!.toString())
                 } else {
                     Toasty.warning(mActivity!!, "Empty Fields Please Check", Toast.LENGTH_SHORT, true).show()

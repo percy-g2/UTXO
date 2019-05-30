@@ -198,7 +198,7 @@ class GraphFragment : BaseFragment(), OnChartValueSelectedListener, PopupMenu.On
         }
     }
 
-    internal fun refresh() {
+    private fun refresh() {
         when (chart_interval_button_grp!!.checkedId) {
             R.id.dayButton -> {
                 setDayChecked(Calendar.getInstance())
