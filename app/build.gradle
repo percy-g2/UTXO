@@ -70,6 +70,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     // Instead, use the bundle block to control which types of configuration APKs
     // you want your app bundle to support.
     bundle {
