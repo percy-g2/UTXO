@@ -26,7 +26,7 @@ public class Batinr {
     private String type;
     @SerializedName("open")
     @Expose
-    private int open;
+    private double open;
     @SerializedName("volume")
     @Expose
     private String volume;
@@ -121,15 +121,15 @@ public class Batinr {
         return this;
     }
 
-    public int getOpen() {
+    public double getOpen() {
         return open;
     }
 
-    public void setOpen(int open) {
+    public void setOpen(double open) {
         this.open = open;
     }
 
-    public Batinr withOpen(int open) {
+    public Batinr withOpen(double open) {
         this.open = open;
         return this;
     }

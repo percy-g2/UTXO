@@ -26,7 +26,7 @@ public class Polyinr {
     private String type;
     @SerializedName("open")
     @Expose
-    private int open;
+    private double open;
     @SerializedName("volume")
     @Expose
     private String volume;
@@ -121,15 +121,15 @@ public class Polyinr {
         return this;
     }
 
-    public int getOpen() {
+    public double getOpen() {
         return open;
     }
 
-    public void setOpen(int open) {
+    public void setOpen(double open) {
         this.open = open;
     }
 
-    public Polyinr withOpen(int open) {
+    public Polyinr withOpen(double open) {
         this.open = open;
         return this;
     }

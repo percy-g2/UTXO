@@ -109,7 +109,8 @@ class CreateTransactionFragment : BaseFragment() {
         super.onCreateContextMenu(menu, v, menuInfo)
         val clipboard = mActivity!!.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Pay In Address", txtServerResponsePayInAddressTransactionFragment!!.text.toString())
-        clipboard.primaryClip = clip
+        var test = clipboard.primaryClip
+        test = clip
     }
 
     private fun init() {

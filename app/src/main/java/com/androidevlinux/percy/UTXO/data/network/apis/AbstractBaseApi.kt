@@ -31,7 +31,7 @@ abstract class AbstractBaseApi<T> {
     fun getClient(t: Class<T>): T {
         if (retrofit == null) {
             // set your desired log level
-            logging.level = HttpLoggingInterceptor.Level.NONE
+            logging.level = HttpLoggingInterceptor.Level.BODY
 
             val clientOkHttp = OkHttpClient.Builder()
                     .connectTimeout(connectTimeOut, TimeUnit.SECONDS)
